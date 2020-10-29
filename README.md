@@ -1,4 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Objectives
+
+### `29-10-2020`
+
+[] Plan navbar and jumbotron.
+[] Login page. Lets do something like instagram.
+[] Topics to add as initial gratis pages.
+[] Assign individual tasks.
+
+## vipul
+### `30-10-2020`
+[] 
+
+## palash
+### `30-10-2020`
+[]
+
+## sid
+### `30-10-2020`
+[]
+
+## tarun
+### `30-10-2020`
+[]
 
 ## Available Scripts
 
