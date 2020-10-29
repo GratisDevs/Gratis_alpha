@@ -3,8 +3,11 @@
 ### `29-10-2020`
 
 [] Plan navbar and jumbotron.
+
 [] Login page. Lets do something like instagram.
+
 [] Topics to add as initial gratis pages.
+
 [] Assign individual tasks.
 
 ## vipul
