@@ -1,0 +1,18 @@
+[15:09] - vipul
+
+1. create a folder named GratisDevs( with exact same name)
+2. go into the folder and open command prompt
+3. type git init( when you are int the folder)
+4. issue command "git clone https://github.com/GratisDevs/Gratis_alpha.git" (it will ask for username and pass)
+5. issue command "git remote add origin https://github.com/GratisDevs/Gratis_alpha.git"
+6. Now open App.js from src folder from cloned repo in your system and replace word "gratis platform" with something random. Save the change and again go to cmd.
+7. issue command in given order 1. git add .  2. git commit -m "any message" 3. git push -u origin master.
+8. for the first time, it might give some error like "failed to push some refs to remote". If this happenes, issue command git pull --rebase, and then do git push -u origin master or git push.
+9. it shouldn't show any error now. Go to your github page and under organization, check if the change you made in app.ja is there or not. 
+10. Now got to project folder and run "npm install" on cmd
+11. now run npm start and jusr follow the instructions given on cmd.
+
+[15:36] - tarun
+
+1. everyone do not forget to add react-bootstrap to your project npm.
+2. command - npm install react-bootstrap bootstrap 
