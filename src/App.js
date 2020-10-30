@@ -7,7 +7,7 @@ import './App.css';
 class App extends React.Component{
 	render(){return (<div className="App">
 		<button onClick={this.props.decrease}>Decrease</button>
-		<p>{this.props.number}</p>
+		<p>{this.props.number}palash</p>
 		<button onClick={this.props.increase}>Increase</button>
 		</div>);}
 }
