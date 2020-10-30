@@ -22,7 +22,7 @@
 
 ## sid
 ### `30-10-2020`
-[] setup project
+[30-10-2020] setup project
 [] style navbar
 
 ## tarun
