@@ -15,4 +15,11 @@
 [15:36] - tarun
 
 1. everyone do not forget to add react-bootstrap to your project npm.
-2. command - npm install react-bootstrap bootstrap 
+2. command - npm install react-bootstrap bootstrap
+3. install firebase sdk . command : npm install firebase --save
+
+[17:44]  - tarun 
+
+1. firebase login credentials : gratis.devs@gmail.com
+2. password: group_description of the group.
+

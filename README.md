@@ -1,6 +1,6 @@
 ## Objectives
 
-### `29-10-2020`
+### `30-10-2020`
 
 [] Plan navbar and jumbotron.
 
