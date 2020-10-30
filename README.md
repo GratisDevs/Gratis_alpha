@@ -12,19 +12,23 @@
 
 ## vipul
 ### `30-10-2020`
-[] 
+[30-10-2020]  completed initial setup
+[] do not push any files related to firebase functions right now.
 
 ## palash
 ### `30-10-2020`
-[]
+[30-10-2020] project setup done
+[] search for google fonts suitable for the project
 
 ## sid
 ### `30-10-2020`
-[]
+[] setup project
+[] style navbar
 
 ## tarun
 ### `30-10-2020`
-[]
+[30-10-2020] project logs generated and updated.
+[] design project navbar. 
 
 ## Available Scripts
 
