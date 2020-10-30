@@ -1,4 +1,4 @@
-[15:09] - vipul
+[29-10-2020 15:09] - vipul
 
 1. create a folder named GratisDevs( with exact same name)
 2. go into the folder and open command prompt
@@ -12,14 +12,21 @@
 10. Now got to project folder and run "npm install" on cmd
 11. now run npm start and jusr follow the instructions given on cmd.
 
-[15:36] - tarun
+[29-10-2020 15:36] - tarun
 
 1. everyone do not forget to add react-bootstrap to your project npm.
 2. command - npm install react-bootstrap bootstrap
 3. install firebase sdk . command : npm install firebase --save
 
-[17:44]  - tarun 
+[30-10-2020 17:44]  - tarun 
 
 1. firebase login credentials : gratis.devs@gmail.com
 2. password: group_description of the group.
 
+[30-10-2020 17:44]  - tarun 
+
+1. commands for firebase deploy
+    - firebase deploy --only functions [for functions only]
+    - firebase deploy --only hosting [for hosting only]
+    - firebase deploy [for hosting only ]( WARNING: conflicts may arise if functions and hosting in firebaserc are initialised.)
+2. [WARNING : do not push any fucking file on github without telling anyone. Vipul has already done it.]
