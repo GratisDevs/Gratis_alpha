@@ -28,7 +28,7 @@
 ## tarun
 ### `30-10-2020`
 [30-10-2020] project logs generated and updated.
-[] design project navbar. 
+[31-10-2020] design project navbar. 
 
 ## Available Scripts
 
