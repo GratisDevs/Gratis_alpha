@@ -9,18 +9,16 @@ import Button from 'react-bootstrap/Button';
 function NavbarMainComponent() {
 	return (
 		<div>
-			<Navbar bg="light" variant="light">
+			<Navbar bg="light" variant="light" className="navbrand-center">
 				<Nav.Link className="mr-2 active " href="/home">
 					Home
 				</Nav.Link>
-				<Navbar.Brand className="logo-name mx-auto">GratiS'</Navbar.Brand>
-				<Navbar.Collapse id="basic-navbar-nav" className="justify-content-end mr-5">
-					<div>
-						<Nav className="mr-auto">
-							<Nav.Link className="mr-2 ">Login</Nav.Link>
-						</Nav>
-					</div>
-				</Navbar.Collapse>
+				<div className="mx-auto ">
+					<Navbar.Brand className="logo-name ">GratiS'</Navbar.Brand>
+				</div>
+				<Nav.Link className="mr-2 active " href="/login">
+					Login
+				</Nav.Link>
 			</Navbar>
 		</div>
 	);
