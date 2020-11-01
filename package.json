@@ -13,8 +13,13 @@
     "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.2",
+<<<<<<< HEAD
+=======
+    "react-router": "^5.2.0",
+>>>>>>> 66087905091ca2074a547ee9b23902efdf2e3d23
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "reactstrap": "^8.6.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6"
   },
