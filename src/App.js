@@ -16,27 +16,26 @@ class App extends React.Component{
 	}	
 	
 	componentDidMount(){
-		let user1;
 		firebase.auth().onAuthStateChanged((user)=>{
 			if(user){
-				user1=user;
 				this.props.dispatch(login(user.email));	
+				this.props.history.push("/");
 			}
 			
-			
 		})
-		if(user1===undefined)
-		this.props.history.push("/login");
+		
 	}
 	logout=()=>{
 		console.log("clicked");
 		firebase.auth().signOut().then(()=>{
 			this.props.dispatch(logout());
+			this.props.history.push("/login");
 		}).catch((err)=>{
 			console.log(err);
 		})
 	}
 	render(){
+
 		return (<div className="App">
 			<Switch>
 				<Route exact path="/" component={()=><Homepage userName={this.props.userName} logout={this.logout}/>} />

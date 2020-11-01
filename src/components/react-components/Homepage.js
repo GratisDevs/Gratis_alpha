@@ -3,7 +3,7 @@ import { Redirect } from 'react-router';
 
 class Homepage extends React.Component{
     render(){
-        
+        if(this.props.userName==='') return <Redirect to="/login" />
         return(
             <>
                 <h2>Homepage {this.props.userName}</h2>

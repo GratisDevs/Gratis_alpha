@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import {login} from '../../actions/login_logout.js';
 import firebase from '../data_components/firebase.js';
 
@@ -30,10 +30,11 @@ class Login extends React.Component{
                 console.log(error);
             })
         }).catch((error)=>{
-            console.log(error);
+            alert(error.message);
         })
     }
     render(){
+        if(this.props.userName!=='') return <Redirect to="/" />
         return(
             <>
             <input type="email" value={this.state.email} onChange={this.handleEmail} />
