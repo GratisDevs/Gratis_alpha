@@ -30,3 +30,6 @@
     - firebase deploy --only hosting [for hosting only]
     - firebase deploy [for hosting only ]( WARNING: conflicts may arise if functions and hosting in firebaserc are initialised.)
 2. [WARNING : do not push any fucking file on github without telling anyone. Vipul has already done it.]
+
+[31-10-2020 14:31] - Vipul
+1. Install redux, run commands npm install redux react-redux --save

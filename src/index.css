@@ -1,13 +1,18 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.logo-name {
+	font-family: 'Press Start 2P', cursive;
+	font-size: 19px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.slogan-1 {
+	font-family: 'Codystar', cursive;
+}
+
+.slogan-2 {
+	font-family: 'VT323', monospace;
+}
+
+.navbrand-center {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
 }
