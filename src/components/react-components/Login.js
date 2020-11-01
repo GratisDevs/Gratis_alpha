@@ -14,6 +14,10 @@ class Login extends React.Component{
         
     }
 
+    componentDidMount(){
+        console.log("Login component mounted");
+    }
+
     handleEmail=(event)=>{
         this.setState({email:event.target.value});
     }
@@ -25,7 +29,7 @@ class Login extends React.Component{
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=>{
             firebase.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((user)=>{
                 this.props.dispatch(login(firebase.auth().currentUser.email));
-                this.props.history.push("/");
+                
             },function(error){
                 console.log(error);
             })
