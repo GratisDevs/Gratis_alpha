@@ -12,27 +12,40 @@
 
 ## vipul
 ### `30-10-2020`
+
 [30-10-2020]  completed initial setup
+
 [01-11-2020]  completed the login backend with redux.
+
 [] do not push any files related to firebase functions right now.
 
 ## palash
 ### `30-10-2020`
+
 [30-10-2020] project setup done
+
 [01-11-2020] task assigned. Study redux.
+
 [] search for google fonts suitable for the project
 
 ## sid
 ### `30-10-2020`
+
 [30-10-2020] setup project
+
 [01-11-2020] task assigned. Study Redux.
+
 [] style navbar login user block. Study designing a dropdown. Maybe even scss(but dont dwell too deep it has to be simple, you have to decide).
 
 ## tarun
 ### `30-10-2020`
+
 [30-10-2020] project logs generated and updated.
+
 [31-10-2020] design project navbar. 
+
 [01-11-2020] develop content for navbar.
+
 [] Make the login look like somewhat like instaLogin.
 
 ## Available Scripts
