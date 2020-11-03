@@ -1,5 +1,7 @@
 import React from 'react';
-
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import firebase from './components/data_components/firebase.js';
 import Login from './components/react-components/Login.js';
 import { connect } from 'react-redux';

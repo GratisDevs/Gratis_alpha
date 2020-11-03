@@ -35,6 +35,7 @@ function NavbarMainComponent() {
 						GratiS'{' '}
 					</Navbar.Brand>
 				</div>
+
 				<Button variant="transparent">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
