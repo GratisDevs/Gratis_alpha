@@ -37,6 +37,10 @@
 
 [] style navbar login user block. Study designing a dropdown. Maybe even scss(but dont dwell too deep it has to be simple, you have to decide).
 
+[] Make the navbar responsive for small screens. ie. To make them collapsible or make fonts small in css. 
+
+[] After making the changes share the screenshots and when its approved push it to the github.
+
 ## tarun
 ### `30-10-2020`
 
@@ -46,7 +50,9 @@
 
 [01-11-2020] develop content for navbar.
 
-[] Make the login look like somewhat like instaLogin.
+[03-11-2020] Make the login look like somewhat like instaLogin.
+
+[] Make the register and forgot password as well.
 
 ## Available Scripts
 
