@@ -1,19 +1,33 @@
 .logo-name {
+	font-family: 'Gracha', cursive;
+	letter-spacing: 22px;
+	font-size: 23px;
+}
+/*CodyStar*/
+.slogan-1 {
 	font-family: 'Press Start 2P', cursive;
 	font-size: 19px;
-}
-
-.slogan-1 {
-	font-family: 'Codystar', cursive;
-	font-size: 29px;
 }
 
 .slogan-2 {
 	font-family: 'VT323', monospace;
 }
 
-.navbrand-center {
-	float: none;
+@font-face {
+	font-family: 'Gracha';
+	font-weight: 2900;
+	src: local('Gracha'), url(../src/assets/fonts/ghastly_panic.ttf) format('truetype');
+}
+
+.gra-chan_login {
+	background-image: url(../src/assets/img/gra_chan.png);
+	height: 490px;
+	width: 450px;
+	border: none;
+}
+
+.navbar-border {
+	border-bottom: 5px solid #000000;
 }
 
 .dropdown-border:hover {
