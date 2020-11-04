@@ -39,3 +39,13 @@
 1. Added navbar updates. 
 2. Task assigned to everyone.
 
+[03-11-2020 23:58] - tarun
+
+1. Due to navbar design there are some inconsistencies. 
+2. Probably by making the navbar items collapsible the login view would work properly.
+
+[04-11-2020 14:11] - tarun
+
+1. Issue Raised : State Management of the alert in the forgot password page #1
+2. Please see to it in the issues section.
+
