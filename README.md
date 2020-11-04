@@ -56,7 +56,7 @@
 
 [03-11-2020] Make the login look like somewhat like instaLogin.
 
-[03-11-2020] Make the register and forgot password as well.
+[04-11-2020] Make the register and forgot password as well.
 
 ## Available Scripts
 
