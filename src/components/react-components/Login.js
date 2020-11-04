@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { login } from '../../actions/login_logout.js';
 import firebase from '../data_components/firebase.js';
 import Card from 'react-bootstrap/Card';
@@ -10,6 +10,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 class Login extends React.Component {
 	constructor(props) {
@@ -18,10 +19,6 @@ class Login extends React.Component {
 			email: '',
 			password: ''
 		};
-	}
-
-	componentDidMount() {
-		console.log('Login component mounted');
 	}
 
 	handleEmail = (event) => {
@@ -39,11 +36,8 @@ class Login extends React.Component {
 				firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
 					this.props.dispatch(login(firebase.auth().currentUser.email));
 				}, function(error) {
-					console.log(error);
+					swal("",error.message,"error");
 				});
-			})
-			.catch((error) => {
-				alert(error.message);
 			});
 	};
 
@@ -55,7 +49,7 @@ class Login extends React.Component {
 			<Container fluid className="login_bg">
 				<Row className="justify-content-center">
 					<Col sm={11} className="mx-auto">
-						<Container flex>
+						<Container flex="true">
 							<br />
 							<br />
 							<br />
@@ -108,7 +102,7 @@ class Login extends React.Component {
 															</Form.Group>
 															<div>
 																<Form.Text className="text-info slogan-2 ml-1 pt-2 pb-2">
-																	<h7>
+																	<h5>
 																		<Link
 																			to="/forgot_pass"
 																			style={{
@@ -117,7 +111,7 @@ class Login extends React.Component {
 																		>
 																			Forgot Password
 																		</Link>
-																	</h7>
+																	</h5>
 																</Form.Text>
 															</div>
 															<Button
@@ -138,7 +132,7 @@ class Login extends React.Component {
 																}}
 															>
 																<Form.Text className="text-info slogan-2 ml-1 pt-2 pb-2 text-center">
-																	<h7>New User? Sign Up</h7>
+																	<h5>New User? Sign Up</h5>
 																</Form.Text>
 															</Link>
 														</div>

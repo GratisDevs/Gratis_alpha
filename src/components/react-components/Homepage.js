@@ -2,9 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 
 class Homepage extends React.Component{
-    componentDidMount(){
-        console.log("Homepage.js's component mounted");
-    }
+    
     render(){
         if(this.props.userName==='') return <Redirect to="/login" />
         return(

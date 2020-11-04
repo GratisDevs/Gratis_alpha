@@ -1,16 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
-import { login } from '../../actions/login_logout.js';
-import firebase from '../data_components/firebase.js';
+import { Redirect } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 class Register extends React.Component {
     constructor(props) {
@@ -18,39 +16,28 @@ class Register extends React.Component {
         this.state = {
             email: '',
             password: '',
-            conf_pass: '',
+            cPassword: '',
             alert_pop: false
         };
     }
 
-    componentDidMount() {
-        console.log('Login component mounted');
-    }
-
-    handleEmail = (event) => {
-        this.setState({ email: event.target.value });
+    
+    handleInputchange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     };
 
-    handlePassword = (event) => {
-        this.setState({ password: event.target.value });
-    };
+    handleAuthentication = async() => {
 
-    handleConfPassword = (event) => {
-        this.setState({ conf_pass: event.target.value });
-    };
-
-    handleAuthentication = () => {
-
-        if(this.state.password !== this.state.conf_pass)
-            this.setState({ alert_pop: true });
-        else
-            this.setState({ alert_pop: false });
         
-        if(this.state.alert_pop === true){
-            alert("Password should match with the confirmation password");
-        }
-        else{
-            //this.props.history.push('/login');
+
+        if(this.state.password !== this.state.cPassword)
+            await this.setState({ alert_pop: true });
+        else
+            await this.setState({ alert_pop: false });
+
+        
+        if(this.state.alert_pop===true){
+            swal("","Password should match with the confirmation password","error");
         }
 
         
@@ -95,8 +82,9 @@ class Register extends React.Component {
 																</Form.Label>
                                                                 <Form.Control
                                                                     type="email"
+                                                                    name="email"
                                                                     value={this.state.email}
-                                                                    onChange={this.handleEmail}
+                                                                    onChange={this.handleInputchange}
                                                                     placeholder="Email"
                                                                     className="slogan-2 "
                                                                     
@@ -108,8 +96,9 @@ class Register extends React.Component {
 																</Form.Label>
                                                                 <Form.Control
                                                                     type="password"
+                                                                    name="password"
                                                                     value={this.state.password}
-                                                                    onChange={this.handlePassword}
+                                                                    onChange={this.handleInputchange}
                                                                     placeholder="Password"
                                                                     className="slogan-2 "
                                                                 />
@@ -120,8 +109,9 @@ class Register extends React.Component {
 																</Form.Label>
                                                                 <Form.Control
                                                                     type="password"
+                                                                    name="cPassword"
                                                                     value={this.state.conf_pass}
-                                                                    onChange={this.handleConfPassword}
+                                                                    onChange={this.handleInputchange}
                                                                     placeholder="Confirm Password"
                                                                     className="slogan-2 "
 
@@ -145,7 +135,7 @@ class Register extends React.Component {
                                                                 }}
                                                             >
                                                                 <Form.Text className="text-info slogan-2 ml-1 pt-2 pb-2 text-center">
-                                                                    <h7>Already a user? Sign In</h7>
+                                                                    <h5>Already a user? Sign In</h5>
                                                                 </Form.Text>
                                                             </Link>
                                                         </div>

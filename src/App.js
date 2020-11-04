@@ -1,7 +1,4 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import firebase from './components/data_components/firebase.js';
 import Login from './components/react-components/Login.js';
 import Register from './components/react-components/Register';
@@ -13,9 +10,7 @@ import Homepage from './components/react-components/Homepage.js';
 import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
 
 class App extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+	
 
 	componentDidMount() {
 		firebase.auth().onAuthStateChanged((user) => {
@@ -51,6 +46,7 @@ class App extends React.Component {
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
+					<Redirect to="/" />
 				</Switch>
 			</div>
 		);

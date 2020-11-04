@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { login } from '../../actions/login_logout.js';
 import firebase from '../data_components/firebase.js';
 import Card from 'react-bootstrap/Card';
@@ -10,42 +10,30 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: '',
-            email: '',
-            password: ''
+            avaName: '',
+            uEmail: '',
+            uPassword: ''
         };
     }
 
-    componentDidMount() {
-        console.log('Login component mounted');
-    }
-
-    handleUserName = (event) => {
-        this.setState({ userName: event.target.value });
-    };
-
-    handleEmail = (event) => {
-        this.setState({ email: event.target.value });
-    };
-
-    handlePassword = (event) => {
-        this.setState({ password: event.target.value });
+    handleInputChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     };
     handleAuthentication = () => {
         firebase
             .auth()
             .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
-                firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
-
+                firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
                     this.props.dispatch(login(firebase.auth().currentUser.email));
                 }, function (error) {
-                    console.log(error);
+                    swal("",error.message,"error");
                 });
             })
             .catch((error) => {
@@ -61,7 +49,7 @@ class Register extends React.Component {
             <Container fluid className="login_bg">
                 <Row className="justify-content-center">
                     <Col sm={11} className="mx-auto">
-                        <Container flex>
+                        <Container flex="true">
                             <br />
                             <br />
                             <br />
@@ -86,14 +74,15 @@ class Register extends React.Component {
 
                                                     <Card.Body>
                                                         <Form bg="transparent">
-                                                            <Form.Group controlId="formEmail" bg="transparent">
+                                                            <Form.Group controlId="formAvatar" bg="transparent">
                                                                 <Form.Label className="slogan-2 text-danger">
                                                                     Enter your avatar name
 																</Form.Label>
                                                                 <Form.Control
                                                                     type="name"
+                                                                    name="avaName"
                                                                     value={this.state.userName}
-                                                                    onChange={this.handleUserName}
+                                                                    onChange={this.handleInputChange}
                                                                     placeholder="Avatar"
                                                                     className="slogan-2 "
                                                                     bg="warning"
@@ -105,8 +94,9 @@ class Register extends React.Component {
 																</Form.Label>
                                                                 <Form.Control
                                                                     type="email"
+                                                                    name="uEmail"
                                                                     value={this.state.email}
-                                                                    onChange={this.handleEmail}
+                                                                    onChange={this.handleInputChange}
                                                                     placeholder="Email"
                                                                     className="slogan-2 "
                                                                     bg="warning"
@@ -118,8 +108,9 @@ class Register extends React.Component {
 																</Form.Label>
                                                                 <Form.Control
                                                                     type="password"
+                                                                    name="uPassword"
                                                                     value={this.state.password}
-                                                                    onChange={this.handlePassword}
+                                                                    onChange={this.handleInputChange}
                                                                     placeholder="Password"
                                                                     className="slogan-2 "
                                                                 />
@@ -142,7 +133,7 @@ class Register extends React.Component {
                                                                 }}
                                                             >
                                                                 <Form.Text className="text-info slogan-2 ml-1 pt-2 pb-2 text-center">
-                                                                    <h7>Already a user? Sign In</h7>
+                                                                    <h5>Already a user? Sign In</h5>
                                                                 </Form.Text>
                                                             </Link>
                                                         </div>

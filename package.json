@@ -10,14 +10,15 @@
 		"bootstrap": "^4.5.2",
 		"firebase": "^7.22.1",
 		"react": "^16.13.1",
-		"react-bootstrap": "^1.3.0",
+		"react-bootstrap": "^1.4.0",
 		"react-dom": "^16.13.1",
 		"react-redux": "^7.2.2",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "3.4.3",
 		"reactstrap": "^8.6.0",
 		"redux": "^4.0.5",
-		"redux-logger": "^3.0.6"
+		"redux-logger": "^3.0.6",
+		"sweetalert": "^2.1.2"
 	},
 	"scripts": {
 		"start": "react-scripts start",
@@ -29,7 +30,15 @@
 		"extends": "react-app"
 	},
 	"browserslist": {
-		"production": [ ">0.2%", "not dead", "not op_mini all" ],
-		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	}
 }

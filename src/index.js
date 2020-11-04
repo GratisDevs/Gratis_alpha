@@ -5,13 +5,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {userState} from './reducers/authenticator.js';
-import {createStore,applyMiddleware} from 'redux';
+import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {combineReducers} from 'redux';
-import logger from 'redux-logger';
 import { BrowserRouter } from 'react-router-dom';
 
-const store= createStore(combineReducers({userState: userState}),applyMiddleware(logger));
+const store= createStore(combineReducers({userState: userState}));
 
 
 ReactDOM.render(
