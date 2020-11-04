@@ -17,6 +17,8 @@
 
 [01-11-2020]  completed the login backend with redux.
 
+[] complete the backend for the updated pages. namely register, forgot password.
+
 [] do not push any files related to firebase functions right now.
 
 ## palash
@@ -27,6 +29,8 @@
 [01-11-2020] task assigned. Study redux.
 
 [] search for google fonts suitable for the project
+
+[] Kindly enlist the things you have done till now(name the topics here in this readme or write and send screenshot) so that we can give you some task.
 
 ## sid
 ### `30-10-2020`
@@ -52,7 +56,7 @@
 
 [03-11-2020] Make the login look like somewhat like instaLogin.
 
-[] Make the register and forgot password as well.
+[03-11-2020] Make the register and forgot password as well.
 
 ## Available Scripts
 
