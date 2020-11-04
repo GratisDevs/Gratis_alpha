@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
@@ -15,19 +16,16 @@ class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: '',
             email: '',
-            password: ''
+            password: '',
+            conf_pass: '',
+            alert_pop: false
         };
     }
 
     componentDidMount() {
         console.log('Login component mounted');
     }
-
-    handleUserName = (event) => {
-        this.setState({ userName: event.target.value });
-    };
 
     handleEmail = (event) => {
         this.setState({ email: event.target.value });
@@ -36,21 +34,26 @@ class Register extends React.Component {
     handlePassword = (event) => {
         this.setState({ password: event.target.value });
     };
-    handleAuthentication = () => {
-        firebase
-            .auth()
-            .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-            .then(() => {
-                firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
 
-                    this.props.dispatch(login(firebase.auth().currentUser.email));
-                }, function (error) {
-                    console.log(error);
-                });
-            })
-            .catch((error) => {
-                alert(error.message);
-            });
+    handleConfPassword = (event) => {
+        this.setState({ conf_pass: event.target.value });
+    };
+
+    handleAuthentication = () => {
+
+        if(this.state.password !== this.state.conf_pass)
+            this.setState({ alert_pop: true });
+        else
+            this.setState({ alert_pop: false });
+        
+        if(this.state.alert_pop === true){
+            alert("Password should match with the confirmation password");
+        }
+        else{
+            //this.props.history.push('/login');
+        }
+
+        
     };
 
     handleEmailValidation = () => { };
@@ -74,7 +77,7 @@ class Register extends React.Component {
                                         <Row className="justify-content-center">
                                             <Col md={10} className="mx-auto">
                                                 <br />
-                                                
+
                                                 <Card bg="transparent" className="card-login">
                                                     <br />
                                                     <div className="mx-auto">
@@ -88,19 +91,6 @@ class Register extends React.Component {
                                                         <Form bg="transparent">
                                                             <Form.Group controlId="formEmail" bg="transparent">
                                                                 <Form.Label className="slogan-2 text-danger">
-                                                                    Enter your avatar name
-																</Form.Label>
-                                                                <Form.Control
-                                                                    type="name"
-                                                                    value={this.state.userName}
-                                                                    onChange={this.handleUserName}
-                                                                    placeholder="Avatar"
-                                                                    className="slogan-2 "
-                                                                    bg="warning"
-                                                                />
-                                                            </Form.Group>
-                                                            <Form.Group controlId="formEmail" bg="transparent">
-                                                                <Form.Label className="slogan-2 text-danger">
                                                                     Enter your email address
 																</Form.Label>
                                                                 <Form.Control
@@ -109,7 +99,7 @@ class Register extends React.Component {
                                                                     onChange={this.handleEmail}
                                                                     placeholder="Email"
                                                                     className="slogan-2 "
-                                                                    bg="warning"
+                                                                    
                                                                 />
                                                             </Form.Group>
                                                             <Form.Group controlId="formPassword">
@@ -122,6 +112,19 @@ class Register extends React.Component {
                                                                     onChange={this.handlePassword}
                                                                     placeholder="Password"
                                                                     className="slogan-2 "
+                                                                />
+                                                            </Form.Group>
+                                                            <Form.Group controlId="formConfPass" bg="transparent">
+                                                                <Form.Label className="slogan-2 text-danger">
+                                                                    Confirm Password
+																</Form.Label>
+                                                                <Form.Control
+                                                                    type="password"
+                                                                    value={this.state.conf_pass}
+                                                                    onChange={this.handleConfPassword}
+                                                                    placeholder="Confirm Password"
+                                                                    className="slogan-2 "
+
                                                                 />
                                                             </Form.Group>
                                                             <Button

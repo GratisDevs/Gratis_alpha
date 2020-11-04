@@ -52,7 +52,7 @@ class Login extends React.Component {
 	render() {
 		if (this.props.userName !== '') return <Redirect to="/" />;
 		return (
-			<Container fluid>
+			<Container fluid className="login_bg">
 				<Row className="justify-content-center">
 					<Col sm={11} className="mx-auto">
 						<Container flex>
@@ -70,7 +70,7 @@ class Login extends React.Component {
 												<br />
 												<br />
 												<br />
-												<Card bg="transparent">
+												<Card bg="transparent" className="card-login">
 													<br />
 													<div className="mx-auto">
 														<h3 className="logo-name text-danger font-weight-bold">
@@ -91,7 +91,7 @@ class Login extends React.Component {
 																	onChange={this.handleEmail}
 																	placeholder="Email"
 																	className="slogan-2 "
-																	bg="transparent"
+																	bg="warning"
 																/>
 															</Form.Group>
 															<Form.Group controlId="formPassword">
@@ -107,17 +107,18 @@ class Login extends React.Component {
 																/>
 															</Form.Group>
 															<div>
-																<Link
-																	to="/forgot_pass"
-																	style={{
-																		textDecoration: 'none',
-																		color: 'white'
-																	}}
-																>
-																	<Form.Text className="text-info slogan-2 ml-1 pt-2 pb-2">
-																		<h7>Forgot Password</h7>
-																	</Form.Text>
-																</Link>
+																<Form.Text className="text-info slogan-2 ml-1 pt-2 pb-2">
+																	<h7>
+																		<Link
+																			to="/forgot_pass"
+																			style={{
+																				textDecoration: 'none'
+																			}}
+																		>
+																			Forgot Password
+																		</Link>
+																	</h7>
+																</Form.Text>
 															</div>
 															<Button
 																variant="primary"
@@ -166,11 +167,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(Login);
 
 /**
- * <input type="email" value={this.state.email} onChange={this.handleEmail} />
-										<input
-											type="password"
-											value={this.state.password}
-											onChange={this.handlePassword}
-										/>
-										<button onClick={this.handleAuthentication}>Login</button>
+ * 
  */

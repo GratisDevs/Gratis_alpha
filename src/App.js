@@ -4,6 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import firebase from './components/data_components/firebase.js';
 import Login from './components/react-components/Login.js';
+import Register from './components/react-components/Register';
+import ForgotPass from './components/react-components/ForgotPass';
 import { connect } from 'react-redux';
 import { logout, login } from './actions/login_logout.js';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
@@ -47,6 +49,8 @@ class App extends React.Component {
 						component={() => <Homepage userName={this.props.userName} logout={this.logout} />}
 					/>
 					<Route exact path="/login" component={Login} />
+					<Route exact path="/register" component={Register} />
+					<Route exact path="/forgot_pass" component={ForgotPass} />
 				</Switch>
 			</div>
 		);

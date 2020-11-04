@@ -26,6 +26,19 @@
 	border: none;
 }
 
+.login_bg {
+	background-image: linear-gradient(to left, #2d2d38, #2d1e38);
+	height: 95vh;
+}
+
+.card-login {
+	/* Add shadows to create the "card" effect */
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	border-radius: 5px;
+	padding: 2px 16px; /* 5px rounded corners */
+}
+
 .navbar-border {
 	border-bottom: 5px solid #000000;
 }
