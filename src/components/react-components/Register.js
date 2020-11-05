@@ -133,7 +133,7 @@ class Register extends React.Component {
                                                                 }}
                                                             >
                                                                 <Form.Text className="text-info slogan-2 ml-1 pt-2 pb-2 text-center">
-                                                                    <h5>Already a user? Sign In</h5>
+                                                                    <h6>Already a user? Sign In</h6>
                                                                 </Form.Text>
                                                             </Link>
                                                         </div>
