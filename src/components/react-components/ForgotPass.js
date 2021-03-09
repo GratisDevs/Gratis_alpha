@@ -126,19 +126,7 @@ class Register extends React.Component {
                                                                 Login
 															</Button>
                                                         </Form>
-                                                        <div>
-                                                            <Link
-                                                                to="/login"
-                                                                style={{
-                                                                    textDecoration: 'none',
-                                                                    color: 'white'
-                                                                }}
-                                                            >
-                                                                <Form.Text className="text-info slogan-2 ml-1 pt-2 pb-2 text-center">
-                                                                    <h5>Already a user? Sign In</h5>
-                                                                </Form.Text>
-                                                            </Link>
-                                                        </div>
+                                                        
                                                     </Card.Body>
                                                 </Card>
                                             </Col>

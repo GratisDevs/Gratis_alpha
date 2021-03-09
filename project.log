@@ -49,3 +49,23 @@
 1. Issue Raised : State Management of the alert in the forgot password page #1
 2. Please see to it in the issues section.
 
+[04-11-2020 21:54] - vipul
+
+1. Added a package for alert creation.
+2. npm install sweetalert --save
+3. Issue #1 resolved. Contributor - Vipul :"I have fixed the issue. You should read more about setState function of React. It is an asynchronous function. So javascript won't wait for it to get finished and will go ahead with the execution of other statements that follow setState. That is why even if you call setState before the second if condition, the state will contain old value. See in the code how I have resolved the issue."
+
+[05-11-2020 00:12] - tarun
+
+1. GitHub Bot raised an issue.
+2. Upgrade node-forge to version 0.10.0 or later. For example:
+
+    "dependencies": {
+        "node-forge": ">=0.10.0"
+    }
+3. Ignored as the issue was not that significant to our project.
+
+[05-11-2020 00:14] - tarun
+
+1. Issue regarding fonts on each page. font size should be reduced.
+2. [WARNING} : Again don't make unnecessary changes to the code. And update logs on a regular basis because it is easier to track errors that way.

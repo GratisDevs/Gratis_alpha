@@ -21,6 +21,7 @@
 
 [] do not push any files related to firebase functions right now.
 
+
 ## palash
 ### `30-10-2020`
 
@@ -31,6 +32,7 @@
 [] search for google fonts suitable for the project
 
 [] Kindly enlist the things you have done till now(name the topics here in this readme or write and send screenshot) so that we can give you some task.
+
 
 ## sid
 ### `30-10-2020`
@@ -44,6 +46,9 @@
 [] Make the navbar responsive for small screens. ie. To make them collapsible or make fonts small in css. 
 
 [] After making the changes share the screenshots and when its approved push it to the github.
+
+[] Make the login, regster and forgot password page fonts a bit small.
+
 
 ## tarun
 ### `30-10-2020`

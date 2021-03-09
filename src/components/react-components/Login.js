@@ -29,16 +29,13 @@ class Login extends React.Component {
 		this.setState({ password: event.target.value });
 	};
 	handleAuthentication = () => {
-		firebase
-			.auth()
-			.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-			.then(() => {
-				firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
-					this.props.dispatch(login(firebase.auth().currentUser.email));
-				}, function(error) {
-					swal("",error.message,"error");
-				});
+		firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
+			firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+				this.props.dispatch(login(firebase.auth().currentUser.email));
+			}, function(error) {
+				swal('', error.message, 'error');
 			});
+		});
 	};
 
 	handleEmailValidation = () => {};
@@ -61,7 +58,6 @@ class Login extends React.Component {
 									<Container>
 										<Row className="justify-content-center">
 											<Col md={10} className="mx-auto">
-												<br />
 												<br />
 												<br />
 												<Card bg="transparent" className="card-login">
@@ -102,7 +98,7 @@ class Login extends React.Component {
 															</Form.Group>
 															<div>
 																<Form.Text className="text-info slogan-2 ml-1 pt-2 pb-2">
-																	<h5>
+																	<h6>
 																		<Link
 																			to="/forgot_pass"
 																			style={{
@@ -111,7 +107,7 @@ class Login extends React.Component {
 																		>
 																			Forgot Password
 																		</Link>
-																	</h5>
+																	</h6>
 																</Form.Text>
 															</div>
 															<Button
@@ -132,7 +128,7 @@ class Login extends React.Component {
 																}}
 															>
 																<Form.Text className="text-info slogan-2 ml-1 pt-2 pb-2 text-center">
-																	<h5>New User? Sign Up</h5>
+																	<h6>New User? Sign Up</h6>
 																</Form.Text>
 															</Link>
 														</div>
