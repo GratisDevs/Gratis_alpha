@@ -26,11 +26,12 @@ class Register extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
     };
     handleAuthentication = () => {
+        console.log(this.state.uEmail);
         firebase
             .auth()
             .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
-                firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+                firebase.auth().createUserWithEmailAndPassword(this.state.uEmail, this.state.uPassword).then((user) => {
                     this.props.dispatch(login(firebase.auth().currentUser.email));
                 }, function (error) {
                     swal("",error.message,"error");
@@ -95,7 +96,7 @@ class Register extends React.Component {
                                                                 <Form.Control
                                                                     type="email"
                                                                     name="uEmail"
-                                                                    value={this.state.email}
+                                                                    value={this.state.uEmail}
                                                                     onChange={this.handleInputChange}
                                                                     placeholder="Email"
                                                                     className="slogan-2 "
@@ -109,7 +110,7 @@ class Register extends React.Component {
                                                                 <Form.Control
                                                                     type="password"
                                                                     name="uPassword"
-                                                                    value={this.state.password}
+                                                                    value={this.state.uPassword}
                                                                     onChange={this.handleInputChange}
                                                                     placeholder="Password"
                                                                     className="slogan-2 "

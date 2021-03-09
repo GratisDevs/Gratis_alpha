@@ -13,8 +13,10 @@ class App extends React.Component {
 	
 
 	componentDidMount() {
+		console.log("inside app.js");
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
+				console.log(user+" hello");
 				this.props.dispatch(login(user.email));
 				this.props.history.push('/');
 			}

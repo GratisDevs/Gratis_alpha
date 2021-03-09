@@ -9,3 +9,9 @@ const functions = require('firebase-functions');
 //   response.send("Hello from Firebase!");
 // });
 
+exports.sayHello=functions.https.onCall((data,context)=>{
+    return {
+        data: "hello "+data
+    }
+});
+
