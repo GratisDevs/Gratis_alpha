@@ -1,44 +1,55 @@
 {
-	"name": "gratis",
-	"version": "0.1.0",
-	"private": true,
-	"homepage": ".",
-	"dependencies": {
-		"@testing-library/jest-dom": "^4.2.4",
-		"@testing-library/react": "^9.5.0",
-		"@testing-library/user-event": "^7.2.1",
-		"bootstrap": "^4.5.2",
-		"firebase": "^7.22.1",
-		"react": "^16.13.1",
-		"react-bootstrap": "^1.4.0",
-		"react-dom": "^16.13.1",
-		"react-redux": "^7.2.2",
-		"react-router-dom": "^5.2.0",
-		"react-scripts": "3.4.3",
-		"reactstrap": "^8.6.0",
-		"redux": "^4.0.5",
-		"redux-logger": "^3.0.6",
-		"sweetalert": "^2.1.2"
-	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
-	},
-	"eslintConfig": {
-		"extends": "react-app"
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	}
+  "name": "gratis",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "http://.",
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "bootstrap": "^4.6.0",
+    "firebase": "^7.22.1",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.5.2",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "reactstrap": "^8.6.0",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "sweetalert": "^2.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "### `30-10-2020`",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GratisDevs/Gratis_alpha.git"
+  },
+  "author": "tarun | vipul | sid | palash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GratisDevs/Gratis_alpha/issues"
+  }
 }
