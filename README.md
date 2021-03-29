@@ -63,6 +63,10 @@
 
 [04-11-2020] Make the register and forgot password as well.
 
+#References
+### `Github CLI`
+[See references here](https://cli.github.com/manual/)
+
 ## Available Scripts
 
 In the project directory, you can run:
