@@ -1,13 +1,14 @@
-# Objectives
+# `Objectives`
 None
 
-### PROJECT IS ON HIATUS
+### `PROJECT IS ON HIATUS`
 
 #References
+
 ### `Github CLI`
 [See references here](https://cli.github.com/manual/)
 
-## Available Scripts
+# Available Scripts
 
 In the project directory, you can run:
 
