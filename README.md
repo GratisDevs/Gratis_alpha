@@ -1,69 +1,12 @@
-## Objectives
+# `Objectives`
+### `PROJECT IS ON HIATUS`
 
-### `30-10-2020`
+#References
 
-[Still to be decided] Plan navbar and jumbotron.
+### `Github CLI`
+[See references here](https://cli.github.com/manual/)
 
-[Done] - Backed ready Login page. Lets do something like instagram.
-
-[Still to be decided] Topics to add as initial gratis pages.
-
-[Assigned] Assign individual tasks.
-
-## vipul
-### `30-10-2020`
-
-[30-10-2020]  completed initial setup
-
-[01-11-2020]  completed the login backend with redux.
-
-[] complete the backend for the updated pages. namely register, forgot password.
-
-[] do not push any files related to firebase functions right now.
-
-
-## palash
-### `30-10-2020`
-
-[30-10-2020] project setup done
-
-[01-11-2020] task assigned. Study redux.
-
-[] search for google fonts suitable for the project
-
-[] Kindly enlist the things you have done till now(name the topics here in this readme or write and send screenshot) so that we can give you some task.
-
-
-## sid
-### `30-10-2020`
-
-[30-10-2020] setup project
-
-[01-11-2020] task assigned. Study Redux.
-
-[] style navbar login user block. Study designing a dropdown. Maybe even scss(but dont dwell too deep it has to be simple, you have to decide).
-
-[] Make the navbar responsive for small screens. ie. To make them collapsible or make fonts small in css. 
-
-[] After making the changes share the screenshots and when its approved push it to the github.
-
-[] Make the login, regster and forgot password page fonts a bit small.
-
-
-## tarun
-### `30-10-2020`
-
-[30-10-2020] project logs generated and updated.
-
-[31-10-2020] design project navbar. 
-
-[01-11-2020] develop content for navbar.
-
-[03-11-2020] Make the login look like somewhat like instaLogin.
-
-[04-11-2020] Make the register and forgot password as well.
-
-## Available Scripts
+# Available Scripts
 
 In the project directory, you can run:
 
@@ -75,57 +18,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
