@@ -37,20 +37,20 @@ class App extends React.Component {
 	};
 	render() {
 		return (
-			<div className="App">
-				<NavbarMainComponent />
+			<>
+				<NavbarMainComponent logout={this.logout} />
 				<Switch>
 					<Route
 						exact
 						path="/"
-						component={() => <Homepage userName={this.props.userName} logout={this.logout} />}
+						component={() => <Homepage userName={this.props.userName} />}
 					/>
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
 					<Redirect to="/" />
 				</Switch>
-			</div>
+			</>
 		);
 	}
 }

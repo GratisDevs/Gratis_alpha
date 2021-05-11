@@ -1,7 +1,9 @@
 .logo-name {
 	font-family: 'Gracha', cursive;
-	letter-spacing: 22px;
-	font-size: 23px;
+	letter-spacing: 18px;
+	font-size: 29px;
+	color: blueviolet;
+	font-weight:bold;
 }
 /*CodyStar*/
 .slogan-1 {
@@ -28,7 +30,7 @@
 
 .login_bg {
 	background-image: linear-gradient(to left, #2d2d38, #2d1e38);
-	height: 95vh;
+	height: 100vh;
 }
 
 .card-login {
@@ -51,4 +53,18 @@
 
 .message-icon:hover {
 	color: black;
+}
+
+@media (min-width: 950px){
+	.card1{
+		margin: auto;
+		width: 60%;
+		margin-bottom: 15px;
+	}
+}
+
+@media(max-width: 949px){
+	.card1{
+		margin: 15px 15px;
+	}
 }

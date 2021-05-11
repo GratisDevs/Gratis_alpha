@@ -11,6 +11,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import GoogleButton from 'react-google-button';
 
 class Login extends React.Component {
 	constructor(props) {
@@ -38,7 +39,16 @@ class Login extends React.Component {
 		});
 	};
 
-	handleEmailValidation = () => {};
+	handleGoogleValidation = () => {
+		firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
+			firebase.auth()
+  				.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result)=>{
+					this.props.dispatch(login(result.email));
+				  }).catch(err=>{
+					  console.log(err);
+				  })
+		});
+	};
 
 	render() {
 		if (this.props.userName !== '') return <Redirect to="/" />;
@@ -119,6 +129,7 @@ class Login extends React.Component {
 																Login
 															</Button>
 														</Form>
+														<GoogleButton onClick={this.handleGoogleValidation} style={{marginTop: '10px'}}/>
 														<div>
 															<Link
 																to="/register"

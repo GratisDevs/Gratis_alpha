@@ -1,4 +1,3 @@
-
 const functions = require('firebase-functions');
 
 // // Create and Deploy Your First Cloud Functions
@@ -8,10 +7,8 @@ const functions = require('firebase-functions');
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
-
 exports.sayHello=functions.https.onCall((data,context)=>{
     return {
         data: "hello "+data
     }
 });
-
