@@ -1,5 +1,4 @@
-# `Objectives`
-### `PROJECT IS ON HIATUS`
+
 
 #References
 
