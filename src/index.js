@@ -9,9 +9,8 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {combineReducers, applyMiddleware} from 'redux';
 import { BrowserRouter } from 'react-router-dom';
-import logger from 'redux-logger';
 
-const store= createStore(combineReducers({userState: userState}),applyMiddleware(logger));
+const store= createStore(combineReducers({userState: userState}));
 
 
 ReactDOM.render(

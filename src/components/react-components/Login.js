@@ -43,7 +43,8 @@ class Login extends React.Component {
 		firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
 			firebase.auth()
   				.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result)=>{
-					this.props.dispatch(login(result.email));
+					  console.log(result);
+					this.props.dispatch(login(result.user.displayName));
 				  }).catch(err=>{
 					  console.log(err);
 				  })
@@ -129,8 +130,7 @@ class Login extends React.Component {
 																Login
 															</Button>
 														</Form>
-														<GoogleButton onClick={this.handleGoogleValidation} style={{marginTop: '10px'}}/>
-														<div>
+														<GoogleButton onClick={this.handleGoogleValidation} style={{marginTop: '8px',width: '100%'}} />														<div>
 															<Link
 																to="/register"
 																style={{

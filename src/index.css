@@ -30,7 +30,14 @@
 
 .login_bg {
 	background-image: linear-gradient(to left, #2d2d38, #2d1e38);
-	height: 100vh;
+	height: 105vh;
+}
+
+@media(max-width: 768px){
+	.login_bg {
+		background-image: linear-gradient(to left, #2d2d38, #2d1e38);
+		height: 105vh;
+	}
 }
 
 .card-login {
@@ -66,5 +73,39 @@
 @media(max-width: 949px){
 	.card1{
 		margin: 15px 15px;
+	}
+}
+
+@-webkit-keyframes fadeIn{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
+@keyframes fadeIn{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeOut{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
+@keyframes fadeOut{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
 	}
 }

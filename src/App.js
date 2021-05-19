@@ -13,17 +13,17 @@ class App extends React.Component {
 	
 
 	componentDidMount() {
-		console.log("inside app.js");
+		
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
-				console.log(user+" hello");
-				this.props.dispatch(login(user.email));
+				
+				this.props.dispatch(login(user.displayName, user.photoURL));
 				this.props.history.push('/');
 			}
 		});
 	}
 	logout = () => {
-		console.log('clicked');
+		
 		firebase
 			.auth()
 			.signOut()
@@ -38,7 +38,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<NavbarMainComponent logout={this.logout} />
+				<NavbarMainComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
 				<Switch>
 					<Route
 						exact

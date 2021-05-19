@@ -1,6 +1,6 @@
-export const login=(userName)=>({
+export const login=(userName, photoURL)=>({
     type: 'LOGIN',
-    payload: userName
+    payload: {userName: userName,photoURL:photoURL}
 })
 
 export const logout=()=>({

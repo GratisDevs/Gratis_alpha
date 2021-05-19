@@ -6,9 +6,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 
-function NavbarMainComponent({logout}) {
+function NavbarMainComponent({isLoggedIn,logout}) {
 	return (
-		<Navbar bg="transparent" expand="lg">
+		<Navbar expand="lg" fixed="top" style={{backgroundColor: 'white'}}>
   <Navbar.Brand className="logo-name font-weight-bold " href="/home" style={{color: 'blueviolet'}}>
 						GratiS'{' '}
 					</Navbar.Brand>
@@ -28,7 +28,7 @@ function NavbarMainComponent({logout}) {
     <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       <Button variant="outline-success" style={{margin: '5px'}}>Search</Button>
-	  <Button variant="outline-success" style={{margin: '5px'}} onClick={logout}>Logout</Button>
+	  {isLoggedIn&&<Button variant="outline-success" style={{margin: '5px'}} onClick={logout}>Logout</Button>}
     </Form>
   </Navbar.Collapse>
 </Navbar>
