@@ -57,7 +57,7 @@ class PostModal extends React.Component{
     }
     
     render(){
-        
+        console.log("palash");
         return(
             <Modal show={this.props.isModalOpen} 
             aria-labelledby="contained-modal-title-vcenter"
