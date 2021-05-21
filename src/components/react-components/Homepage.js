@@ -5,7 +5,6 @@ import Leftside from './Leftside.js';
 import Rightside from './Rightside.js';
 import Main from './Main.js';
 import Recommendation from './recommendation.js';
-import { connect } from 'react-redux';
 
 
 
@@ -20,7 +19,7 @@ class Homepage extends React.Component{
                 <div className="row m-0">
                     <Leftside userName={this.props.userName} />
                     <Recommendation />
-                    <Main userName={this.props.username} />
+                    <Main userName={this.props.userName} />
                     <Rightside />
                 </div>
                 
@@ -29,7 +28,4 @@ class Homepage extends React.Component{
     }
 }
 
-const mapStatetoProps=(state)=>{
-    return {username: state.userState.userName}
-}
-export default connect(mapStatetoProps)(Homepage); 
+export default Homepage; 

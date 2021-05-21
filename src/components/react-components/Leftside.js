@@ -9,16 +9,16 @@ class Leftside extends React.Component{
       <style.ArtCard>
         <style.UserInfo>
           <style.CardBackground />
-          <a href="">
+          <a href="#">
             <style.Photo />
             <style.Link>Welcome, {this.props.userName}!</style.Link>
           </a>
-          <a href="">
+          <a href="#">
             <style.AddPhotoText>Add a photo</style.AddPhotoText>
           </a>
         </style.UserInfo>
         <style.Widget>
-          <a href="">
+          <a href="#">
             <div>
               <span>Connections</span>
               <span>Grow your network</span>

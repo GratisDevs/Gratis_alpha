@@ -100,7 +100,7 @@ class PostModal extends React.Component{
                                 />
                                 <p><label htmlFor="file">
                                     Select an image to share</label></p>
-                                {this.state.shareImage&&<img src={URL.createObjectURL(this.state.shareImage)} />} 
+                                {this.state.shareImage&&<img src={URL.createObjectURL(this.state.shareImage)} alt="" />} 
                                 </style.UploadImage>)
                                 :
                                 (this.state.assetArea==='media'&&(<>

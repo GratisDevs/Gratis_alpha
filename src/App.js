@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { logout, login } from './actions/login_logout.js';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
+import Profile from './components/react-components/Profile.js'
 import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
 
 class App extends React.Component {
@@ -16,9 +17,9 @@ class App extends React.Component {
 		
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
-				
-				this.props.dispatch(login(user.displayName, user.photoURL));
-				this.props.history.push('/');
+				console.log(user);
+				this.props.dispatch(login(user.displayName, user.photoURL, user.email));
+				//this.props.history.push('/');
 			}
 		});
 	}
@@ -48,6 +49,10 @@ class App extends React.Component {
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
+					<Route 
+						exact 
+						path="/profile" 
+						component={()=><Profile userName={this.props.userName} email={this.props.email} />} />
 					<Redirect to="/" />
 				</Switch>
 			</>
@@ -58,7 +63,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		isLoggedIn: state.userState.isLoggedIn,
-		userName: state.userState.userName
+		userName: state.userState.userName,
+		email: state.userState.email
 	};
 };
 
