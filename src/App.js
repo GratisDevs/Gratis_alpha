@@ -52,7 +52,10 @@ class App extends React.Component {
 					<Route 
 						exact 
 						path="/profile" 
-						component={()=><Profile userName={this.props.userName} email={this.props.email} />} />
+						component={()=><Profile 
+										userName={this.props.userName} 
+										email={this.props.email} 
+										photoURL={this.props.photoURL} />} />
 					<Redirect to="/" />
 				</Switch>
 			</>
@@ -64,7 +67,8 @@ const mapStateToProps = (state) => {
 	return {
 		isLoggedIn: state.userState.isLoggedIn,
 		userName: state.userState.userName,
-		email: state.userState.email
+		email: state.userState.email,
+		photoURL: state.userState.photoURL
 	};
 };
 
