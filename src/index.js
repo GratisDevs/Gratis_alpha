@@ -7,10 +7,12 @@ import * as serviceWorker from './serviceWorker';
 import {userState} from './reducers/authenticator.js';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import {combineReducers} from 'redux';
+import {combineReducers,applyMiddleware} from 'redux';
 import { BrowserRouter } from 'react-router-dom';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
-const store= createStore(combineReducers({userState: userState}));
+const store= createStore(combineReducers({userState: userState}),applyMiddleware(thunk,logger));
 
 
 ReactDOM.render(

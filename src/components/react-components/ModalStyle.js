@@ -4,12 +4,16 @@ const style={};
 
 style.ShareCreation=styled.div`
     display: flex;
+    width: 100%;
     justify-content: space-between;
     padding: 10px 20px 10px 16px;
 `;
 
 style.AssetButton=styled.button`
     align-items: center;
+    background-color: transparent;
+    outline: none;
+    border: none;
     height: 40px;
     min-width: auto;
     color: rgba(0,0,0,0.5);
@@ -20,8 +24,9 @@ style.AssetButton=styled.button`
 
 style.AttachAssets=styled.div`
     align-items: center;
-    justify-content: space-between;
     display: flex;
+    justify-content: space-between;
+    width: 100%;
     padding-right; 8px;
     $(AssetButton){
         width: 40px;
