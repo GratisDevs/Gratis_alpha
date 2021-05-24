@@ -19,6 +19,7 @@ class Main extends React.Component{
 }
 
   render(){
+    console.log("sid");
     console.log(this.props.photoURL);
     return (
   <div className="col-md-6">
