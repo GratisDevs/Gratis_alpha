@@ -1,0 +1,41 @@
+[23:00 24-05-2021] - Tarun
+
+1. Navbar needs a makeover from start
+2. ( Suggestions : Remove the search bar,no need for home link) 
+
+    Design like this:
+
+        Gratis                  Comments Chat Profile
+        ---------------------------------------------
+        Make a banner here specific to each sub reddit
+
+        ---------------------------------------------
+        then comes the main content
+
+        Post details goes here:   |   Create new post
+                                  |   ----------------------     
+        --- post1                 |   | Search subreddit    |
+        --- post2                 |   |                     |
+        --- post3                 |   |                     |
+                                  |   |                     |
+                                  |   |                     |
+                                  |    ---------------------
+                                  |     
+                                  |   Names of mods:
+                                  |     --
+                                  |     --
+                                  |     --
+                                  |     --
+                                  |   Recommendations:(If possible for now
+                                  |                  just top subreddit
+                                  |                   whose no of posts in last 24 hr are high - top 3) 
+
+
+Footer:
+                            |^| to the top
+                            
+Right now the design looks a rip off and hideous
+
+3. We need to change the screen size display for each screen range display.
+   This would be done by the one who has the biggest screen
+    -I think everyone's screen would be around 1920*800
