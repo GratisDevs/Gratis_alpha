@@ -9,9 +9,16 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
 import Profile from './components/react-components/Profile.js'
 import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
+import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
 
 class App extends React.Component {
 	
+	constructor(){
+		super();
+		this.state = {
+			loginState : false,
+		}
+	}
 
 	componentDidMount() {
 		
@@ -20,6 +27,9 @@ class App extends React.Component {
 				console.log(user);
 				this.props.dispatch(login(user.displayName, user.photoURL, user.email));
 				//this.props.history.push('/');
+				this.setState({
+					loginState: true
+				});
 			}
 		});
 	}
@@ -29,6 +39,9 @@ class App extends React.Component {
 			.auth()
 			.signOut()
 			.then(() => {
+				this.setState({
+					loginState : false,
+				});
 				this.props.dispatch(logout());
 				this.props.history.push('/login');
 			})
@@ -39,7 +52,10 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<NavbarMainComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
+				{ this.state.loginState ? (
+					<NavbarMainComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
+				) : <LoginNavbarComponent></LoginNavbarComponent>}
+				
 				<Switch>
 					<Route
 						exact
