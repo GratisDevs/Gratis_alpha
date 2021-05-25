@@ -59,8 +59,6 @@ class Login extends React.Component {
 					<Col sm={11} className="mx-auto">
 						<Container flex="true">
 							<br />
-							<br />
-							<br />
 							<Row className="justify-content-center">
 								<Col md={6}>
 									<div className="gra-chan_login d-none d-md-block" />
@@ -130,14 +128,20 @@ class Login extends React.Component {
 																Login
 															</Button>
 														</Form>
-														<GoogleButton onClick={this.handleGoogleValidation} style={{marginTop: '8px',width: '100%'}} />														<div>
+														<Container>
+															<Row className="justify-content-center">
+																<Col md={6} className="mx-auto ">
+																	<GoogleButton onClick={this.handleGoogleValidation} label="Sign In"  type="dark" style={{marginTop: '8px',width: '100%'}} />	
+																</Col>
+															</Row>
+														</Container>
+														<div>
 															<Link
 																to="/register"
 																style={{
 																	textDecoration: 'none',
 																	color: 'white'
-																}}
-															>
+																}}>
 																<Form.Text className="text-info slogan-2 ml-1 pt-2 pb-2 text-center">
 																	<h6>New User? Sign Up</h6>
 																</Form.Text>
