@@ -6,29 +6,22 @@ import { connect } from 'react-redux';
 import style from './MainStyle';
 import PostModal from './PostModal';
 
-class Main extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={
-      isModalOpen: false
-  }
-  }
+class Main extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isModalOpen: false
+		};
+	}
 
-  toggleModal=()=>{
-    this.setState({
-        isModalOpen: !this.state.isModalOpen
-    })
-}
-
+	toggleModal = () => {
+		this.setState({
+			isModalOpen: !this.state.isModalOpen
+		});
+	};
+	
   render(){
 
-    var description=`
-    This is a test
-        class Hello{
-
-        }
-    `;
-    
     const feed=this.props.posts.map((post)=>{
       return(
         <style.Article>

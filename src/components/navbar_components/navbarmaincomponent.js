@@ -5,13 +5,20 @@ import Button from 'react-bootstrap/Button';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
+import { Link } from 'react-router-dom';
 
 function NavbarMainComponent({isLoggedIn,logout}) {
 	return (
 		<Navbar expand="lg" fixed="top" style={{backgroundColor: 'white'}}>
-  <Navbar.Brand className="logo-name font-weight-bold " href="/home" style={{color: 'blueviolet'}}>
-						GratiS'{' '}
-					</Navbar.Brand>
+  <Navbar.Brand href="#home" style={{}}>
+				<Link
+					to="/home"
+					style={{ textDecoration: 'none', color: 'blueviolet' }}
+					className="logo-name font-weight-bold "
+				>
+					GratiS'{' '}
+				</Link>
+			</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
