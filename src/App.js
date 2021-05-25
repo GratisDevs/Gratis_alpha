@@ -21,7 +21,6 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
 				console.log(user);
@@ -50,6 +49,7 @@ class App extends React.Component {
 			});
 	};
 	render() {
+		
 		return (
 			<>
 				{ this.state.loginState ? (

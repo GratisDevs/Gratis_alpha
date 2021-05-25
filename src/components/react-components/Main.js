@@ -30,7 +30,7 @@ class Main extends React.Component {
             <img src="/images/user.svg" alt="" style={{marginTop: '8px'}} />
             <div style={{display: 'flex',flexDirection: 'column'}}>
             <h6 style={{marginTop: '14px', textAlign: 'left'}}>{post.author}</h6>
-            <span style={{fontSize: '10px',color: '#595959'}}>{post.dateOfPost}</span>
+            <span style={{fontSize: '11px',color: '#595959',fontWeight: '700'}}>{post.dateOfPost}</span>
           </div>
           </a>
         </style.SharedActor>
