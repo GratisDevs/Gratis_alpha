@@ -105,8 +105,7 @@ class PostModal extends React.Component{
                     </div>
                     {this.state.isLoading&&<div class="row" style={{marginTop: '5px'}}>
                         <div class="col-md-12" style={{display:'flex',justifyContent: 'center',alignItems: 'center'}}>
-                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                        <span class="sr-only">Loading...</span>
+                        <span className="fa fa-spinner fa-pulse fa-3x fa-fw text-primary"></span>
                         </div>
                     </div>}
                     <div class="row" style={{marginTop: '8px'}}>

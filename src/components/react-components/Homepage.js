@@ -5,12 +5,16 @@ import Leftside from './Leftside.js';
 import Rightside from './Rightside.js';
 import Main from './Main.js';
 import Recommendation from './recommendation.js';
+import {fetchPosts} from '../../actions/PostHandle.js';
+import { connect } from 'react-redux';
 
 
 
 class Homepage extends React.Component{
 
-    
+    componentDidMount(){
+        this.props.dispatch(fetchPosts());
+    }
     
     render(){
         if(this.props.userName==='') return <Redirect to="/login" />
@@ -28,4 +32,6 @@ class Homepage extends React.Component{
     }
 }
 
-export default Homepage; 
+const mapStateToProps=(state)=>({})
+
+export default connect(mapStateToProps)(Homepage); 
