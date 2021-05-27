@@ -11,15 +11,9 @@ import Profile from './components/react-components/Profile.js';
 import Loading from './Loading.js';
 import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
 import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
+import { fetchPosts } from './actions/PostHandle.js';
 
 class App extends React.Component {
-	
-	constructor(){
-		super();
-		this.state = {
-			loginState : false,
-		}
-	}
 
 	componentDidMount() {
 		firebase.auth().onAuthStateChanged((user) => {
@@ -29,14 +23,15 @@ class App extends React.Component {
 					this.props.dispatch(login(user.displayName, user.photoURL, user.email));
 				else
 					this.props.dispatch(login(user.email.split("@")[0], "", ""));
-				this.setState({
-					loginState: true
-				});
+				
 			}
 			else{
 				this.props.dispatch(changeLoading());
 			}
 		});
+	}
+	fetchPosts=()=>{
+		this.props.dispatch(fetchPosts());
 	}
 	logout = () => {
 		
@@ -44,9 +39,6 @@ class App extends React.Component {
 			.auth()
 			.signOut()
 			.then(() => {
-				this.setState({
-					loginState : false,
-				});
 				this.props.dispatch(logout());
 				this.props.history.push('/login');
 			})
@@ -58,26 +50,19 @@ class App extends React.Component {
 		
 		return (
 			<>
-				{ this.state.loginState ? (
+				{ this.props.isLoggedIn ? (
 					<NavbarMainComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
 				) : <LoginNavbarComponent></LoginNavbarComponent>}
 				
 				<Switch>
-					{this.props.userName?(<Route
+					{this.props.isLoggedIn?(<Route
 						exact
 						path="/"
-						component={() => <Homepage userName={this.props.userName} />}
+						component={() => <Homepage userName={this.props.userName} fetchPosts={this.fetchPosts} />}
 					/>):(<Route exact path="/" component={Loading} />)}
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
-					<Route 
-						exact 
-						path="/profile" 
-						component={()=><Profile 
-										userName={this.props.userName} 
-										email={this.props.email} 
-										photoURL={this.props.photoURL} />} />
 					<Redirect to="/" />
 				</Switch>
 			</>

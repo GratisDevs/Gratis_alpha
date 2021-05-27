@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 
-export default function(){
+ function Loading(props){
+    if(!props.isLoading) return <Redirect to="/login" />
     return(
         <div class="row" style={{marginTop: '100px'}}>
             <div class="col-md-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'center'}}>
@@ -9,3 +12,8 @@ export default function(){
         </div>
     );
 }
+
+const mapStateToProps=(state)=>({
+    isLoading: state.userState.isLoading
+})
+export default connect(mapStateToProps)(Loading);

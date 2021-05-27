@@ -14,6 +14,10 @@ class Main extends React.Component {
 		};
 	}
 
+  componentDidMount(){
+    this.props.fetchPosts();
+  }
+
 	toggleModal = () => {
 		this.setState({
 			isModalOpen: !this.state.isModalOpen
