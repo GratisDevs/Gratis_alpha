@@ -1,4 +1,4 @@
-const baseURL='http://localhost:8080/'
+const baseURL='http://snaptok.herokuapp.com/'
 
 export const submitPost=(postAuthor,postAuthorEmail,postTitle,postDescription,postSubGratis,postImage,postVideo,changeLoading)=>(dispatch)=>{
 
