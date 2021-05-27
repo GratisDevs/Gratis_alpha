@@ -100,7 +100,8 @@ class PostModal extends React.Component{
                 </Modal.Header>
                 <Modal.Body>
                     <div class="row">
-                        <div class="col-2 col-md-2"><img style={{borderRadius: '50%',width: '45px'}} src={this.props.photoURL} alt="" /></div>
+                        <div class="col-2 col-md-2">{!this.props.photoURL?<img style={{borderRadius: '50%',width: '45px'}} src="/images/user.svg" alt="" />:
+                        <img style={{borderRadius: '50%',width: '45px'}} src={this.props.photoURL} alt="" />}</div>
                         <div class="col-10 col-md-10"><h5 style={{position: 'absolute',top: '30%',fontWeight: '700'}}>{this.props.userName}</h5></div>
                     </div>
                     {this.state.isLoading&&<div class="row" style={{marginTop: '5px'}}>
@@ -194,6 +195,7 @@ class PostModal extends React.Component{
           <Button variant="primary" onClick={this.submitpost} style={{borderRadius: '20px'}}>
             Submit
           </Button>
+          
         </Modal.Footer>
             </Modal>
         );

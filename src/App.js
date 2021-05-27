@@ -4,7 +4,7 @@ import Login from './components/react-components/Login.js';
 import Register from './components/react-components/Register';
 import ForgotPass from './components/react-components/ForgotPass';
 import { connect } from 'react-redux';
-import { logout, login } from './actions/login_logout.js';
+import { logout, login, changeLoading } from './actions/login_logout.js';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
 import Profile from './components/react-components/Profile.js'
@@ -24,11 +24,16 @@ class App extends React.Component {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
 				console.log(user);
-				this.props.dispatch(login(user.displayName, user.photoURL, user.email));
-				//this.props.history.push('/');
+				if(user.displayName&&user.photoURL&&user.email)
+					this.props.dispatch(login(user.displayName, user.photoURL, user.email));
+				else
+					this.props.dispatch(login(user.email.split("@")[0], "", ""));
 				this.setState({
 					loginState: true
 				});
+			}
+			else{
+				this.props.dispatch(changeLoading());
 			}
 		});
 	}
@@ -57,11 +62,11 @@ class App extends React.Component {
 				) : <LoginNavbarComponent></LoginNavbarComponent>}
 				
 				<Switch>
-					<Route
+					{this.props.userName&&<Route
 						exact
 						path="/"
 						component={() => <Homepage userName={this.props.userName} />}
-					/>
+					/>}
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
@@ -89,3 +94,5 @@ const mapStateToProps = (state) => {
 };
 
 export default withRouter(connect(mapStateToProps)(App));
+
+

@@ -6,3 +6,7 @@ export const login=(userName, photoURL, email)=>({
 export const logout=()=>({
     type: 'LOGOUT'
 })
+
+export const changeLoading=()=>({
+    type: 'CHANGE'
+})

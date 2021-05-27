@@ -1,4 +1,4 @@
-const baseURL='http://snaptok.herokuapp.com/'
+const baseURL='http://localhost:8080/'
 
 export const submitPost=(postAuthor,postAuthorEmail,postTitle,postDescription,postSubGratis,postImage,postVideo,changeLoading)=>(dispatch)=>{
 
@@ -13,7 +13,7 @@ export const submitPost=(postAuthor,postAuthorEmail,postTitle,postDescription,po
     data.append('subGratis',postSubGratis);
     data.append('dateOfPost',today.getDate()+"-"+(today.getMonth()+1)+"-"+today.getFullYear());
     data.append('likes',0);
-    data.append('claps',0);
+    data.append('dislikes',0);
 
     fetch(baseURL+'post',{
         method: 'POST',

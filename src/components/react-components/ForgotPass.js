@@ -27,8 +27,6 @@ class Register extends React.Component {
 
     handleAuthentication = async() => {
 
-        
-
         if(this.state.password !== this.state.cPassword)
             await this.setState({ alert_pop: true });
         else
