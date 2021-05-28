@@ -8,7 +8,7 @@ import { logout, login } from './actions/login_logout.js';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
 import Profile from './components/react-components/Profile.js'
-import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
+import NavbarHomeComponent from './components/navbar_components/navbarhomecomponent.js';
 import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
 
 class App extends React.Component {
@@ -53,7 +53,7 @@ class App extends React.Component {
 		return (
 			<>
 				{ this.state.loginState ? (
-					<NavbarMainComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
+					<NavbarHomeComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
 				) : <LoginNavbarComponent></LoginNavbarComponent>}
 				
 				<Switch>
