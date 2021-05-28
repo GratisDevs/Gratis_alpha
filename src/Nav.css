@@ -24,6 +24,7 @@ nav {
 	border-bottom-right-radius: 0px;
 	border-bottom-left-radius: 50px;
 	padding: 2px 16px;
+	z-index: 1;
 }
 
 .logo {
@@ -45,7 +46,7 @@ nav {
 	list-style: none;
 }
 
-.nav-links a {
+.nav-links .navi-links {
 	color: rgb(226, 226, 226);
 	text-decoration: none;
 	letter-spacing: 3px;
@@ -69,6 +70,9 @@ nav {
 	.nav-links {
 		width: 50%;
 	}
+	body {
+		overflow-x: hidden;
+	}
 }
 
 @media screen and (max-width: 768px) {
@@ -87,6 +91,7 @@ nav {
 		width: 50%;
 		transform: translateX(100%);
 		transition: transform 0.5s ease-in;
+		z-index: 1;
 	}
 	.nav-links li {
 		opacity: 0;

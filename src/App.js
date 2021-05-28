@@ -9,8 +9,7 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
 import Profile from './components/react-components/Profile.js';
 import Loading from './Loading.js';
-import NavbarHomeComponent from './components/navbar_components/navbarhomecomponent.js';
-import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
+
 import { fetchPosts } from './actions/PostHandle.js';
 
 class App extends React.Component {
@@ -50,9 +49,7 @@ class App extends React.Component {
 		
 		return (
 			<>
-				{ this.props.isLoggedIn ? (
-					<NavbarHomeComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
-				) : <LoginNavbarComponent></LoginNavbarComponent>}
+				
 				
 				<Switch>
 					{this.props.isLoggedIn?(<Route
@@ -61,6 +58,7 @@ class App extends React.Component {
 						component={() => <Homepage userName={this.props.userName} fetchPosts={this.fetchPosts} />}
 					/>):(<Route exact path="/" component={Loading} />)}
 					<Route exact path="/login" component={Login} />
+					<Route exact path="/profile" component={Profile} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
 					<Redirect to="/" />
@@ -82,3 +80,10 @@ const mapStateToProps = (state) => {
 export default withRouter(connect(mapStateToProps)(App));
 
 
+// line 54
+
+// {
+// 	this.props.isLoggedIn ? (
+// 		<NavbarHomeComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
+// 	) : <LoginNavbarComponent></LoginNavbarComponent>
+// }

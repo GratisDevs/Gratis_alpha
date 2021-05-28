@@ -1,51 +1,72 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+import firebase from '../data_components/firebase.js';
 
-const navSlide = () => {
+const handleBurger = () => {
 	const burger = document.querySelector('.burger');
 	const nav = document.querySelector('.nav-links');
 	const navLinks = document.querySelectorAll('.nav-links li');
+	nav.classList.toggle('nav-active');
+
+	// Animate Links
+	navLinks.forEach((link, index) => {
+		if (link.style.animation) {
+			link.style.animation = '';
+		} else {
+			link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
+		}
+	});
+
+	//Burger Animation
+	burger.classList.toggle('toggle');
 };
 
-/**
- * 
- burger.addEventListener('click', () => {
-		// Toggle Nav
-		nav.classList.toggle('nav-active');
-
-		// Animate Links
-		navLinks.forEach((link, index) => {
-			if (link.style.animation) {
-				link.style.animation = '';
-			} else {
-				link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
-			}
+const logout = () => {
+	console.log('Logout is clicked');
+	firebase
+		.auth()
+		.signOut()
+		.then(() => {
+			this.props.dispatch(logout());
+			this.props.history.push('/login');
+		})
+		.catch((err) => {
+			console.log(err);
 		});
+};
 
-		//Burger Animation
-		burger.classList.toggle('toggle');
-	});
- */
 function NavbarHomeComponent({ isLoggedIn, logout }) {
 	return (
 		<nav>
 			<div className="logo">
-				<h4 className="nav-logo">GratiS'</h4>
+				<Link to="/home" style={{ textDecoration: 'none', color: 'beige' }}>
+					<h2 className=" nav-logo ">GratiS' </h2>
+				</Link>
 			</div>
 			<ul className="nav-links">
 				<li>
-					<a href="#">Home</a>
+					<Link to="/home" style={{ textDecoration: 'none' }} className="navi-links">
+						Home
+					</Link>
 				</li>
 				<li>
-					<a href="#">About</a>
+					<Link to="/home" style={{ textDecoration: 'none' }} className="navi-links">
+						Home
+					</Link>
 				</li>
 				<li>
-					<a href="#">Work</a>
+					<Link to="/home" style={{ textDecoration: 'none' }} className="navi-links">
+						Home
+					</Link>
 				</li>
 				<li>
-					<a href="#">Projects</a>
+					<Button variant="outline-success" style={{ margin: '5px' }} onClick={logout}>
+						Logout
+					</Button>
 				</li>
 			</ul>
-			<div className="burger" onClick="handleBurger">
+			<div className="burger" onClick={handleBurger}>
 				<div className="line1" />
 				<div className="line2" />
 				<div className="line3" />
