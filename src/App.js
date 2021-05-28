@@ -55,7 +55,7 @@ class App extends React.Component {
 					{this.props.isLoggedIn?(<Route
 						exact
 						path="/"
-						component={() => <Homepage userName={this.props.userName} fetchPosts={this.fetchPosts} />}
+						component={() => <Homepage userName={this.props.userName} isLoggedIn={this.props.isLoggedIn} logout={this.logout} fetchPosts={this.fetchPosts} />}
 					/>):(<Route exact path="/" component={Loading} />)}
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/profile" component={Profile} />

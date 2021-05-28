@@ -39,11 +39,12 @@ nav {
 	display: flex;
 	justify-content: space-around;
 	margin-top: 15px;
-	width: 30%;
+	width: 35%;
 }
 
 .nav-links li {
 	list-style: none;
+	margin-top: 1vh;
 }
 
 .nav-links .navi-links {
@@ -98,6 +99,10 @@ nav {
 	}
 	.burger {
 		display: block;
+	}
+
+	body {
+		overflow-x: hidden;
 	}
 }
 
