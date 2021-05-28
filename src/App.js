@@ -4,33 +4,34 @@ import Login from './components/react-components/Login.js';
 import Register from './components/react-components/Register';
 import ForgotPass from './components/react-components/ForgotPass';
 import { connect } from 'react-redux';
-import { logout, login } from './actions/login_logout.js';
+import { logout, login, changeLoading } from './actions/login_logout.js';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
-import Profile from './components/react-components/Profile.js'
+import Profile from './components/react-components/Profile.js';
+import Loading from './Loading.js';
 import NavbarHomeComponent from './components/navbar_components/navbarhomecomponent.js';
 import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
+import { fetchPosts } from './actions/PostHandle.js';
 
 class App extends React.Component {
-	
-	constructor(){
-		super();
-		this.state = {
-			loginState : false,
-		}
-	}
 
 	componentDidMount() {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
 				console.log(user);
-				this.props.dispatch(login(user.displayName, user.photoURL, user.email));
-				//this.props.history.push('/');
-				this.setState({
-					loginState: true
-				});
+				if(user.displayName&&user.photoURL&&user.email)
+					this.props.dispatch(login(user.displayName, user.photoURL, user.email));
+				else
+					this.props.dispatch(login(user.email.split("@")[0], "", ""));
+				
+			}
+			else{
+				this.props.dispatch(changeLoading());
 			}
 		});
+	}
+	fetchPosts=()=>{
+		this.props.dispatch(fetchPosts());
 	}
 	logout = () => {
 		
@@ -38,9 +39,6 @@ class App extends React.Component {
 			.auth()
 			.signOut()
 			.then(() => {
-				this.setState({
-					loginState : false,
-				});
 				this.props.dispatch(logout());
 				this.props.history.push('/login');
 			})
@@ -52,26 +50,19 @@ class App extends React.Component {
 		
 		return (
 			<>
-				{ this.state.loginState ? (
+				{ this.props.isLoggedIn ? (
 					<NavbarHomeComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
 				) : <LoginNavbarComponent></LoginNavbarComponent>}
 				
 				<Switch>
-					<Route
+					{this.props.isLoggedIn?(<Route
 						exact
 						path="/"
-						component={() => <Homepage userName={this.props.userName} />}
-					/>
+						component={() => <Homepage userName={this.props.userName} fetchPosts={this.fetchPosts} />}
+					/>):(<Route exact path="/" component={Loading} />)}
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
-					<Route 
-						exact 
-						path="/profile" 
-						component={()=><Profile 
-										userName={this.props.userName} 
-										email={this.props.email} 
-										photoURL={this.props.photoURL} />} />
 					<Redirect to="/" />
 				</Switch>
 			</>
@@ -89,3 +80,5 @@ const mapStateToProps = (state) => {
 };
 
 export default withRouter(connect(mapStateToProps)(App));
+
+

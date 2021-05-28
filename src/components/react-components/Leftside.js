@@ -5,7 +5,7 @@ import style from './LeftsideStyle.js';
 class Leftside extends React.Component{
     render(){
   return (
-    <div className="col-md-3">
+    <div className="col-md-3 hidden">
       <style.ArtCard>
         <style.UserInfo>
           <style.CardBackground />
