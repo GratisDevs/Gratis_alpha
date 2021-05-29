@@ -9,13 +9,8 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
 import Home from './components/react-components/Home.js';
 import Profile from './components/react-components/Profile.js';
-<<<<<<< HEAD
-import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
-import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
-=======
 import Loading from './Loading.js';
 
->>>>>>> 47de53e242e368c6adc4d7aead53931591e5ec27
 import { fetchPosts } from './actions/PostHandle.js';
 
 class App extends React.Component {
