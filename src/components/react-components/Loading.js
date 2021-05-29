@@ -16,4 +16,5 @@ import { Redirect } from 'react-router';
 const mapStateToProps=(state)=>({
     isLoading: state.userState.isLoading
 })
+
 export default connect(mapStateToProps)(Loading);

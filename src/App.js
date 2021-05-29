@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import { logout, login, changeLoading } from './actions/login_logout.js';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
+import Home from './components/react-components/Home.js';
 import Profile from './components/react-components/Profile.js';
-import Loading from './Loading.js';
 import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
 import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
 import { fetchPosts } from './actions/PostHandle.js';
@@ -55,11 +55,9 @@ class App extends React.Component {
 				) : <LoginNavbarComponent></LoginNavbarComponent>}
 				
 				<Switch>
-					{this.props.isLoggedIn?(<Route
-						exact
-						path="/"
-						component={() => <Homepage userName={this.props.userName} fetchPosts={this.fetchPosts} />}
-					/>):(<Route exact path="/" component={Loading} />)}
+					<Route exact path="/" component={()=><Home isLoggedIn={this.props.isLoggedIn} 
+					userName={this.props.userName} 
+					fetchPosts={this.fetchPosts} />} />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />

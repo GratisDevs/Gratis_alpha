@@ -87,7 +87,7 @@ class Main extends React.Component {
     })
 
     return (
-  <div className="col-md-6">
+  <div className="col-md-7">
     <PostModal isModalOpen={this.state.isModalOpen} toggleModal={this.toggleModal} userName={this.props.userName} photoURL={this.props.photoURL} />
     <style.ShareBox>
       <h4 style={{textAlign: 'center'}}>Share</h4>
