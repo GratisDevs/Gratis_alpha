@@ -13,6 +13,14 @@
 	font-weight: bold;
 	text-align: center;
 }
+
+.navbar_logo_home {
+	font-family: 'Gracha', cursive;
+	letter-spacing: 18px;
+	font-size: 20px;
+	color: blueviolet;
+	font-weight: bold;
+}
 /*CodyStar*/
 .slogan-1 {
 	font-family: 'Press Start 2P', cursive;
@@ -67,6 +75,18 @@
 	border-bottom-right-radius: 50px;
 	border-bottom-left-radius: 50px;
 	padding: 2px 16px; /* 5px rounded corners */
+}
+
+.card-navbar-home {
+	/* Add shadows to create the "card" effect */
+	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 30px;
+	border-bottom-left-radius: 30px;
+	padding: 2px 16px; /* 5px rounded corners */
+	height: 75px;
 }
 
 .navbar-border {
