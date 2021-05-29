@@ -9,7 +9,7 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
 import Home from './components/react-components/Home.js';
 import Profile from './components/react-components/Profile.js';
-import Loading from './Loading.js';
+
 
 import { fetchPosts } from './actions/PostHandle.js';
 

@@ -5,6 +5,7 @@ import ReactPlayer from 'react-player';
 import { connect } from 'react-redux';
 import style from './MainStyle';
 import PostModal from './PostModal';
+import SocialCount from './SocialCount';
 
 class Main extends React.Component {
 	constructor(props) {
@@ -53,20 +54,7 @@ class Main extends React.Component {
           </div>
         )):<b></b>}
         <style.SocialCount>
-          <li>
-            <button>
-              <img src="/images/like.svg" alt="" />
-              <span>{post.likes}</span>
-            </button>
-            <button>
-              <img src="/images/clap.svg" alt="" />
-              <span>{post.claps}</span>
-            </button>
-          </li>
-          <li>
-            
-            <a>{post.comments.length}</a>
-          </li>
+          <SocialCount likes={post.likes} dislikes={post.dislikes} postId={post._id} />
         </style.SocialCount>
         <style.SocialActions>
         <button>
@@ -92,7 +80,7 @@ class Main extends React.Component {
     <style.ShareBox>
       <h4 style={{textAlign: 'center'}}>Share</h4>
     <div>
-      <img src={this.props.photoURL} alt="" />
+      {this.props.photoURL?<img src={this.props.photoURL} alt="" />:<img src="/images/user.svg" alt="" />}
       <button onClick={this.toggleModal}>Start a post</button>
     </div>
     <div>

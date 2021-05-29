@@ -9,7 +9,7 @@ class SocialCount extends React.Component{
             dislikes: this.props.dislikes,
             dislikesUpdated: false,
             postId: this.props.postId,
-            baseUrl: 'http://localhost:8080/'
+            baseUrl: 'http://snaptok.herokuapp.com/'
         }
     }
 
