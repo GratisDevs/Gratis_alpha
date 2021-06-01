@@ -9,23 +9,13 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
 import Home from './components/react-components/Home.js';
 import Profile from './components/react-components/Profile.js';
+import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
+import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
 
 
 import { fetchPosts } from './actions/PostHandle.js';
 
 class App extends React.Component {
-
-	postUser=async()=>{
-		const db=firebase.firestore();
-
-		db.collection("users").where("displayName","==","XYZ").get().then(query=>{
-			const document=query.docs[0];
-			document.ref.update({
-				likes: firebase.firestore.FieldValue.arrayR("2")
-			});
-		});
-	}
-
 
 	componentDidMount() {
 		firebase.auth().onAuthStateChanged((user) => {
@@ -61,7 +51,9 @@ class App extends React.Component {
 		
 		return (
 			<>
-				
+				{ this.props.isLoggedIn ? (
+					<NavbarMainComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
+				) : <LoginNavbarComponent></LoginNavbarComponent>}
 				
 				<Switch>
 					<Route exact path="/" render={(props)=><Home {...props} isLoggedIn={this.props.isLoggedIn} 

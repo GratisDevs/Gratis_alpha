@@ -1,5 +1,5 @@
 import React from 'react';
-import NavbarHomeComponent from '../navbar_components/navbarhomecomponent.js';
+import NavbarHomeComponent from '../navbar_components/navbarmaincomponent.js';
 
 class Profile extends React.Component {
 	componentDidMount() {

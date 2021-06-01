@@ -2,7 +2,6 @@ import React from 'react';
 import './Home.css';
 import Leftside from './Leftside.js';
 import Main from './Main.js';
-import NavbarHomeComponent from '../navbar_components/navbarhomecomponent.js';
 import { Link } from 'react-router-dom';
 // import Recommendation from './recommendation.js';
 // import { fetchPosts } from '../../actions/PostHandle.js';
@@ -13,7 +12,7 @@ class Homepage extends React.Component {
 	render() {
 		return (
 			<div>
-				<NavbarHomeComponent isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} />
+				
 				<div
 					className="container-fluid m-0"
 					style={{ paddingTop: '100px', paddingLeft: '0', paddingRight: '0' }}
