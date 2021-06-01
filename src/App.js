@@ -15,6 +15,18 @@ import { fetchPosts } from './actions/PostHandle.js';
 
 class App extends React.Component {
 
+	postUser=async()=>{
+		const db=firebase.firestore();
+
+		db.collection("users").where("displayName","==","XYZ").get().then(query=>{
+			const document=query.docs[0];
+			document.ref.update({
+				likes: firebase.firestore.FieldValue.arrayR("2")
+			});
+		});
+	}
+
+
 	componentDidMount() {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
@@ -34,7 +46,6 @@ class App extends React.Component {
 		this.props.dispatch(fetchPosts());
 	}
 	logout = () => {
-		
 		firebase
 			.auth()
 			.signOut()
@@ -53,13 +64,15 @@ class App extends React.Component {
 				
 				
 				<Switch>
-					<Route exact path="/" component={()=><Home isLoggedIn={this.props.isLoggedIn} 
+					<Route exact path="/" render={(props)=><Home {...props} isLoggedIn={this.props.isLoggedIn} 
 					userName={this.props.userName} 
-					fetchPosts={this.fetchPosts} />} />
+					fetchPosts={this.fetchPosts} 
+					logout={this.logout} />} />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/profile" component={Profile} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
+					
 					<Redirect to="/" />
 				</Switch>
 			</>

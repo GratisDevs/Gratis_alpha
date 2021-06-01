@@ -36,6 +36,7 @@ export const submitPost=(postAuthor,postAuthorEmail,postTitle,postDescription,po
 }
 
 export const fetchPosts=()=>(dispatch)=>{
+  dispatch(changePostsLoading())
   fetch(baseURL+'fetchPosts',{
     method: 'GET'
   }).then(response => {
@@ -62,4 +63,9 @@ const addPost=(arr)=>({
 const errPost=(message)=>({
   type: 'FETCH_FAILED',
   payload: message
+})
+
+
+const changePostsLoading=()=>({
+  type: 'CHANGE_POST_LOADING'
 })

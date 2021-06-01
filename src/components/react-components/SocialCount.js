@@ -1,17 +1,35 @@
+import { post } from 'jquery';
 import React from 'react';
+import { connect } from 'react-redux';
+import firebase from '../data_components/firebase.js';
+
 
 class SocialCount extends React.Component{
     constructor(props){
         super(props);
+        //console.log(props);
         this.state={
-            likes: this.props.likes,
+            user: props.user,
+            likes: props.likes,
             likeUpdated: false,
-            dislikes: this.props.dislikes,
+            dislikes: props.dislikes,
             dislikesUpdated: false,
-            postId: this.props.postId,
-            baseUrl: 'http://snaptok.herokuapp.com/'
+            postId: props.postId,
+            baseUrl: 'http://snaptok.herokuapp.com/',
+            db: firebase.firestore()
         }
     }
+
+    componentDidMount(){
+        this.state.db.collection("users").where("displayName","==",this.state.user).get().then(query=>{
+            const doc=query.docs[0];
+            this.setState({
+                likeUpdated: doc.data().likes.includes(this.state.postId),
+                dislikesUpdated: doc.data().dislikes.includes(this.state.postId)
+            })
+        })
+    }
+
 
     sendDislikeRequests=(props)=>{
         fetch(this.state.baseUrl+'dislike',{
@@ -33,6 +51,34 @@ class SocialCount extends React.Component{
         }).then(res=>res.json()).catch(err=>err);
     }
 
+    handleFirestoreLike=(props)=>{
+        this.state.db.collection("users").where("displayName","==",this.state.user).get().then(query=>{
+			const document=query.docs[0];
+            if(props=="add")
+                document.ref.update({
+                    likes: firebase.firestore.FieldValue.arrayUnion(this.state.postId)
+                });
+            else
+                document.ref.update({
+                    likes: firebase.firestore.FieldValue.arrayRemove(this.state.postId)
+                }); 
+		});
+    }
+
+    handleFirestoreDislike=(props)=>{
+        this.state.db.collection("users").where("displayName","==",this.state.user).get().then(query=>{
+			const document=query.docs[0];
+            if(props=="add")
+                document.ref.update({
+                    dislikes: firebase.firestore.FieldValue.arrayUnion(this.state.postId)
+                });
+            else
+                document.ref.update({
+                    dislikes: firebase.firestore.FieldValue.arrayRemove(this.state.postId)
+                }); 
+		});
+    }
+
     handleLike=()=>{
         if(!this.state.likeUpdated){
             if(this.state.dislikesUpdated){
@@ -43,6 +89,7 @@ class SocialCount extends React.Component{
                     }
                 })
                 this.sendDislikeRequests("decrease");
+                this.handleFirestoreDislike("remove")
             }
             else{
             this.setState((prevState,props)=>{
@@ -52,6 +99,7 @@ class SocialCount extends React.Component{
                 }
             })
             this.sendLikeRequests("increase");
+            this.handleFirestoreLike("add")
         }
         }
         else{
@@ -63,6 +111,7 @@ class SocialCount extends React.Component{
                     }
                 })
                 this.sendDislikeRequests("decrease");
+                this.handleFirestoreDislike("remove")
             }
             else{this.setState((prevState,props)=>{
                 return{
@@ -71,6 +120,7 @@ class SocialCount extends React.Component{
                 }
             })
             this.sendLikeRequests("decrease");
+            this.handleFirestoreLike("remove")
         }
         }
     }
@@ -85,6 +135,7 @@ class SocialCount extends React.Component{
                     }
                 })
                 this.sendLikeRequests("decrease");
+                this.handleFirestoreLike("remove")
             }
             else{
             this.setState((prevState,props)=>{
@@ -94,6 +145,7 @@ class SocialCount extends React.Component{
                 }
             })
             this.sendDislikeRequests("increase");
+            this.handleFirestoreDislike("add")
         }
         }
         else{
@@ -105,6 +157,7 @@ class SocialCount extends React.Component{
                     }
                 })
                 this.sendLikeRequests("decrease");
+                this.handleFirestoreLike("remove")
             }
             else{
             this.setState((prevState,props)=>{
@@ -114,25 +167,26 @@ class SocialCount extends React.Component{
                 }
             })
             this.sendDislikeRequests("decrease");
+            this.handleFirestoreDislike("remove")
         }
         }
     }
 
     render(){
+        //console.log(this.props)
         return(<>
         <li>
             <button>
             {this.state.likeUpdated?<i class="fa fa-thumbs-up" aria-hidden="true" style={{fontSize: 'large'}} onClick={this.handleLike}></i>:<i class="fa fa-thumbs-o-up" aria-hidden="true" style={{fontSize: 'large'}} onClick={this.handleLike}></i>}
               <span>{this.state.likes}</span>
             </button>
-            <button>
+            <button style={{marginLeft: '7px'}}>
             {this.state.dislikesUpdated?<i class="fa fa-thumbs-down" aria-hidden="true" style={{fontSize: 'large'}} onClick={this.handledislikes}></i>:<i class="fa fa-thumbs-o-down" aria-hidden="true" style={{fontSize: 'large'}} onClick={this.handledislikes}></i>}
               <span>{this.state.dislikes}</span>
             </button>
           </li>
           <li>
-            
-            <a>{this.props.length}</a>
+            <a>{this.props.length} Comments</a>
           </li>
           </>)
     }

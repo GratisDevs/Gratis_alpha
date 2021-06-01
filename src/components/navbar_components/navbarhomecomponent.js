@@ -60,8 +60,8 @@ class NavbarHomeComponent extends React.Component {
 							Profile
 						</Link>
 					</li>
-					<li style={{ textDecoration: 'none' }} className="navi-links" onClick={this.props.logout}>
-						Logout
+					<li style={{ textDecoration: 'none' }} className="navi-links">
+						<Button onClick={this.props.logout}>Logout</Button>
 					</li>
 				</ul>
 				<div className="burger" onClick={this.handleBurger}>

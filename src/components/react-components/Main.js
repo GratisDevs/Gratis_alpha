@@ -16,6 +16,7 @@ class Main extends React.Component {
 	}
 
   componentDidMount(){
+    console.log("twice");
     this.props.fetchPosts();
   }
 
@@ -44,17 +45,14 @@ class Main extends React.Component {
             <h5 style={{textAlign: 'left'}}>{post.title}</h5>
           </div>
         </div>
-        {post.file!==''?(post.fileType==='image'?(<style.SharedImage>
-          <a>
-            <img src={post.file} alt="" />
-          </a>
+        {post.file!==''?(post.fileType==='image'?(<style.SharedImage url={post.file}>
         </style.SharedImage>):(
           <div style={{marginTop: '8px', height: '100%'}}>
             <ReactPlayer url={post.file} width={'100%'} height={'100%'} controls={true} />
           </div>
         )):<b></b>}
         <style.SocialCount>
-          <SocialCount likes={post.likes} dislikes={post.dislikes} postId={post._id} />
+          <SocialCount postId={post._id} likes={post.likes} dislikes={post.dislikes} length={post.comments.length} user={this.props.userName} />
         </style.SocialCount>
         <style.SocialActions>
         <button>
@@ -75,7 +73,7 @@ class Main extends React.Component {
     })
 
     return (
-  <div className="col-md-7">
+  <div className="col-md-6">
     <PostModal isModalOpen={this.state.isModalOpen} toggleModal={this.toggleModal} userName={this.props.userName} photoURL={this.props.photoURL} />
     <style.ShareBox>
       <h4 style={{textAlign: 'center'}}>Share</h4>
