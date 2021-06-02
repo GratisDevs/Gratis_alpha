@@ -34,7 +34,7 @@ class Register extends React.Component {
 			dislikes: [],
 			email: props.email
 		}).then(()=>{
-			this.props.dispatch(login(props.displayName,props.photoURL,props.email));
+			//this.props.dispatch(login(props.displayName,props.photoURL,props.email));
 		}).
 		catch(err=>{console.log(err)});
 	}

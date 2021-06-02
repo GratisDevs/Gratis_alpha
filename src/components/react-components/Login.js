@@ -28,16 +28,20 @@ class Login extends React.Component {
 	registerUser=(props)=>{
 		console.log(props);
 		
-		this.state.db.collection("users").doc().set({
-			displayName: props.displayName,
-			photoURL: props.photoURL,
-			likes: [],
-			dislikes: [],
-			email: props.email
-		}).then(()=>{
-			this.props.dispatch(login(props.displayName,props.photoURL,props.email));
-		}).
-		catch(err=>{console.log(err)});
+		this.state.db.collection("users").where("displayName","==",props.displayName).get().
+		then(querySnapshot=>{
+			
+			if(querySnapshot.size==0){
+				this.state.db.collection("users").doc().set({
+					displayName: props.displayName,
+					photoURL: props.photoURL,
+					likes: [],
+					dislikes: [],
+					email: props.email
+				}).
+				catch(err=>{console.log(err)});
+			}
+		})
 	}
 
 	handleEmail = (event) => {
@@ -50,7 +54,7 @@ class Login extends React.Component {
 	handleAuthentication = () => {
 		firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
 			firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
-				this.props.dispatch(login(user.user.email.split("@")[0],"",user.user.email))
+				//this.props.dispatch(login(user.user.email.split("@")[0],"",user.user.email))
 			}, function(error) {
 				swal('', error.message, 'error');
 			});
@@ -63,9 +67,8 @@ class Login extends React.Component {
 				.auth()
 				.signInWithPopup(new firebase.auth.GoogleAuthProvider())
 				.then((result) => {
-					//console.log(result.user.displayName)
-					//this.registerUser({displayName: result.user.displayName,photoURL: result.user.photoURL,email: result.user.email})
-					this.props.dispatch(login(result.user.displayName,result.user.photoURL,result.user.email))
+					this.registerUser({displayName: result.user.displayName,photoURL: result.user.photoURL,email: result.user.email})
+					//this.props.dispatch(login(result.user.displayName,result.user.photoURL,result.user.email));
 				})
 				.catch((err) => {
 					console.log(err);
@@ -192,11 +195,10 @@ class Login extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
+const mapStateToProps = (state) => ({
+	
 		isLoggedIn: state.userState.isLoggedIn,
 		userName: state.userState.userName
-	};
-};
+});
 
 export default connect(mapStateToProps)(Login);

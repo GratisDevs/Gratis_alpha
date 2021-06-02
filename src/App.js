@@ -18,19 +18,24 @@ import { fetchPosts } from './actions/PostHandle.js';
 class App extends React.Component {
 
 	componentDidMount() {
+		console.log("App mounted");
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
 				console.log(user);
 				if(user.displayName&&user.photoURL&&user.email)
-					this.props.dispatch(login(user.displayName, user.photoURL, user.email));
+				this.props.dispatch(login(user.displayName, user.photoURL, user.email));
 				else
-					this.props.dispatch(login(user.email.split("@")[0], "", ""));
+				this.props.dispatch(login(user.email.split("@")[0], "", ""));
 				
 			}
 			else{
 				this.props.dispatch(changeLoading());
 			}
 		});
+	}
+
+	componentWillUnmount(){
+		console.log("App.js unmounted");
 	}
 	fetchPosts=()=>{
 		this.props.dispatch(fetchPosts());
