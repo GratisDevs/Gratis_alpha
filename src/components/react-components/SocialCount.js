@@ -21,9 +21,9 @@ class SocialCount extends React.Component{
     }
 
     componentDidMount(){
+        console.log("mounted");
         this.state.db.collection("users").where("displayName","==",this.state.user).get().then(query=>{
             const doc=query.docs[0];
-            console.log(doc);
             this.setState({
                 likeUpdated: doc.data().likes.includes(this.state.postId),
                 dislikesUpdated: doc.data().dislikes.includes(this.state.postId)

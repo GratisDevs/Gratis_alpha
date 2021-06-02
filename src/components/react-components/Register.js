@@ -19,9 +19,25 @@ class Register extends React.Component {
         this.state = {
             avaName: '',
             uEmail: '',
-            uPassword: ''
+            uPassword: '',
+            db: firebase.firestore()
         };
     }
+
+    registerUser=(props)=>{
+		//console.log(props);
+		
+		this.state.db.collection("users").doc().set({
+			displayName: props.displayName,
+			photoURL: props.photoURL,
+			likes: [],
+			dislikes: [],
+			email: props.email
+		}).then(()=>{
+			this.props.dispatch(login(props.displayName,props.photoURL,props.email));
+		}).
+		catch(err=>{console.log(err)});
+	}
 
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
@@ -33,7 +49,7 @@ class Register extends React.Component {
             .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
                 firebase.auth().createUserWithEmailAndPassword(this.state.uEmail, this.state.uPassword).then((user) => {
-                    this.props.dispatch(login(firebase.auth().currentUser.email));
+                    this.registerUser({displayName: user.user.email.split("@")[0],photoURL: "",email: user.user.email})
                 }, function (error) {
                     swal("",error.message,"error");
                 });

@@ -5,18 +5,9 @@ import style from './LeftsideStyle';
 class TopMobile extends React.Component{
   constructor(props){
     super(props);
-    this.state={
-      photoURL: '/images/photo.svg'
-    }
   }
 
-  componentDidMount(){
-    if(this.props.photoURL!==''){
-      this.setState({
-        photoURL: this.props.photoURL
-      })
-    }
-  }
+  
 
   render(){
     return (
@@ -25,7 +16,7 @@ class TopMobile extends React.Component{
         <style.UserInfo>
           <style.CardBackground />
           <a href="#">
-            <style.Photo url={this.state.photoURL}/>
+            <style.Photo url={this.props.photoURL}/>
             <style.Link>Welcome, {this.props.userName}!</style.Link>
           </a>
           <a href="#">

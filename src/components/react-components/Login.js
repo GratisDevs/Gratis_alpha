@@ -50,7 +50,7 @@ class Login extends React.Component {
 	handleAuthentication = () => {
 		firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
 			firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
-				this.registerUser({displayName: user.user.email.split("@")[0],photoURL: "",email: user.user.email})
+				this.props.dispatch(login(user.user.email.split("@")[0],"",user.user.email))
 			}, function(error) {
 				swal('', error.message, 'error');
 			});
@@ -63,8 +63,9 @@ class Login extends React.Component {
 				.auth()
 				.signInWithPopup(new firebase.auth.GoogleAuthProvider())
 				.then((result) => {
-					console.log(result.user.displayName)
-					this.registerUser({displayName: result.user.displayName,photoURL: result.user.photoURL,email: result.user.email})
+					//console.log(result.user.displayName)
+					//this.registerUser({displayName: result.user.displayName,photoURL: result.user.photoURL,email: result.user.email})
+					this.props.dispatch(login(result.user.displayName,result.user.photoURL,result.user.email))
 				})
 				.catch((err) => {
 					console.log(err);
