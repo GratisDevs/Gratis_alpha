@@ -58,7 +58,8 @@ class App extends React.Component {
 				<Switch>
 					<Route exact path="/" render={(props)=><Home {...props} isLoggedIn={this.props.isLoggedIn} 
 					userName={this.props.userName} 
-					fetchPosts={this.fetchPosts} 
+					fetchPosts={this.fetchPosts}
+					photoURL={this.props.photoURL} 
 					logout={this.logout} />} />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/profile" component={Profile} />

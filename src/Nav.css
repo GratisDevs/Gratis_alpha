@@ -15,14 +15,13 @@ nav {
 	min-height: 8vh;
 	background-color: #7e6868;
 	font-family: 'Poppins', sans-serif;
-	margin-top: 2px;
-	margin-left: 2px;
+	
 	box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.2);
 	transition: 0.3s;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;
-	border-bottom-left-radius: 50px;
+	border-bottom-left-radius: 30px;
 	padding: 2px 16px;
 	z-index: 1;
 }
@@ -47,12 +46,18 @@ nav {
 	margin-top: 1vh;
 }
 
-a.nav-link a.navi-links {
+a.navi-links {
 	color: rgb(12, 12, 12);
 	text-decoration: none;
 	letter-spacing: 3px;
-	font-weight: 900;
+	font-weight: bold;
 	font-size: 16px;
+}
+
+a.nav-link{
+	font-size: medium;
+	font-weight: bolder;
+	text-decoration: none;
 }
 
 .burger {
@@ -84,8 +89,8 @@ a.nav-link a.navi-links {
 	color: rgb(12, 12, 12);
 	text-decoration: none;
 	letter-spacing: 3px;
-	font-weight: 900;
-	font-size: 16px;
+	font-weight: bold;
+	font-size: medium;
 	}
 	.nav-links {
 		position: absolute;

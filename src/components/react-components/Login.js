@@ -13,14 +13,31 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import GoogleButton from 'react-google-button';
 import LoginNavbarComponent from '../navbar_components/loginnavbarcomponent';
+//import firebase from '../data_components/firebase';
 
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			email: '',
-			password: ''
+			password: '',
+			db: firebase.firestore()
 		};
+	}
+
+	registerUser=(props)=>{
+		console.log(props);
+		
+		this.state.db.collection("users").doc().set({
+			displayName: props.displayName,
+			photoURL: props.photoURL,
+			likes: [],
+			dislikes: [],
+			email: props.email
+		}).then(()=>{
+			this.props.dispatch(login(props.displayName,props.photoURL,props.email));
+		}).
+		catch(err=>{console.log(err)});
 	}
 
 	handleEmail = (event) => {
@@ -33,7 +50,7 @@ class Login extends React.Component {
 	handleAuthentication = () => {
 		firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
 			firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
-				this.props.dispatch(login(firebase.auth().currentUser.email));
+				this.registerUser({displayName: user.user.email.split("@")[0],photoURL: "",email: user.user.email})
 			}, function(error) {
 				swal('', error.message, 'error');
 			});
@@ -46,8 +63,8 @@ class Login extends React.Component {
 				.auth()
 				.signInWithPopup(new firebase.auth.GoogleAuthProvider())
 				.then((result) => {
-					console.log(result);
-					this.props.dispatch(login(result.user.displayName));
+					console.log(result.user.displayName)
+					this.registerUser({displayName: result.user.displayName,photoURL: result.user.photoURL,email: result.user.email})
 				})
 				.catch((err) => {
 					console.log(err);
@@ -59,7 +76,6 @@ class Login extends React.Component {
 		if (this.props.userName !== '') return <Redirect to="/" />;
 		return (
 			<div>
-				<LoginNavbarComponent />
 				<Container fluid className="login_bg">
 					<Row className="justify-content-center">
 						<Col sm={11} className="mx-auto">

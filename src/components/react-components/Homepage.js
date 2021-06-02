@@ -3,6 +3,7 @@ import './Home.css';
 import Leftside from './Leftside.js';
 import Main from './Main.js';
 import { Link } from 'react-router-dom';
+import TopMobile from './TopMobile';
 // import Recommendation from './recommendation.js';
 // import { fetchPosts } from '../../actions/PostHandle.js';
 // import { connect } from 'react-redux';
@@ -20,8 +21,9 @@ class Homepage extends React.Component {
 					
 					<div className="row m-0">
 						<div class="col-md-2" />
+						<TopMobile userName={this.props.userName} photoURL={this.props.photoURL} />
 						<Main userName={this.props.userName} fetchPosts={this.props.fetchPosts} />
-						<Leftside userName={this.props.userName} />
+						<Leftside userName={this.props.userName} photoURL={this.props.photoURL} />
 						<div class="col-md-1" />
 					</div>
 				</div>

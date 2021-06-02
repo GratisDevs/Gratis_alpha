@@ -45,7 +45,8 @@ class Main extends React.Component {
             <h5 style={{textAlign: 'left'}}>{post.title}</h5>
           </div>
         </div>
-        {post.file!==''?(post.fileType==='image'?(<style.SharedImage url={post.file}>
+        {post.file!==''?(post.fileType==='image'?(<style.SharedImage>
+          <img src={post.file} alt="" />
         </style.SharedImage>):(
           <div style={{marginTop: '8px', height: '100%'}}>
             <ReactPlayer url={post.file} width={'100%'} height={'100%'} controls={true} />
