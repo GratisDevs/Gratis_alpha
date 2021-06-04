@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../actions/login_logout.js';
-import firebase from '../data_components/firebase.js';
+import {auth,db} from '../data_components/firebase.js';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -13,7 +13,8 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import GoogleButton from 'react-google-button';
 import LoginNavbarComponent from '../navbar_components/loginnavbarcomponent';
-//import firebase from '../data_components/firebase';
+import firebase from '../data_components/firebase';
+
 
 class Login extends React.Component {
 	constructor(props) {
@@ -21,18 +22,17 @@ class Login extends React.Component {
 		this.state = {
 			email: '',
 			password: '',
-			db: firebase.firestore()
 		};
 	}
 
 	registerUser=(props)=>{
 		console.log(props);
 		
-		this.state.db.collection("users").where("displayName","==",props.displayName).get().
+		db.collection("users").where("displayName","==",props.displayName).get().
 		then(querySnapshot=>{
 			
 			if(querySnapshot.size==0){
-				this.state.db.collection("users").doc().set({
+				db.collection("users").doc().set({
 					displayName: props.displayName,
 					photoURL: props.photoURL,
 					likes: [],
@@ -52,8 +52,8 @@ class Login extends React.Component {
 		this.setState({ password: event.target.value });
 	};
 	handleAuthentication = () => {
-		firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
-			firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+		auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
+			auth.signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
 				//this.props.dispatch(login(user.user.email.split("@")[0],"",user.user.email))
 			}, function(error) {
 				swal('', error.message, 'error');
@@ -62,9 +62,8 @@ class Login extends React.Component {
 	};
 
 	handleGoogleValidation = () => {
-		firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
-			firebase
-				.auth()
+		auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
+			auth
 				.signInWithPopup(new firebase.auth.GoogleAuthProvider())
 				.then((result) => {
 					this.registerUser({displayName: result.user.displayName,photoURL: result.user.photoURL,email: result.user.email})

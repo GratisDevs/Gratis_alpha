@@ -56,7 +56,7 @@ style.Link = styled.div`
   font-weight: 600;
 `;
 
-style.AddPhotoText = styled.div`
+style.AddPhotoText = styled.label`
   color: #0a66c2;
   margin-top: 4px;
   font-size: 16px;

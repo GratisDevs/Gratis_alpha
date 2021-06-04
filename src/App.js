@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from './components/data_components/firebase.js';
+import {auth,db} from './components/data_components/firebase.js';
 import Login from './components/react-components/Login.js';
 import Register from './components/react-components/Register';
 import ForgotPass from './components/react-components/ForgotPass';
@@ -17,20 +17,38 @@ import { fetchPosts } from './actions/PostHandle.js';
 
 class App extends React.Component {
 
+	changeUser=()=>{
+		db.collection("users").where("displayName","==","None").get().then(query=>{
+			const doc=query.docs[0];
+			console.log(doc.data());
+			doc.ref.update({photoURL: "vipul"})
+		}).catch(err=>{console.log(err)})
+	}
+
 	componentDidMount() {
-		console.log("App mounted");
-		firebase.auth().onAuthStateChanged((user) => {
+		auth.onAuthStateChanged((user) => {
 			if (user) {
-				console.log(user);
-				if(user.displayName&&user.photoURL&&user.email)
-				this.props.dispatch(login(user.displayName, user.photoURL, user.email));
-				else
-				this.props.dispatch(login(user.email.split("@")[0], "", ""));
+				db.collection("users").where("email","==",user.email).get().then(query=>{
+					const doc=query.docs[0];
+					var URL,email;
+					if(doc)
+					{URL=doc.data().photoURL;
+					email=doc.data().email;}
+					else{
+						URL=user.photoURL;
+						email=user.email;
+					}
+					if(user.displayName)
+						this.props.dispatch(login(user.displayName, URL, email));
+					else
+						this.props.dispatch(login(user.email.split("@")[0], URL, email));
+				})
 				
 			}
 			else{
 				this.props.dispatch(changeLoading());
 			}
+			this.changeUser()
 		});
 	}
 
@@ -41,9 +59,7 @@ class App extends React.Component {
 		this.props.dispatch(fetchPosts());
 	}
 	logout = () => {
-		firebase
-			.auth()
-			.signOut()
+		auth.signOut()
 			.then(() => {
 				this.props.dispatch(logout());
 				this.props.history.push('/login');

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../actions/login_logout.js';
+import {auth,db} from '../data_components/firebase.js';
 import firebase from '../data_components/firebase.js';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -20,14 +21,13 @@ class Register extends React.Component {
             avaName: '',
             uEmail: '',
             uPassword: '',
-            db: firebase.firestore()
         };
     }
 
     registerUser=(props)=>{
 		//console.log(props);
 		
-		this.state.db.collection("users").doc().set({
+		db.collection("users").doc().set({
 			displayName: props.displayName,
 			photoURL: props.photoURL,
 			likes: [],
@@ -44,11 +44,10 @@ class Register extends React.Component {
     };
     handleAuthentication = () => {
         console.log(this.state.uEmail);
-        firebase
-            .auth()
+        auth
             .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
-                firebase.auth().createUserWithEmailAndPassword(this.state.uEmail, this.state.uPassword).then((user) => {
+                auth.createUserWithEmailAndPassword(this.state.uEmail, this.state.uPassword).then((user) => {
                     this.registerUser({displayName: user.user.email.split("@")[0],photoURL: "",email: user.user.email})
                 }, function (error) {
                     swal("",error.message,"error");

@@ -29,4 +29,10 @@
   }
 }
 
+@media(max-width: 767px){
+  .hidden-large-screen{
+    display: block;
+  }
+}
+
 
