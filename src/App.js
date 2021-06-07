@@ -28,20 +28,23 @@ class App extends React.Component {
 	componentDidMount() {
 		auth.onAuthStateChanged((user) => {
 			if (user) {
+				console.log(user);
 				db.collection("users").where("email","==",user.email).get().then(query=>{
 					const doc=query.docs[0];
-					var URL,email;
+					var URL,email,uid;
 					if(doc)
 					{URL=doc.data().photoURL;
-					email=doc.data().email;}
+					email=doc.data().email;
+					uid= doc.data().uid;}
 					else{
 						URL=user.photoURL;
 						email=user.email;
+						uid=user.uid;
 					}
 					if(user.displayName)
-						this.props.dispatch(login(user.displayName, URL, email));
+						this.props.dispatch(login(user.displayName, URL, email, uid));
 					else
-						this.props.dispatch(login(user.email.split("@")[0], URL, email));
+						this.props.dispatch(login(user.email.split("@")[0], URL, email, uid));
 				})
 				
 			}

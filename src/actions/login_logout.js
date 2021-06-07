@@ -1,6 +1,6 @@
-const loginUser=(userName, photoURL, email)=>({
+const loginUser=(userName, photoURL, email, uid)=>({
     type: 'LOGIN',
-    payload: {userName: userName,photoURL:photoURL, email: email}
+    payload: {userName: userName,photoURL:photoURL, email: email,uid: uid}
 })
 
 export const logout=()=>({
@@ -11,6 +11,6 @@ export const changeLoading=()=>({
     type: 'CHANGE'
 })
 
-export const login=(userName, photoURL, email)=>(dispatch)=>{
-    dispatch(loginUser(userName, photoURL, email));
+export const login=(userName, photoURL, email,uid)=>(dispatch)=>{
+    dispatch(loginUser(userName, photoURL, email, uid));
 }

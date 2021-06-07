@@ -13,6 +13,7 @@ import {changeProfile} from '../../actions/changeProfile';
 class Homepage extends React.Component {
 
 	handleChange=(ev)=>{
+		
 		const image=ev.target.files[0];
 	
 		if(image===''||image===undefined){

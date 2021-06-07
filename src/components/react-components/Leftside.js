@@ -3,12 +3,7 @@ import style from './LeftsideStyle.js';
 
 
 class Leftside extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={
-      image: ''
-    }
-  }
+  
     render(){
   return (
     <div className="col-md-3 hidden">
@@ -26,21 +21,8 @@ class Leftside extends React.Component{
           onChange={(ev)=>{this.props.handleChange(ev)}} />
             <style.AddPhotoText htmlFor="file">Add a photo</style.AddPhotoText>
         </style.UserInfo>
-        <style.Widget>
-          <a href="#">
-            <div>
-              <span>Connections</span>
-              <span>Grow your network</span>
-            </div>
-            <img src="/images/widget-icon.svg" alt="" />
-          </a>
-        </style.Widget>
-        <style.Item>
-          <span>
-            <img src="/images/item-icon.svg" alt="" />
-            My Items
-          </span>
-        </style.Item>
+        
+        
       </style.ArtCard>
     <style.CommunityCard>
       <div className="testimonial-group">

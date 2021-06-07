@@ -30,6 +30,7 @@ class Register extends React.Component {
 		db.collection("users").doc().set({
 			displayName: props.displayName,
 			photoURL: props.photoURL,
+            uid: props.uid,
 			likes: [],
 			dislikes: [],
 			email: props.email
@@ -48,7 +49,8 @@ class Register extends React.Component {
             .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
                 auth.createUserWithEmailAndPassword(this.state.uEmail, this.state.uPassword).then((user) => {
-                    this.registerUser({displayName: user.user.email.split("@")[0],photoURL: "",email: user.user.email})
+                    this.registerUser({displayName: user.user.email.split("@")[0],photoURL: "",
+                    email: user.user.email, uid: user.user.uid})
                 }, function (error) {
                     swal("",error.message,"error");
                 });

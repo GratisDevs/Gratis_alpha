@@ -30,21 +30,6 @@ class TopMobile extends React.Component{
             <style.AddPhotoText htmlFor="file">Add a photo</style.AddPhotoText>
           
         </style.UserInfo>
-        <style.Widget>
-          <a href="#">
-            <div>
-              <span>Connections</span>
-              <span>Grow your network</span>
-            </div>
-            <img src="/images/widget-icon.svg" alt="" />
-          </a>
-        </style.Widget>
-        <style.Item>
-          <span>
-            <img src="/images/item-icon.svg" alt="" />
-            My Items
-          </span>
-        </style.Item>
       </style.ArtCard>
     </div>
   );}

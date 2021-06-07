@@ -24,6 +24,7 @@ class PostModal extends React.Component{
     }
 
     handleImageChange=(e)=>{
+        console.log("this also runs");
         const image=e.target.files[0];
 
         if(image===''||image===undefined){
@@ -50,7 +51,9 @@ class PostModal extends React.Component{
     }
 
     changeLoading=()=>{
-        this.setState({isLoading: false})
+        this.setState({isLoading: false},()=>{
+            this.props.toggleModal();
+        })
     }
 
     submitpost=(e)=>{
@@ -60,7 +63,7 @@ class PostModal extends React.Component{
         }
 
         this.setState({isLoading: true},()=>{
-            this.props.dispatch(submitPost(this.props.userName,this.props.email,this.state.title,
+            this.props.dispatch(submitPost(this.props.userName,this.props.uid, this.props.email,this.state.title,
                 this.state.post,this.state.subGratis,this.state.shareImage,this.state.shareVideo,this.changeLoading))
         })
 
@@ -94,8 +97,9 @@ class PostModal extends React.Component{
             aria-labelledby="contained-modal-title-vcenter"
             centered
             scrollable={true}
-            style={{animation: 'fadeIn 1s fadeOut 1s'}}>
-                <Modal.Header closeButton={true} onHide={this.props.toggleModal}>
+            style={{animation: 'fadeIn 1s fadeOut 1s'}}
+            onHide={this.props.toggleModal}>
+                <Modal.Header closeButton={true}>
                     <h5 style={{width: '100%',color: 'rgba(0,0,0,0.5)'}}>Write Something...</h5>
                 </Modal.Header>
                 <Modal.Body>
@@ -151,11 +155,11 @@ class PostModal extends React.Component{
                                 <input type="file" 
                                 accept="image/*" 
                                 name="myfile"
-                                id="file"
+                                id="fileImg"
                                 style={{display: 'none'}}
                                 onChange={(event)=>{this.handleImageChange(event)}} 
                                 />
-                                <p><label htmlFor="file">
+                                <p><label htmlFor="fileImg">
                                     Select an image to share</label></p>
                                 {this.state.shareImage&&<img src={URL.createObjectURL(this.state.shareImage)} alt="" />} 
                                 </style.UploadImage>)
