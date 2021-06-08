@@ -12,8 +12,6 @@ class SocialCount extends React.Component{
             user: props.user,
             likes: props.likes,
             likeUpdated: false,
-            dislikes: props.dislikes,
-            dislikesUpdated: false,
             postId: props.postId,
             baseUrl: 'http://snaptok.herokuapp.com/',
             db: firebase.firestore()
@@ -21,26 +19,15 @@ class SocialCount extends React.Component{
     }
 
     componentDidMount(){
-        console.log("mounted");
         this.state.db.collection("users").where("displayName","==",this.state.user).get().then(query=>{
             const doc=query.docs[0];
             this.setState({
                 likeUpdated: doc.data().likes.includes(this.state.postId),
-                dislikesUpdated: doc.data().dislikes.includes(this.state.postId)
             })
         })
     }
 
 
-    sendDislikeRequests=(props)=>{
-        fetch(this.state.baseUrl+'dislike',{
-            method: 'POST',
-            headers:{
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({"id":this.state.postId,"action": props})
-        }).then(res=>res.json()).catch(err=>err);
-    }
 
     sendLikeRequests=(props)=>{
         fetch(this.state.baseUrl+'like',{
@@ -66,128 +53,34 @@ class SocialCount extends React.Component{
 		});
     }
 
-    handleFirestoreDislike=(props)=>{
-        this.state.db.collection("users").where("displayName","==",this.state.user).get().then(query=>{
-			const document=query.docs[0];
-            if(props=="add")
-                document.ref.update({
-                    dislikes: firebase.firestore.FieldValue.arrayUnion(this.state.postId)
-                });
-            else
-                document.ref.update({
-                    dislikes: firebase.firestore.FieldValue.arrayRemove(this.state.postId)
-                }); 
-		});
-    }
-
     handleLike=()=>{
-        if(!this.state.likeUpdated){
-            if(this.state.dislikesUpdated){
-                this.setState((prevState,props)=>{
-                    return{
-                        dislikes: prevState.dislikes-1,
-                        dislikesUpdated: false
-                    }
-                })
-                this.sendDislikeRequests("decrease");
-                this.handleFirestoreDislike("remove")
-            }
-            else{
-            this.setState((prevState,props)=>{
-                return{
-                    likes: prevState.likes+1,
-                    likeUpdated: true
-                }
-            })
-            this.sendLikeRequests("increase");
-            this.handleFirestoreLike("add")
-        }
+        if(this.state.likeUpdated){
+            this.setState((prevState,props)=>({
+                likeUpdated: false,
+                likes: prevState.likes-1
+            }))
+            this.sendLikeRequests("decrease");
+            this.handleFirestoreLike("remove");
         }
         else{
-            if(this.state.dislikesUpdated){
-                this.setState((prevState,props)=>{
-                    return{
-                        dislikes: prevState.dislikes-1,
-                        dislikesUpdated: false
-                    }
-                })
-                this.sendDislikeRequests("decrease");
-                this.handleFirestoreDislike("remove")
-            }
-            else{this.setState((prevState,props)=>{
-                return{
-                    likes: prevState.likes-1,
-                    likeUpdated: false
-                }
-            })
-            this.sendLikeRequests("decrease");
-            this.handleFirestoreLike("remove")
-        }
+            this.setState((prevState,props)=>({
+                likeUpdated: true,
+                likes: prevState.likes+1
+            }))
+            this.sendLikeRequests("increase");
+            this.handleFirestoreLike("add");
         }
     }
 
-    handledislikes=()=>{
-        if(!this.state.dislikesUpdated){
-            if(this.state.likeUpdated){
-                this.setState((prevState,props)=>{
-                    return{
-                        likes: prevState.likes-1,
-                        likeUpdated: false
-                    }
-                })
-                this.sendLikeRequests("decrease");
-                this.handleFirestoreLike("remove")
-            }
-            else{
-            this.setState((prevState,props)=>{
-                return{
-                    dislikes: prevState.dislikes+1,
-                    dislikesUpdated: true
-                }
-            })
-            this.sendDislikeRequests("increase");
-            this.handleFirestoreDislike("add")
-        }
-        }
-        else{
-            if(this.state.likeUpdated){
-                this.setState((prevState,props)=>{
-                    return{
-                        likes: prevState.likes-1,
-                        likeUpdated: false
-                    }
-                })
-                this.sendLikeRequests("decrease");
-                this.handleFirestoreLike("remove")
-            }
-            else{
-            this.setState((prevState,props)=>{
-                return{
-                    dislikes: prevState.dislikes-1,
-                    dislikesUpdated: false
-                }
-            })
-            this.sendDislikeRequests("decrease");
-            this.handleFirestoreDislike("remove")
-        }
-        }
-    }
 
     render(){
         //console.log(this.props)
         return(<>
         <li>
             <button>
-            {this.state.likeUpdated?<i class="fa fa-thumbs-up" aria-hidden="true" style={{fontSize: 'large'}} onClick={this.handleLike}></i>:<i class="fa fa-thumbs-o-up" aria-hidden="true" style={{fontSize: 'large'}} onClick={this.handleLike}></i>}
-              <span>{this.state.likes}</span>
+            {this.state.likeUpdated?<i class="fa fa-thumbs-up" aria-hidden="true" style={{fontSize: 'x-large'}} onClick={this.handleLike}></i>:<i class="fa fa-thumbs-o-up" aria-hidden="true" style={{fontSize: 'x-large'}} onClick={this.handleLike}></i>}
+              <span style={{marginLeft: '4px', color: 'rgba(0,0,0,0.8)', fontSize: 'larger'}}>{this.state.likes}</span>
             </button>
-            <button style={{marginLeft: '7px'}}>
-            {this.state.dislikesUpdated?<i class="fa fa-thumbs-down" aria-hidden="true" style={{fontSize: 'large'}} onClick={this.handledislikes}></i>:<i class="fa fa-thumbs-o-down" aria-hidden="true" style={{fontSize: 'large'}} onClick={this.handledislikes}></i>}
-              <span>{this.state.dislikes}</span>
-            </button>
-          </li>
-          <li>
-            <a>{this.props.length} Comments</a>
           </li>
           </>)
     }

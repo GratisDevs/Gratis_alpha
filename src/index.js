@@ -12,7 +12,6 @@ import { Provider } from 'react-redux';
 import { combineReducers, applyMiddleware } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
-import logger from 'redux-logger';
 
 
 const composeEnhancers =
@@ -24,7 +23,7 @@ const composeEnhancers =
       })
     : compose;
 
-const enhancer = composeEnhancers(applyMiddleware(reduxThunk,logger));
+const enhancer = composeEnhancers(applyMiddleware(reduxThunk));
 
 const store = createStore(
 	combineReducers({ userState: userState, postState: postState }),

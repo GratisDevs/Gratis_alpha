@@ -8,7 +8,7 @@ export const submitPost=(postAuthor,uid, postAuthorEmail,postTitle,postDescripti
     data.append('email',postAuthorEmail);
     data.append('uid',uid);
     data.append('title',postTitle);
-    data.append('description',postDescription);
+    data.append('description',postDescription.replace(/\"/g,"\'"));
     data.append('file',postImage?postImage:postVideo);
     data.append('fileType',postImage!==''||postVideo!==''?(postImage?'image':'video'):'')
     data.append('subGratis',postSubGratis);
@@ -69,4 +69,13 @@ const errPost=(message)=>({
 
 const changePostsLoading=()=>({
   type: 'CHANGE_POST_LOADING'
+})
+
+export const deletePostFromStore=(id)=>(dispatch)=>{
+  dispatch(deletePost(id));
+}
+
+const deletePost=(id)=>({
+  type: 'DELETE_POST',
+  payload: id
 })

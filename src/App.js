@@ -14,6 +14,7 @@ import LoginNavbarComponent from './components/navbar_components/loginnavbarcomp
 
 
 import { fetchPosts } from './actions/PostHandle.js';
+import PostPage from './components/react-components/PostPage.js';
 
 class App extends React.Component {
 
@@ -28,7 +29,6 @@ class App extends React.Component {
 	componentDidMount() {
 		auth.onAuthStateChanged((user) => {
 			if (user) {
-				console.log(user);
 				db.collection("users").where("email","==",user.email).get().then(query=>{
 					const doc=query.docs[0];
 					var URL,email,uid;
@@ -55,9 +55,7 @@ class App extends React.Component {
 		});
 	}
 
-	componentWillUnmount(){
-		console.log("App.js unmounted");
-	}
+	
 	fetchPosts=()=>{
 		this.props.dispatch(fetchPosts());
 	}
@@ -72,6 +70,12 @@ class App extends React.Component {
 			});
 	};
 	render() {
+
+		const PostwithId=({match})=>{
+			return(
+				<PostPage postId={match.params.id} />
+			);
+		}
 		
 		return (
 			<>
@@ -84,8 +88,10 @@ class App extends React.Component {
 					userName={this.props.userName} 
 					fetchPosts={this.fetchPosts}
 					photoURL={this.props.photoURL} 
-					logout={this.logout} />} />
+					logout={this.logout} />} 
+					 />
 					<Route exact path="/login" component={Login} />
+					<Route exact path="/post/:id" component={PostwithId} />
 					<Route exact path="/profile" component={Profile} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
@@ -103,6 +109,7 @@ const mapStateToProps = (state) => {
 		userName: state.userState.userName,
 		email: state.userState.email,
 		photoURL: state.userState.photoURL
+		
 	};
 };
 

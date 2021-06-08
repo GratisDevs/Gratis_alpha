@@ -26,7 +26,6 @@ class Login extends React.Component {
 	}
 
 	registerUser=(props)=>{
-		console.log(props);
 		
 		db.collection("users").where("displayName","==",props.displayName).get().
 		then(querySnapshot=>{
@@ -67,7 +66,7 @@ class Login extends React.Component {
 			auth
 				.signInWithPopup(new firebase.auth.GoogleAuthProvider())
 				.then((result) => {
-					console.log(result);
+				
 					this.registerUser({displayName: result.user.displayName,
 						photoURL: result.user.photoURL,email: result.user.email,uid: result.user.uid})
 					//this.props.dispatch(login(result.user.displayName,result.user.photoURL,result.user.email));

@@ -44,7 +44,6 @@ class Register extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
     };
     handleAuthentication = () => {
-        console.log(this.state.uEmail);
         auth
             .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
