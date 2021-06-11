@@ -5,6 +5,7 @@ import style from './MainStyle';
 import DeleteModal from './DeleteModal';
 import { connect } from 'react-redux';
 import {deletePostFromStore} from '../../actions/PostHandle';
+import {db} from '../data_components/firebase';
 
 class PostPage extends React.Component{
 
@@ -12,6 +13,7 @@ class PostPage extends React.Component{
         super(props);
         this.state={
             post: {},
+            UserProfileImage: '/images/user.svg',
             deleteModal: false
         }
     }
@@ -19,9 +21,17 @@ class PostPage extends React.Component{
     componentDidMount(){
         fetch('https://snaptok.herokuapp.com/fetchPost/'+this.props.match.params.id,{
             method: 'GET'
-        }).then(res=>res.json()).then(res=>this.setState({
-            post: res
-        })).catch(err=>console.log(err));
+        }).then(res=>res.json()).then(res=>{
+            db.collection("users").where("uid","==",res.uid).get().then(query=>{
+                const user=query.docs[0];
+                const URL=user.data().photoURL;
+                if(URL!=="")
+                    this.setState({
+                        post: res,
+                        UserProfileImage: URL
+                    });
+            })
+        }).catch(err=>console.log(err));
     }
     deletePost=()=>{
     
@@ -60,7 +70,7 @@ class PostPage extends React.Component{
                            <div className="col-md-8 col-12">
                            <style.SharedActor>
                                <a>
-                                   <UserProfile uid={this.state.post.uid} />
+                                   <img src={this.state.UserProfileImage} style={{marginTop: '8px'}} />
                                    <div style={{display: 'flex',flexDirection: 'column'}}>
                                    <div><h6 style={{marginTop: '14px', textAlign: 'left'}}className="title-style">{this.state.post.author}</h6>
                                    {this.state.post.uid===this.props.uid?<i style={{position: 'absolute',right: '20px', top: '27px',color: 'rgba(0,0,0,0.7)'}} 

@@ -14,8 +14,6 @@ import DeleteModal from './DeleteModal';
 import {deletePostFromStore} from '../../actions/PostHandle';
 import './Main.css';
 
-
-
 class Main extends React.Component {
 	constructor(props) {
 		super(props);
