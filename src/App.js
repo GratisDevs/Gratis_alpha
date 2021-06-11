@@ -8,7 +8,7 @@ import { logout, login, changeLoading } from './actions/login_logout.js';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
 import Home from './components/react-components/Home.js';
-import Profile from './components/react-components/Profile.js';
+//import Profile from './components/react-components/Profile.js';
 import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
 import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
 import { useLocation } from 'react-router-dom'
@@ -88,7 +88,6 @@ class App extends React.Component {
 					 />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} />} />
-					<Route exact path="/profile" component={Profile} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
 					
