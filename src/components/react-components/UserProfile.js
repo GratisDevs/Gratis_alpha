@@ -8,7 +8,7 @@ class UserProfile extends React.Component{
             src: '/images/user.svg'
         }
     }
-    render(){
+    componentDidMount(){
         if(this.props.uid){
             db.collection("users").where("uid","==",this.props.uid).get().then(query=>{
                 const user=query.docs[0];
@@ -19,6 +19,8 @@ class UserProfile extends React.Component{
                     });
             })
         }
+    }
+    render(){
         return(
             <img src={this.state.src} style={{marginTop: '8px'}} />
         );
