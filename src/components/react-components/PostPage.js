@@ -48,7 +48,7 @@ class PostPage extends React.Component{
     
       toggleDeleteModal=()=>{
         this.setState({
-                deleteModal: !this.state.deleteModal,
+                deleteModal: !this.state.deleteModal
             });
       }
 
