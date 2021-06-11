@@ -8,17 +8,17 @@ class UserProfile extends React.Component{
             src: '/images/user.svg'
         }
     }
-    componentDidMount(){
-        db.collection("users").where("uid","==",this.props.uid).get().then(query=>{
-            const user=query.docs[0];
-            const URL=user.data().photoURL;
-            if(URL!=="")
-                this.setState({
-                    src: URL
-                });
-        })
-    }
     render(){
+        if(this.props.uid){
+            db.collection("users").where("uid","==",this.props.uid).get().then(query=>{
+                const user=query.docs[0];
+                const URL=user.data().photoURL;
+                if(URL!=="")
+                    this.setState({
+                        src: URL
+                    });
+            })
+        }
         return(
             <img src={this.state.src} style={{marginTop: '8px'}} />
         );

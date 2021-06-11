@@ -11,6 +11,7 @@ import Home from './components/react-components/Home.js';
 import Profile from './components/react-components/Profile.js';
 import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
 import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
+import { useLocation } from 'react-router-dom'
 
 
 import { fetchPosts } from './actions/PostHandle.js';
@@ -70,12 +71,7 @@ class App extends React.Component {
 			});
 	};
 	render() {
-
-		const PostwithId=({match})=>{
-			return(
-				<PostPage postId={match.params.id} />
-			);
-		}
+		console.log(this.props.location.pathname)
 		
 		return (
 			<>
@@ -91,7 +87,7 @@ class App extends React.Component {
 					logout={this.logout} />} 
 					 />
 					<Route exact path="/login" component={Login} />
-					<Route exact path="/post/:id" component={PostwithId} />
+					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} />} />
 					<Route exact path="/profile" component={Profile} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
@@ -108,18 +104,9 @@ const mapStateToProps = (state) => {
 		isLoggedIn: state.userState.isLoggedIn,
 		userName: state.userState.userName,
 		email: state.userState.email,
-		photoURL: state.userState.photoURL
-		
+		photoURL: state.userState.photoURL,
+		uid: state.userState.uid
 	};
 };
 
 export default withRouter(connect(mapStateToProps)(App));
-
-
-// line 54
-
-// {
-// 	this.props.isLoggedIn ? (
-// 		<NavbarHomeComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
-// 	) : <LoginNavbarComponent></LoginNavbarComponent>
-// }

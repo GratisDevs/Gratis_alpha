@@ -78,7 +78,7 @@ class Login extends React.Component {
 	};
 
 	render() {
-		if (this.props.userName !== '') return <Redirect to="/" />;
+		if (this.props.userName !== '') return <Redirect to={this.props.location.state.pathname} />;
 		return (
 			<div>
 				<Container fluid className="login_bg">
