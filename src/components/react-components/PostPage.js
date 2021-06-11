@@ -34,14 +34,13 @@ class PostPage extends React.Component{
         }).catch(err=>console.log(err));
     }
     deletePost=()=>{
-    
         fetch('https://snaptok.herokuapp.com/deletePost',{
             method: 'POST',
             headers:{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({id: this.props.match.params.id}),
-        }).then(res=>{alert("Post deleted successfully!");this.props.dispatch(deletePostFromStore(this.props.match.params.id));
+        }).then(res=>{alert("Post deleted successfully!!");this.props.dispatch(deletePostFromStore(this.props.match.params.id));
         this.toggleDeleteModal();
         }).
         catch(err=>{console.log(err);})
