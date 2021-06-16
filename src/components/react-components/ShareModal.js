@@ -27,19 +27,19 @@ class ShareModal extends React.Component{
                     <div className="row">
                         <div className="col-md-12" style={{display: 'flex',justifyContent: 'center'}}>
                             <FacebookShareButton
-                            url={'https://google.com/'}
+                            url={'gratis-3ce5a.web.app/post/'+this.props.postId}
                             quote={'See this post...'}
                             hashtag={'#Gratis'}
                             >
                                 <FacebookIcon size={'2.5rem'} />
                             </FacebookShareButton>
                             <TwitterShareButton
-                            url={'https://google.com/'}
+                            url={'gratis-3ce5a.web.app/post/'+this.props.postId}
                             title={'See this post ...'}>
                                 <TwitterIcon size={'2.5rem'}/>
                             </TwitterShareButton>
                             <WhatsappShareButton
-                            url={'https://google.com'}
+                            url={'gratis-3ce5a.web.app/post/'+this.props.postId}
                             title={'See this Post'}>
                                 <WhatsappIcon size={'2.5rem'} />
                             </WhatsappShareButton>

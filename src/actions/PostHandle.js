@@ -1,6 +1,6 @@
-const baseURL='http://snaptok.herokuapp.com/'
+const baseURL='https://snaptok.herokuapp.com/'
 
-export const submitPost=(postAuthor,uid, postAuthorEmail,postTitle,postDescription,postSubGratis,postImage,postVideo,changeLoading)=>(dispatch)=>{
+export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,postDescription,postSubGratis,postImage,postVideo,changeLoading)=>(dispatch)=>{
 
     var data=new FormData();
     var today=new Date();
@@ -8,6 +8,7 @@ export const submitPost=(postAuthor,uid, postAuthorEmail,postTitle,postDescripti
     data.append('email',postAuthorEmail);
     data.append('uid',uid);
     data.append('title',postTitle);
+    data.append('userProfile',userProfile);
     data.append('description',postDescription.replace(/\"/g,"\'"));
     data.append('file',postImage?postImage:postVideo);
     data.append('fileType',postImage!==''||postVideo!==''?(postImage?'image':'video'):'')

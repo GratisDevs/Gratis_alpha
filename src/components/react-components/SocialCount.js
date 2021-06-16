@@ -1,6 +1,7 @@
 import { post } from 'jquery';
 import React from 'react';
 import { connect } from 'react-redux';
+import {db} from '../data_components/firebase.js';
 import firebase from '../data_components/firebase.js';
 
 
@@ -9,20 +10,17 @@ class SocialCount extends React.Component{
         super(props);
         //console.log(props);
         this.state={
-            user: props.user,
             likes: props.likes,
             likeUpdated: false,
-            postId: props.postId,
-            baseUrl: 'http://snaptok.herokuapp.com/',
-            db: firebase.firestore()
+            baseUrl: 'https://snaptok.herokuapp.com/'
         }
     }
 
     componentDidMount(){
-        this.state.db.collection("users").where("displayName","==",this.state.user).get().then(query=>{
+        db.collection("users").where("uid","==",this.props.uid).get().then(query=>{
             const doc=query.docs[0];
             this.setState({
-                likeUpdated: doc.data().likes.includes(this.state.postId),
+                likeUpdated: doc.data().likes.includes(this.props.postId),
             })
         })
     }
@@ -35,20 +33,20 @@ class SocialCount extends React.Component{
             headers:{
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({"id":this.state.postId,"action": props})
+            body: JSON.stringify({"id":this.props.postId,"action": props})
         }).then(res=>res.json()).catch(err=>err);
     }
 
     handleFirestoreLike=(props)=>{
-        this.state.db.collection("users").where("displayName","==",this.state.user).get().then(query=>{
+        db.collection("users").where("uid","==",this.props.uid).get().then(query=>{
 			const document=query.docs[0];
             if(props=="add")
                 document.ref.update({
-                    likes: firebase.firestore.FieldValue.arrayUnion(this.state.postId)
+                    likes: firebase.firestore.FieldValue.arrayUnion(this.props.postId)
                 });
             else
                 document.ref.update({
-                    likes: firebase.firestore.FieldValue.arrayRemove(this.state.postId)
+                    likes: firebase.firestore.FieldValue.arrayRemove(this.props.postId)
                 }); 
 		});
     }
@@ -78,7 +76,8 @@ class SocialCount extends React.Component{
         return(<>
         <li>
             <button>
-            {this.state.likeUpdated?<i class="fa fa-thumbs-up" aria-hidden="true" style={{fontSize: 'x-large'}} onClick={this.handleLike}></i>:<i class="fa fa-thumbs-o-up" aria-hidden="true" style={{fontSize: 'x-large'}} onClick={this.handleLike}></i>}
+            {this.state.likeUpdated?<i class="fa fa-thumbs-up icon-thumbs-up" aria-hidden="true" style={{fontSize: 'x-large', color: '#007acc'}} onClick={this.handleLike}></i>
+            :<i class="fa fa-thumbs-o-up" aria-hidden="true" style={{fontSize: 'x-large'}} onClick={this.handleLike}></i>}
               <span style={{marginLeft: '4px', color: 'rgba(0,0,0,0.8)', fontSize: 'larger'}}>{this.state.likes}</span>
             </button>
           </li>

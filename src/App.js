@@ -8,24 +8,27 @@ import { logout, login, changeLoading } from './actions/login_logout.js';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Homepage from './components/react-components/Homepage.js';
 import Home from './components/react-components/Home.js';
+//import firebase from './components/data_components/firebase';
 //import Profile from './components/react-components/Profile.js';
 import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
 import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
+import firebase from '../src/components/data_components/firebase';
 
 
 import { fetchPosts } from './actions/PostHandle.js';
 import PostPage from './components/react-components/PostPage.js';
+//import { Messaging } from './Messaging';
+//import { requestFirebaseNotificationPermission } from './firebaseInit';
 
 class App extends React.Component {
 
-	changeUser=()=>{
-		db.collection("users").where("displayName","==","None").get().then(query=>{
-			const doc=query.docs[0];
-			console.log(doc.data());
-			doc.ref.update({photoURL: "vipul"})
-		}).catch(err=>{console.log(err)})
+	changeUser=async()=>{
+		const token=await firebase.messaging().getToken();
+		console.log(token);
 	}
+
+	
 
 	componentDidMount() {
 		auth.onAuthStateChanged((user) => {
@@ -53,7 +56,7 @@ class App extends React.Component {
 				this.props.dispatch(changeLoading());
 			}
 			this.changeUser()
-		});
+		});	
 	}
 
 	
@@ -75,9 +78,6 @@ class App extends React.Component {
 		
 		return (
 			<>
-				{ this.props.isLoggedIn ? (
-					<NavbarMainComponent isLoggedIn={this.props.isLoggedIn} logout={this.logout} />
-				) : <LoginNavbarComponent></LoginNavbarComponent>}
 				
 				<Switch>
 					<Route exact path="/" render={(props)=><Home {...props} isLoggedIn={this.props.isLoggedIn} 
@@ -87,7 +87,7 @@ class App extends React.Component {
 					logout={this.logout} />} 
 					 />
 					<Route exact path="/login" component={Login} />
-					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} />} />
+					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} logout={this.logout} />} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
 					

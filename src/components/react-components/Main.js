@@ -12,7 +12,9 @@ import UserProfile from './UserProfile';
 import { Link } from 'react-router-dom';
 import DeleteModal from './DeleteModal';
 import {deletePostFromStore} from '../../actions/PostHandle';
+import HeartIcon from './HeartIcon';
 import './Main.css';
+import './img.css';
 
 class Main extends React.Component {
 	constructor(props) {
@@ -85,13 +87,13 @@ class Main extends React.Component {
     }).map((post)=>{
       return(
         <>
-        <ShareModal shareModal={this.state.shareModal} toggleShareModal={this.toggleShareModal} />
+        <ShareModal shareModal={this.state.shareModal} toggleShareModal={this.toggleShareModal} postId={post._id} />
         <DeleteModal toggleDeleteModal={this.toggleDeleteModal} 
         deleteModal={this.state.deleteModal} deletePost={this.deletePost} />
         <style.Article>
         <style.SharedActor>
           <a>
-            <UserProfile uid={post.uid} />
+            <UserProfile userProfile={post.userProfile} />
             <div style={{display: 'flex',flexDirection: 'column'}}>
             <div><h6 style={{marginTop: '14px', textAlign: 'left'}}className="title-style">{post.author}</h6>
             {post.uid===this.props.uid?<i style={{position: 'absolute',right: '10px', top: '27px',color: 'rgba(0,0,0,0.7)'}} 
@@ -114,21 +116,12 @@ class Main extends React.Component {
           </div>
         )):<b></b>}</Link>
         <style.SocialCount>
-          <SocialCount postId={post._id} likes={post.likes} dislikes={post.dislikes} user={this.props.userName} />
+          <SocialCount postId={post._id} likes={post.likes} uid={this.props.uid} />
         </style.SocialCount>
         <style.SocialActions>
-        <button>
-          <img src="/images/like.svg" alt="" />
-          <span style={{marginLeft: '4px', fontSize: 'medium', color: 'rgba(0,0,0,0.8)'}}className="title-style">Like</span>
-        </button>
-        <button>
-          <img src="/images/comment.svg" alt="" />
-          <span style={{marginLeft: '4px', fontSize: 'medium', color: 'rgba(0,0,0,0.8)'}}className="title-style">Comments</span>
-        </button>
-        <button onClick={()=>this.setState({shareModal: true})}>
-          <img src="/images/send.svg" alt="" />
-          <span style={{marginLeft: '4px', fontSize: 'medium', color: 'rgba(0,0,0,0.8)'}}className="title-style">Send</span>
-        </button>
+        <HeartIcon postId={post._id} uid={this.props.uid} />
+        <Link to={`/post/${post._id}`} style={{textDecoration: 'none', color: 'black'}}><i class="fa fa-comments-o" aria-hidden="true" style={{fontSize: 'larger'}}></i></Link>
+        <i class="fa fa-paper-plane-o" aria-hidden="true" style={{fontSize: 'larger'}} onClick={this.toggleShareModal}></i>
         </style.SocialActions>
       </style.Article>
       </>
@@ -163,13 +156,13 @@ class Main extends React.Component {
     </style.ShareBox>
     <div className="row">
       <div className="col-md-12">
-        <h4 className="title-style">Filter By ...</h4>
+        <i class="fa fa-filter" aria-hidden="true" style={{fontSize: 'xx-large'}}></i>
         <Category handleChange={this.handleChange} selected={this.state}/>
       </div>
     </div>
     
     {this.props.isLoading?<div style={{display: 'flex',justifyContent: 'center',alignItems: 'center'}}>
-      <span className="fa fa-spinner fa-pulse fa-3x fa-fw text-primary"></span>
+    <img class="loader" src="/images/DP.jpg" style={{height: '60px', width: '60px', borderRadius: '50%'}} />
     </div>:feed}
     
   </div>);}

@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+@media(min-width: 700px){
+    .title-big-screen{
+        display: block;
+    }
+    .title-small-screen{
+        display: none;
+    }
+}
+@media(max-width: 699px){
+    .title-big-screen{
+        display: none;
+    }
+    .title-div{
+        width: 75%;
+    }
+    .title-small-screen{
+        display: block;
+    }
+}
+
+p{
+    text-align: left;
+    font-size: 18px;
+    width: -webkit-fill-available;
+    line-height: 1.5;
+    margin: 2px 20px;
+    font-style: 'Source Sans Pro, sans-serif';
+}
+
+pre{
+    background-color: rgba(187, 187, 187, 0.829);
+    text-align: left;
+    margin: 2px 20px;
+    padding: 10px;
+}
