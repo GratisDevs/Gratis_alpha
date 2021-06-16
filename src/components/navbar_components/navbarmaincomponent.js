@@ -13,7 +13,7 @@ function NavbarMainComponent({isLoggedIn,logout}) {
   <Navbar.Brand href="#home" style={{}}>
 				<Link
 					to="/home"
-					style={{ textDecoration: 'none', color: 'black' }}
+					style={{ textDecoration: 'none', color: '#f5f7f9', fontSize: 'larger', fontWeight: '600' }}
 					className="logo-name font-weight-bold "
 				>
 					GratiS'{' '}
@@ -22,9 +22,13 @@ function NavbarMainComponent({isLoggedIn,logout}) {
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="/">Home</Nav.Link>
-      <Nav.Link href="profile">Your Profile</Nav.Link>
-      <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+      <Link to="/" 
+      style={{ textDecoration: 'none', color: '#f5f7f9', fontSize: 'larger', fontWeight: '600' }}
+        >Home</Link>     
+      <Link to="/profile" 
+      style={{ textDecoration: 'none', color: '#f5f7f9', fontSize: 'larger', fontWeight: '600' }}
+        >Profile</Link>
+      <NavDropdown title="Dropdown" id="basic-nav-dropdown" style={{color: '#f5f7f9', fontSize: 'larger', fontWeight: '600'}}>
         <NavDropdown.Item onClick={()=>{console.log("action clicked")}}>Action</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>

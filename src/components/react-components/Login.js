@@ -36,7 +36,7 @@ class Login extends React.Component {
 					photoURL: props.photoURL,
 					uid: props.uid,
 					likes: [],
-					dislikes: [],
+					heart: [],
 					email: props.email
 				}).
 				catch(err=>{console.log(err)});
@@ -80,6 +80,8 @@ class Login extends React.Component {
 	render() {
 		if (this.props.userName !== '') return <Redirect to={this.props.location.state.pathname} />;
 		return (
+			<>
+			<LoginNavbarComponent />
 			<div>
 				<Container fluid className="login_bg">
 					<Row className="justify-content-center">
@@ -192,6 +194,7 @@ class Login extends React.Component {
 					</Row>
 				</Container>
 			</div>
+			</>
 		);
 	}
 }

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import TopMobile from './TopMobile';
 import { connect } from 'react-redux';
 import {changeProfile} from '../../actions/changeProfile';
+import NavbarMainComponent from '../navbar_components/navbarmaincomponent';
 // import Recommendation from './recommendation.js';
 // import { fetchPosts } from '../../actions/PostHandle.js';
 // import { connect } from 'react-redux';
@@ -27,6 +28,8 @@ class Homepage extends React.Component {
 
 	render() {
 		return (
+			<>
+			<NavbarMainComponent isLoggedIn={true} logout={this.props.logout} />
 			<div>
 				
 				<div
@@ -43,6 +46,7 @@ class Homepage extends React.Component {
 					</div>
 				</div>
 			</div>
+			</>
 		);
 	}
 }

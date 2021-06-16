@@ -32,7 +32,7 @@ class Register extends React.Component {
 			photoURL: props.photoURL,
             uid: props.uid,
 			likes: [],
-			dislikes: [],
+            heart: [],
 			email: props.email
 		}).then(()=>{
 			//this.props.dispatch(login(props.displayName,props.photoURL,props.email));

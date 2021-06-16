@@ -63,7 +63,7 @@ class PostModal extends React.Component{
         }
 
         this.setState({isLoading: true},()=>{
-            this.props.dispatch(submitPost(this.props.userName,this.props.uid, this.props.email,this.state.title,
+            this.props.dispatch(submitPost(this.props.userName,this.props.photoURL,this.props.uid, this.props.email,this.state.title,
                 this.state.post,this.state.subGratis,this.state.shareImage,this.state.shareVideo,this.changeLoading))
         })
 
@@ -120,7 +120,7 @@ class PostModal extends React.Component{
                         value={this.state.title}
                         placeholder={'Write an appropriate title'}
                         onChange={(e)=>{this.setState({title: e.target.value});if(this.state.title!=='') this.setState({errorTitle: ''})}}
-                        style={{width: '100%', padding: '12px 12px'}} />
+                        style={{width: '100%', padding: '12px 12px',fontFamily: 'Source Sans Pro, sans-serif'}} />
                         </div>
                     </div>
                     <div class="row" style={{marginTop: '5px'}}>
@@ -133,7 +133,7 @@ class PostModal extends React.Component{
                             <textarea
                             value={this.state.post}
                             onChange={(event)=>{this.setState({post: event.target.value})}}
-                            style={{width: '100%', padding: '12px 12px', minHeight:'160px', resize: 'none'}}
+                            style={{width: '100%', padding: '12px 12px', minHeight:'160px', resize: 'none',fontFamily: 'Source Sans Pro, sans-serif'}}
                             placeholder="What do you want to talk about?" />
                         </div>
                     </div>
