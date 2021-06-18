@@ -14,6 +14,7 @@ import NavbarMainComponent from './components/navbar_components/navbarmaincompon
 import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
 import { useLocation } from 'react-router-dom';
 import firebase from '../src/components/data_components/firebase';
+import {Messaging} from './Messaging';
 
 
 import { fetchPosts } from './actions/PostHandle.js';
@@ -22,13 +23,6 @@ import PostPage from './components/react-components/PostPage.js';
 //import { requestFirebaseNotificationPermission } from './firebaseInit';
 
 class App extends React.Component {
-
-	changeUser=async()=>{
-		const token=await firebase.messaging().getToken();
-		console.log(token);
-	}
-
-	
 
 	componentDidMount() {
 		auth.onAuthStateChanged((user) => {
@@ -55,7 +49,7 @@ class App extends React.Component {
 			else{
 				this.props.dispatch(changeLoading());
 			}
-			this.changeUser()
+			firebase.messaging().getToken().then(token=>{console.log(token)});
 		});	
 	}
 
@@ -74,7 +68,7 @@ class App extends React.Component {
 			});
 	};
 	render() {
-		console.log(this.props.location.pathname)
+		
 		
 		return (
 			<>
@@ -87,10 +81,10 @@ class App extends React.Component {
 					logout={this.logout} />} 
 					 />
 					<Route exact path="/login" component={Login} />
-					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} logout={this.logout} />} />
+					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} userName={this.props.userName} logout={this.logout} />} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
-					
+					<Route exact path="/message" component={Messaging} />
 					<Redirect to="/" />
 				</Switch>
 			</>

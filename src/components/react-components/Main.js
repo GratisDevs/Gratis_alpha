@@ -16,6 +16,8 @@ import HeartIcon from './HeartIcon';
 import './Main.css';
 import './img.css';
 
+
+
 class Main extends React.Component {
 	constructor(props) {
 		super(props);

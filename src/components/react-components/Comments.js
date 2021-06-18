@@ -1,7 +1,12 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-
+import OneComment from './OneComment';
+import {
+    CSSTransition,
+    TransitionGroup,
+  } from 'react-transition-group';
+import './Comments.css';
 class Comments extends React.Component{
     constructor(props){
         super(props);
@@ -10,6 +15,7 @@ class Comments extends React.Component{
             commentId: ''
         }
     }
+
     toggleDeleteModal=(props)=>{
         this.setState({
             deleteComment: !this.state.deleteComment,
@@ -36,21 +42,17 @@ class Comments extends React.Component{
                     <Button class="primary" style={{borderRadius: '20px'}} onClick={this.deleteComment}>Ok</Button>
                 </Modal.Footer>
             </Modal>
-            
+            <TransitionGroup className="comments" style={{overflow: 'hidden'}}>
             {this.props.comments.map(comment=>(
-                <>
-                <div style={{display: 'flex', padding: '0 5px'}}>
-                    <img src={comment.userProfile} style={{width: '45px', height: '45px', borderRadius: '50%'}} />
-                    <div style={{display: 'flex', flexDirection: 'column', 
-                    textAlign: 'left', width: '-webkit-fill-available',marginLeft: '5px'}}>
-                        <span style={{color: 'rgba(0,0,0,0.6)', fontWeight: '700'}}>{comment.commentAuthor}</span>
-                        <p style={{marginLeft: '0px',fontStyle: 'Source Sans Pro, sans-serif'}}>{comment.comment}</p>
-                        {this.props.uid==comment.uid?<span style={{color: 'red', fontWeight: '700'}} onClick={()=>this.toggleDeleteModal(comment._id)}>Delete</span>:<span></span>}
-                    </div>
-                </div>
-                <hr />
-                </>
+                <CSSTransition
+                key={comment._id}
+                timeout={500}
+                classNames="item"
+              >
+                <OneComment comment={comment} toggleDeleteModal={this.toggleDeleteModal} uid={this.props.uid} />
+                </CSSTransition>
             ))}
+            </TransitionGroup>
             </>
         );
     }
