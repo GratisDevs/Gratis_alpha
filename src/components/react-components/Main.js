@@ -11,6 +11,7 @@ import ShareModal from './ShareModal';
 import UserProfile from './UserProfile';
 import { Link } from 'react-router-dom';
 import DeleteModal from './DeleteModal';
+import BallLoader from './BallLoader';
 import {deletePostFromStore} from '../../actions/PostHandle';
 import HeartIcon from './HeartIcon';
 import './Main.css';
@@ -86,7 +87,7 @@ class Main extends React.Component {
       else return this.state.arr.includes(elem.subGratis)
     }).map((post)=>{
       return(
-        <>
+        <> 
         <ShareModal shareModal={this.state.shareModal} toggleShareModal={this.toggleShareModal} postId={post._id} />
         <DeleteModal toggleDeleteModal={this.toggleDeleteModal} 
         deleteModal={this.state.deleteModal} deletePost={this.deletePost} />
@@ -161,12 +162,13 @@ class Main extends React.Component {
       </div>
     </div>
     
-    {this.props.isLoading?<div style={{display: 'flex',justifyContent: 'center',alignItems: 'center'}}>
-    <img class="loader" src="/images/DP.jpg" style={{height: '60px', width: '60px', borderRadius: '50%'}} />
-    </div>:feed}
+    {this.props.isLoading?<div><BallLoader></BallLoader></div>:feed}
     
   </div>);}
 };
+{/* <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+  <img class="loader" src="/images/DP.jpg" style={{ height: '60px', width: '60px', borderRadius: '50%' }} />
+</div> */}
 
 const mapStateToProps=(state)=>{
   return{

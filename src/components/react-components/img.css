@@ -1,12 +1,132 @@
-.loader{
-    animation: rotation 1s infinite linear;
+:root {
+	--anim-duration: 1s;
+	--bg-colour-dark: #212121;
+	--bg-colour-light: #ffffff;
 }
 
-@keyframes rotation{
-    from{
-        transform: rotate(0deg);
-    }
-    to{
-        transform: rotate(359deg);
-    }
+.load-container {
+	height: 100vh;
+	width: 100vw;
+	text-align: center;
+	background: var(--bg-colour-dark);
+}
+#logo-animation {
+	width: 300px;
+	height: 302px;
+	margin: 20vh;
+}
+
+#rightPr {
+	animation: rotate-frame var(--anim-duration) ease-in-out infinite;
+	transform-origin: center;
+	animation-direction: alternate;
+}
+
+#leftPr {
+	animation: rotate-frame var(--anim-duration) ease-in-out infinite;
+	transform-origin: center;
+	animation-direction: alternate;
+}
+
+#leftEyelid {
+	animation: blink var(--anim-duration) ease infinite;
+	transform-origin: center;
+	transform-box: fill-box;
+	animation-direction: alternate-reverse;
+}
+#rightEyeCircle {
+	animation: appear var(--anim-duration) ease infinite;
+	animation-direction: alternate;
+}
+
+#rightMouth {
+	animation: float-up-down var(--anim-duration) ease-out infinite;
+	animation-direction: alternate;
+	transform-origin: center;
+}
+#leftMouth {
+	animation: float-up-down var(--anim-duration) ease-out infinite;
+	animation-direction: alternate;
+	transform-origin: center;
+}
+
+#rightTopEyelid {
+	animation: cross-right var(--anim-duration) ease-out infinite;
+	transform-origin: center;
+	transform-box: fill-box;
+	animation-direction: alternate-reverse;
+}
+
+#rightBottomEyelid {
+	animation: cross-left var(--anim-duration) ease-out infinite;
+	transform-origin: bottom;
+	transform-box: fill-box;
+	animation-direction: alternate-reverse;
+}
+
+@keyframes rotate-frame {
+	from {
+		transform: rotate(0deg);
+		opacity: 0;
+	}
+	to {
+		transform: rotate(180deg);
+		opacity: 1;
+	}
+}
+
+@keyframes appear {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes float-up-down {
+	25% {
+		transform: translateY(10%);
+		transform: scale(1.5);
+	}
+	50% {
+		transform: translateY(0%);
+		transform: scale(1.0);
+	}
+	75% {
+		transform: translateY(-10%);
+		transform: scale(0.5);
+	}
+	100% {
+		transform: translateY(0%);
+		transform: scale(1.0);
+	}
+}
+
+@keyframes cross-right {
+	50% {
+		transform: rotate(45deg);
+	}
+	100% {
+		transform: rotate(-45deg);
+	}
+}
+
+@keyframes cross-left {
+	50% {
+		transform: rotate(-45deg);
+	}
+	100% {
+		transform: rotate(45deg);
+	}
+}
+
+@keyframes blink {
+	0% {
+		transform: scale(0.5);
+	}
+
+	100% {
+		transform: scale(1.5);
+	}
 }
