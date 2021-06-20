@@ -11,7 +11,41 @@ import NavbarMainComponent from '../navbar_components/navbarmaincomponent';
 // import { fetchPosts } from '../../actions/PostHandle.js';
 // import { connect } from 'react-redux';
 
+
 class Homepage extends React.Component {
+
+	constructor(props){
+		super(props);
+		this.state={
+			is_visible: false
+		}
+	}
+
+	componentDidMount() {
+		var scrollComponent=this
+		document.addEventListener("scroll", function(e) {
+		  scrollComponent.toggleVisibility();
+		});
+	  }
+
+	  scrollToTop=()=>{
+		window.scrollTo({
+		  top: 0,
+		  behavior: "smooth"
+		});
+	  }
+
+	  toggleVisibility=()=>{
+		if (window.pageYOffset > 200) {
+		  this.setState({
+			is_visible: true
+		  });
+		} else {
+		  this.setState({
+			is_visible: false
+		  });
+		}
+	  }
 
 	handleChange=(ev)=>{
 		
@@ -30,11 +64,12 @@ class Homepage extends React.Component {
 		return (
 			<>
 			<NavbarMainComponent isLoggedIn={true} logout={this.props.logout} />
+			<div id="back-to-top-anchor"></div>
 			<div>
 				
 				<div
 					className="container-fluid m-0"
-					style={{ paddingTop: '100px', paddingLeft: '0', paddingRight: '0' }}
+					style={{ paddingTop: '100px', paddingLeft: '0', paddingRight: '0', overflow: 'hidden' }}
 				>
 					
 					<div className="row m-0">
@@ -45,6 +80,13 @@ class Homepage extends React.Component {
 						<div class="col-md-1" />
 					</div>
 				</div>
+				<div className="scroll-to-top">
+        {this.state.is_visible && (
+          <div onClick={() => this.scrollToTop()} id="back-to-top">
+            <i class="fa fa-arrow-up" aria-hidden="true" style={{fontSize: 'x-large'}}></i>
+          </div>
+        )}
+      </div>
 			</div>
 			</>
 		);

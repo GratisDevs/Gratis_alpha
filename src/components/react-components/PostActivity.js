@@ -12,6 +12,24 @@ class PostActivity extends React.Component{
             isLoading: false
         }
     }
+
+    componentDidMount(){
+        this.props.socket.on(this.props.postId,(data)=>{
+            if(data.type==='COMMENT_DELETED')
+                this.setState({
+                    comments: this.state.comments.filter(comment=>comment._id!==data.commentId)
+                })
+            else if(data.type==='COMMENT_ADDED')
+                this.setState({
+                    comments: [data.res].concat(this.state.comments),
+                    isLoading: false
+                })
+            else if(data.type==='POST_DELETED'){
+                this.props.postDeleted();
+            }
+        })
+    }
+
     deleteComment=(id)=>{
         fetch('https://snaptok.herokuapp.com/deleteComment',{
             method: 'POST',
@@ -19,9 +37,7 @@ class PostActivity extends React.Component{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({postId: this.props.postId, commentId: id})
-        }).then(res=>this.setState({
-            comments: this.state.comments.filter(comment=>comment._id!=id)
-        })).catch(err=>alert("Your comment could not be deleted!"));
+        }).then(res=>res.json()).catch(err=>alert("Your comment could not be deleted!"));
     }
     addComment=(props)=>{
         var today=new Date();
@@ -35,12 +51,10 @@ class PostActivity extends React.Component{
                 commentAuthor: this.props.userName, uid: this.props.uid,
                 userProfile: this.props.userProfile,
                 dateOfComment: today.getDate()+"-"+(today.getMonth()+1)+"-"+today.getFullYear()})
-        }).then(res=>res.json()).then(res=>this.setState({
-            comments: [res].concat(this.state.comments),
-            isLoading: false
-        })).catch(err=>alert(err));
+        }).then(res=>res.json()).catch(err=>alert(err));
     }
     render(){
+        
         return(
             <>
             <div className="row">
@@ -53,7 +67,9 @@ class PostActivity extends React.Component{
             </div>
             <hr />
             <div>
-                <Comments comments={this.state.comments} deleteComment={this.deleteComment} uid={this.props.uid} />
+                <Comments comments={this.state.comments} 
+                postId={this.props.postId}
+                deleteComment={this.deleteComment} uid={this.props.uid} socket={this.props.socket} />
             </div>
             </>
         );

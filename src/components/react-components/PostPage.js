@@ -14,6 +14,10 @@ import HeartIcon from './HeartIcon';
 import PostActivity from './PostActivity';
 import ShareModal from './ShareModal';
 import NavbarMainComponent from '../navbar_components/navbarmaincomponent';
+import socketClient from 'socket.io-client';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import { withRouter } from 'react-router';
 
 class PostPage extends React.Component{
 
@@ -22,14 +26,32 @@ class PostPage extends React.Component{
         this.state={
             post: {},
             deleteModal: false, 
-            shareModal: false
+            shareModal: false,
+            socket: socketClient('https://snaptok.herokuapp.com'),
+            snackbar: false
         }
     }
 
     componentDidMount(){
         fetch('https://snaptok.herokuapp.com/fetchPost/'+this.props.match.params.id,{
             method: 'GET'
-        }).then(res=>res.json()).then(res=>this.setState({post: res})).catch(err=>console.log(err));
+        }).then(res=>res.json()).then(res=>{
+            if(res.message==='Failure')
+                this.setState({snackbar: true})
+            else
+                this.setState({post: res})}).catch(err=>console.log(err));
+        this.state.socket.on('connection',()=>{
+            console.log("connected to the server");
+        })
+    }
+
+    postDeleted=()=>{
+        this.props.dispatch(deletePostFromStore(this.props.match.params.id));
+        this.setState({
+            snackbar: true
+        },()=>{
+            setTimeout(()=>this.props.history.push("/"), 3000);
+        })
     }
 
     toggleShareModal=()=>{
@@ -45,9 +67,7 @@ class PostPage extends React.Component{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({id: this.props.match.params.id}),
-        }).then(res=>{alert("Post deleted successfully!!");this.props.dispatch(deletePostFromStore(this.props.match.params.id));
-        this.toggleDeleteModal();
-        }).
+        }).then(res=>this.toggleDeleteModal()).
         catch(err=>{console.log(err);})
     }
     
@@ -119,12 +139,31 @@ class PostPage extends React.Component{
                            <style.Article>
                                <PostActivity comments={this.state.post.comments} 
                                uid={this.props.uid} userProfile={this.props.userProfile} 
-                               postId={this.state.post._id} userName={this.props.userName} />
+                               postId={this.state.post._id} userName={this.props.userName} 
+                               postDeleted={this.postDeleted}
+                               socket={this.state.socket} />
                            </style.Article></>)}
                            </div>
                            <div className="col-md-2"></div>
                        </div>
                        </div>
+                       <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={this.state.snackbar}
+        autoHideDuration={3000}
+        onClose={()=>this.setState({snackbar: false})}
+        message="This post has been deleted"
+        action={
+          <React.Fragment>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>this.setState({snackbar: false})}>
+            <i class="fa fa-times" aria-hidden="true" style={{color: 'white', fontSize: 'larger'}}></i>
+            </IconButton>
+          </React.Fragment>
+        }
+      />
                    </>
                        
                    ):<Loading />}
@@ -137,4 +176,4 @@ const mapStateToProps=(state)=>({
     userProfile: state.userState.photoURL
 })
 
-export default connect(mapStateToProps)(PostPage);
+export default withRouter(connect(mapStateToProps)(PostPage));

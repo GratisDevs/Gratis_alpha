@@ -17,12 +17,11 @@ export const requestFirebaseNotificationPermission = () =>
   });
 
 
-
 export const onMessageListener = () =>{
     
   return new Promise((resolve) => {
     messaging.onMessage((payload) => {
-        console.log(payload);
+        //console.log(payload);
       resolve(payload);
     });
   });}
