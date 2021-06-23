@@ -54,8 +54,8 @@ class App extends React.Component {
 	}
 
 	
-	fetchPosts=()=>{
-		this.props.dispatch(fetchPosts());
+	fetchPosts=(category)=>{
+		this.props.dispatch(fetchPosts(category));
 	}
 	logout = () => {
 		auth.signOut()

@@ -37,10 +37,14 @@ export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,
 
 }
 
-export const fetchPosts=()=>(dispatch)=>{
+export const fetchPosts=(category)=>(dispatch)=>{
   dispatch(changePostsLoading())
   fetch(baseURL+'fetchPosts',{
-    method: 'GET'
+    method: 'POST',
+    headers:{
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({category: category})
   }).then(response => {
     if (response.ok) {
       return response;

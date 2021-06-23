@@ -85,11 +85,11 @@ class PostModal extends React.Component{
     
     render(){
         const options = [
-            {"value": "Cricket","name":"Cricket"},
-            {"value": "Fashion","name":"Fashion"},
-            {"value": "Entertainment","name":"Entertainment"},
-            {"value": "Technology","name":"Technology"},
-            {"value": "Cuisine","name":"Cuisine"}
+            {"value": "Computer Science","name":"Computer Science"},
+            {"value": "Electronics","name":"Electronics"},
+            {"value": "Mechanical","name":"Mechanical"},
+            {"value": "Electrical","name":"Electrical"},
+            {"value": "Civil","name":"Civil"}
           ];
           const defaultOption = options[0];
         return(

@@ -63,7 +63,7 @@ class Homepage extends React.Component {
 	render() {
 		return (
 			<>
-			<NavbarMainComponent isLoggedIn={true} logout={this.props.logout} />
+			<NavbarMainComponent isLoggedIn={true} logout={this.props.logout} fetchPost={this.props.fetchPosts} />
 			<div id="back-to-top-anchor"></div>
 			<div>
 				

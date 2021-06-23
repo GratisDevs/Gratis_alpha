@@ -99,10 +99,18 @@
 	border-bottom: 5px solid #000000;
 }
 
+.nav-items{
+	cursor: all-scroll;
+}
+
 .dropdown-border:hover {
 	border-radius: 6px;
 	display: inline-block;
 	border: 0.5px solid #d7ccc8;
+}
+
+#basic-nav-dropdown{
+	color: navajowhite;
 }
 
 .message-icon:hover {
