@@ -12,18 +12,17 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	min-height: 8vh;
-	background-color: #7e6868;
+	background-color: teal;
 	font-family: 'Poppins', sans-serif;
-	
 	box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.2);
 	transition: 0.3s;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-	border-bottom-right-radius: 0px;
-	border-bottom-left-radius: 30px;
 	padding: 2px 16px;
 	z-index: 1;
+}
+
+.mr-auto{
+	width: 100%;
+	justify-content: space-evenly;
 }
 
 .logo {

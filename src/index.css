@@ -38,7 +38,6 @@
 }
 
 .gra-chan_login {
-	background-image: url(../src/assets/img/DP.jpg);
 	height: 490px;
 	width: 450px;
 	border: none;
@@ -111,10 +110,17 @@
 
 #basic-nav-dropdown{
 	color: navajowhite;
+	margin-left: 60px;
 }
 
 .message-icon:hover {
 	color: black;
+}
+
+@media(max-width: 767px){
+	#basic-navbar-nav{
+		display: none;
+	}
 }
 
 @media (min-width: 950px) {
