@@ -53,7 +53,7 @@ class Comments extends React.Component{
     }
 
     deleteReply=(id)=>{
-        fetch('http://localhost:8080/deleteReply',{
+        fetch('http://snaptok.herokuapp.com/deleteReply',{
             method: 'POST',
             headers:{
                 "Content-Type": "application/json"
@@ -69,7 +69,7 @@ class Comments extends React.Component{
         this.setState({
             isLoading: true
         })
-        fetch('http://localhost:8080/postReply',{
+        fetch('http://snaptok.herokuapp.com/postReply',{
             method: 'POST',
             headers:{
                 "Content-Type": "application/json"

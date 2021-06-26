@@ -13,6 +13,7 @@ import swal from 'sweetalert';
 import GoogleButton from 'react-google-button';
 import LoginNavbarComponent from '../navbar_components/loginnavbarcomponent';
 import firebase from '../data_components/firebase';
+import { withRouter } from 'react-router-dom';
 
 
 class Login extends React.Component {
@@ -75,7 +76,8 @@ class Login extends React.Component {
 	};
 
 	render() {
-		if (this.props.userName !== '') return <Redirect to={this.props.location.state.pathname} />;
+		if (this.props.userName !== ''&&this.props.location.state!==undefined) return <Redirect to={this.props.location.state.pathname} />;
+		else if(this.props.userName !== ''&&this.props.location.pathname=='/login') return <Redirect to={'/'} />
 		return (
 			<>
 			<LoginNavbarComponent />
@@ -202,4 +204,4 @@ const mapStateToProps = (state) => ({
 		userName: state.userState.userName
 });
 
-export default connect(mapStateToProps)(Login);
+export default withRouter(connect(mapStateToProps)(Login));

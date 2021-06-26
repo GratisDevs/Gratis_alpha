@@ -77,6 +77,10 @@ class PostPage extends React.Component{
       }
 
     render(){
+        const dateTime='';
+        if(this.state.post!==null){
+            dateTime=new Date(this.state.post.dateTime);
+        }
         return(
                 <>
                    {this.props.uid?(
@@ -99,7 +103,8 @@ class PostPage extends React.Component{
                                <UserProfile userProfile={this.state.post.userProfile} />
                                 <div style={{display: 'flex',flexDirection: 'column',maxWidth: 'fit-content', justifyContent: 'space-between'}}>
                                 <span style={{textAlign: 'left', display: 'block', fontSize: 'medium'}} className="title-style">{this.state.post.author}</span>
-                                <span style={{fontSize: '11px', color: '#595959', fontWeight: '700'}}>{this.state.post.dateOfPost}</span>
+                                <span style={{color: 'rgba(0,0,0,0.8)'}}>
+                                    {dateTime.getDate()+"-"+dateTime.getMonth()+"-"+dateTime.getYear()} at {dateTime.getHours()+":"+dateTime.getMinutes()}</span>
                                 </div>
                                 <div class="title-div">
                                     <h5 class="title-style title-big-screen">{this.state.post.title}</h5>
