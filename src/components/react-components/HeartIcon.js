@@ -22,7 +22,7 @@ class HeartIcon extends React.Component{
     handleFirestoreHeart=(props)=>{
         db.collection("users").where("uid","==",this.props.uid).get().then(query=>{
 			const document=query.docs[0];
-            if(props=="add")
+            if(props==="add")
                 document.ref.update({
                     hearts: firebase.firestore.FieldValue.arrayUnion(this.props.postId)
                 });

@@ -91,7 +91,6 @@ class PostModal extends React.Component{
             {"value": "Electrical","name":"Electrical"},
             {"value": "Civil","name":"Civil"}
           ];
-          const defaultOption = options[0];
         return(
             <Modal show={this.props.isModalOpen} 
             aria-labelledby="contained-modal-title-vcenter"

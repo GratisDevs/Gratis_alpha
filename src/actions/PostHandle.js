@@ -56,9 +56,7 @@ export const fetchPosts=(category)=>(dispatch)=>{
   },
   error => {
         throw error;
-  })
-  .then(res=>res.json()).then((arr)=>{dispatch(addPost(arr))}).
-  catch(err=>{dispatch(errPost(err.message))})
+  }).then(res=>res.json()).then((arr)=>{dispatch(addPost(arr))}).catch(err=>{dispatch(errPost(err.message))})
 }
 
 const addPost=(arr)=>({

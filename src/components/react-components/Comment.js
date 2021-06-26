@@ -21,7 +21,7 @@ class Comment extends React.Component{
         return(
             <>
 
-            <img src={this.props.userProfile} style={{width: '45px', height: '45px', borderRadius: '50%'}} />
+            <img src={this.props.userProfile} style={{width: '45px', height: '45px', borderRadius: '50%'}} alt="" />
             <TextField
             style={{width: '45%', margin: '0 10px', backgroundColor: '#fff'}}
             id="filled-basic"

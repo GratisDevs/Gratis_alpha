@@ -6,7 +6,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
-import FormControl from 'react-bootstrap/FormControl';
 import { Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import Button from 'react-bootstrap/Button';
@@ -80,7 +79,7 @@ function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
       <NavDropdown title={<i className="fa fa-filter" aria-hidden="true" style={{fontSize: 'x-large'}}></i>} 
       id="basic-nav-dropdown" alignRight>
         {
-          options.map(elem=><a className="dropdown-item nav-items" onClick={()=>fetchPost(elem.name)} style={{fontWeight: '600'}}>{elem.value}</a>)
+          options.map(elem=><span className="dropdown-item nav-items" onClick={()=>fetchPost(elem.name)} style={{fontWeight: '600'}}>{elem.value}</span>)
         }
       </NavDropdown>
   <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={()=>setOpen(true)} />

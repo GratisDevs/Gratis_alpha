@@ -78,7 +78,7 @@ style.SharedActor=styled.div`
     margin-bottom: 8px;
     align-items: center;
     display: flex;
-    a{
+    div{
         margin-right: 12px;
         flex-grow: 1;
         overflow: hidden;

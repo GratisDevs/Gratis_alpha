@@ -6,22 +6,10 @@ import ForgotPass from './components/react-components/ForgotPass';
 import { connect } from 'react-redux';
 import { logout, login, changeLoading } from './actions/login_logout.js';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
-import Homepage from './components/react-components/Homepage.js';
 import Home from './components/react-components/Home.js';
-//import firebase from './components/data_components/firebase';
-//import Profile from './components/react-components/Profile.js';
-import NavbarMainComponent from './components/navbar_components/navbarmaincomponent';
-import LoginNavbarComponent from './components/navbar_components/loginnavbarcomponent.js';
-import { useLocation } from 'react-router-dom';
-import firebase from '../src/components/data_components/firebase';
-import {Messaging} from './Messaging';
-
-
 import { fetchPosts } from './actions/PostHandle.js';
 import PostPage from './components/react-components/PostPage.js';
 import ProfilePage from './components/react-components/ProfilePage.js';
-//import { Messaging } from './Messaging';
-//import { requestFirebaseNotificationPermission } from './firebaseInit';
 
 class App extends React.Component {
 
@@ -50,7 +38,6 @@ class App extends React.Component {
 			else{
 				this.props.dispatch(changeLoading());
 			}
-			firebase.messaging().getToken().then(token=>{console.log(token)});
 		});	
 	}
 

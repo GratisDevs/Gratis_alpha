@@ -1,19 +1,14 @@
 import React from 'react';
-import { render } from 'react-dom';
-import ReactMarkdown from 'react-markdown';
-import ReactPlayer from 'react-player';
+
+
+
 import { connect } from 'react-redux';
 import style from './MainStyle';
 import PostModal from './PostModal';
-import SocialCount from './SocialCount';
-import Category from './Category';
-import ShareModal from './ShareModal';
-import UserProfile from './UserProfile';
-import { Link } from 'react-router-dom';
-import DeleteModal from './DeleteModal';
+
 import BallLoader from './BallLoader';
-import {deletePostFromStore} from '../../actions/PostHandle';
-import HeartIcon from './HeartIcon';
+
+
 import Feed from './Feed';
 import './Main.css';
 import './img.css';
@@ -35,7 +30,7 @@ class Main extends React.Component {
 	}
 
   componentDidMount(){
-    if(this.props.posts.length==0)
+    if(this.props.posts.length===0)
       this.props.fetchPosts("");
   }
 
@@ -43,7 +38,7 @@ class Main extends React.Component {
     var name=event.target.name;
     this.setState({
         [name]: event.target.checked,
-        arr: event.target.checked?[...this.state.arr,name]:this.state.arr.filter(elem=>elem!=name)
+        arr: event.target.checked?[...this.state.arr,name]:this.state.arr.filter(elem=>elem!==name)
     })
 }
 
@@ -82,20 +77,12 @@ class Main extends React.Component {
       </button>
     </div>
     </style.ShareBox>
-    {/*<div className="row">
-      <div className="col-md-12">
-        <i class="fa fa-filter" aria-hidden="true" style={{fontSize: 'xx-large'}}></i>
-        <Category handleChange={this.handleChange} selected={this.state}/>
-      </div>
-    </div>*/}
+
     
     {this.props.isLoading?<div><BallLoader></BallLoader></div>:<Feed posts={this.props.posts} uid={this.props.uid} />}
     
   </div>);}
 };
-{/* <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-  <img class="loader" src="/images/DP.jpg" style={{ height: '60px', width: '60px', borderRadius: '50%' }} />
-</div> */}
 
 const mapStateToProps=(state)=>{
   return{

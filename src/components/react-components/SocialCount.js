@@ -1,6 +1,5 @@
-import { post } from 'jquery';
+
 import React from 'react';
-import { connect } from 'react-redux';
 import {db} from '../data_components/firebase.js';
 import firebase from '../data_components/firebase.js';
 
@@ -40,7 +39,7 @@ class SocialCount extends React.Component{
     handleFirestoreLike=(props)=>{
         db.collection("users").where("uid","==",this.props.uid).get().then(query=>{
 			const document=query.docs[0];
-            if(props=="add")
+            if(props==="add")
                 document.ref.update({
                     likes: firebase.firestore.FieldValue.arrayUnion(this.props.postId)
                 });

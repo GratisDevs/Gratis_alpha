@@ -68,7 +68,7 @@ class PostPage extends React.Component{
             },
             body: JSON.stringify({id: this.props.match.params.id}),
         }).then(res=>this.toggleDeleteModal()).
-        catch(err=>{console.log(err);})
+catch(err=>{console.log(err);})
     }
     
       toggleDeleteModal=()=>{

@@ -1,6 +1,5 @@
 import React from 'react';
 import style from './MainStyle';
-import PostModal from './PostModal';
 import ReactPlayer from 'react-player';
 import SocialCount from './SocialCount';
 import ShareModal from './ShareModal';
@@ -38,8 +37,7 @@ class Feed extends React.Component{
             body: JSON.stringify({id: this.state.postToDelete}),
         }).then(res=>{alert("Post deleted successfully!");this.props.dispatch(deletePostFromStore(this.state.postToDelete));
         this.toggleDeleteModal();
-        }).
-        catch(err=>{console.log(err);})
+        }).catch(err=>{console.log(err);})
     }
     
       toggleDeleteModal=(id)=>{
@@ -60,14 +58,14 @@ class Feed extends React.Component{
                 deleteModal={this.state.deleteModal} deletePost={this.deletePost} />
                 <style.Article>
                 <style.SharedActor>
-                  <a>
+                  <div>
                     <UserProfile userProfile={post.userProfile} />
                     <div style={{display: 'flex',flexDirection: 'column'}}>
                     <div><h6 style={{marginTop: '14px', textAlign: 'left'}}className="title-style">{post.author}</h6>
                     {post.uid===this.props.uid?<i style={{position: 'absolute',right: '10px', top: '27px',color: 'rgba(0,0,0,0.7)'}} 
                     class="fa fa-trash" aria-hidden="true" onClick={()=>this.toggleDeleteModal(post._id)}></i>:<div></div>}</div>
                   </div>
-                  </a>
+                  </div>
                 </style.SharedActor>
                 <Link to={`/post/${post._id}`} style={{textDecoration: 'none', color: 'black'}}>
                 <div className="row" style={{marginLeft: '5px'}}>

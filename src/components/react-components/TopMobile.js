@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import React from 'react';
 import style from './LeftsideStyle';
 
@@ -17,10 +16,10 @@ class TopMobile extends React.Component{
       <style.ArtCard>
         <style.UserInfo>
           <style.CardBackground />
-          <a href="#">
+          <div>
             <style.Photo url={this.props.photoURL}/>
             <style.Link>Welcome, {this.props.userName}!</style.Link>
-          </a>
+          </div>
         
           <input type="file" 
           accept="image/*" 

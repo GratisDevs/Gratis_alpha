@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { login } from '../../actions/login_logout.js';
 import {auth,db} from '../data_components/firebase.js';
 import firebase from '../data_components/firebase.js';
 import Card from 'react-bootstrap/Card';
@@ -36,8 +35,7 @@ class Register extends React.Component {
 			email: props.email
 		}).then(()=>{
 			//this.props.dispatch(login(props.displayName,props.photoURL,props.email));
-		}).
-		catch(err=>{console.log(err)});
+		}).catch(err=>{console.log(err)});
 	}
 
     handleInputChange = (event) => {
