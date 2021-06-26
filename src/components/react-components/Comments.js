@@ -130,13 +130,13 @@ class Comments extends React.Component{
             open={this.state.replyDrawer}
             classes={{paper: classes.paper}}
             onClose={this.toggleDrawer}>
-                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                <div style={{display: 'flex', justifyContent: 'flex-end', padding: '5px 15px'}}>
                     <i class="fa fa-times" aria-hidden="true" style={{fontSize: 'x-large', color: 'rgba(0,0,0,0.5)'}} onClick={this.toggleDrawer}></i>
                 </div>
                 <Divider />
                 <div className="row">
                 <div className="col-md-1"></div>
-                <div className="col-md-10" style={{display: 'flex', justifyContent: 'center', padding: '3px 15px'}}>
+                <div className="col-md-10" style={{display: 'flex', justifyContent: 'center', padding: '5px 15px'}}>
                 <img src={this.props.userProfile} alt="" style={{width: '45px', height: '45px', borderRadius: '50%'}} />
             <TextField
             style={{width: '45%', margin: '0 10px', backgroundColor: '#fff'}}
@@ -161,7 +161,7 @@ class Comments extends React.Component{
                     this.state.selectedCommentId&&this.props.comments.filter(comment=>comment._id===this.state.selectedCommentId)[0].replies.map(reply=>{
                         return(
                             <>
-                            <div style={{display: 'flex', padding: '0 15px'}}>
+                            <div style={{display: 'flex', padding: '5px 15px'}}>
                     <img src={reply.authorProfile} alt="" style={{width: '45px', height: '45px', borderRadius: '50%'}} />
                     <div style={{display: 'flex', flexDirection: 'column', 
                     textAlign: 'left', width: '-webkit-fill-available',marginLeft: '5px'}}>

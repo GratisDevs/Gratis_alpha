@@ -67,8 +67,7 @@ class PostPage extends React.Component{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({id: this.props.match.params.id}),
-        }).then(res=>this.toggleDeleteModal()).
-catch(err=>{console.log(err);})
+        }).then(res=>this.toggleDeleteModal()).catch(err=>{console.log(err);})
     }
     
       toggleDeleteModal=()=>{
@@ -88,7 +87,7 @@ catch(err=>{console.log(err);})
                        <div className="container-fluid"><div className="row" style={{marginTop: '100px'}}>
                            <div className="col-md-2"></div>
                            <div className="col-md-8 col-12">
-                            {Object.keys(this.state.post).length == 0?(<div class="row" style={{marginTop: '100px'}}>
+                            {Object.keys(this.state.post).length === 0?(<div class="row" style={{marginTop: '100px'}}>
             <div class="col-md-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'center'}}>
             <span className="fa fa-spinner fa-pulse fa-3x fa-fw text-primary"></span>
             </div>
@@ -106,13 +105,13 @@ catch(err=>{console.log(err);})
                                     <h5 class="title-style title-big-screen">{this.state.post.title}</h5>
                                 </div>
                                 <div style={{maxWidth: 'fit-content'}}>
-                                    {this.props.uid==this.state.post.uid?<i class="fa fa-trash" style={{fontSize: 'larger'}} onClick={this.toggleDeleteModal}></i>:<></>}
+                                    {this.props.uid===this.state.post.uid?<i class="fa fa-trash" style={{fontSize: 'larger'}} onClick={this.toggleDeleteModal}></i>:<></>}
                                 </div>
                                </a>
                                <hr />
                                <div class="title-small-screen">
                                     <h5 class="title-style">{this.state.post.title}</h5>
-                                </div>
+                               </div>
                                 
                                </div>
                            </style.SharedActor>
