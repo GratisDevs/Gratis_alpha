@@ -30,6 +30,16 @@ class PostActivity extends React.Component{
         })
     }
 
+    addReply=(commentId, reply)=>{
+        const newComments=this.state.comments.map(comment=>{
+            if(comment._id!==commentId) return comment;
+            return {...comment, replies: [...comment.replies,reply]};
+        });
+        this.setState({
+            comments: newComments
+        })
+    }
+
     deleteComment=(id)=>{
         fetch('https://snaptok.herokuapp.com/deleteComment',{
             method: 'POST',
@@ -67,9 +77,14 @@ class PostActivity extends React.Component{
             </div>
             <hr />
             <div>
-                <Comments comments={this.state.comments} 
+                <Comments 
+                comments={this.state.comments}
+                addReply={this.addReply} 
+                userProfile={this.props.userProfile}
+                author={this.props.userName}
                 postId={this.props.postId}
-                deleteComment={this.deleteComment} uid={this.props.uid} socket={this.props.socket} />
+                deleteComment={this.deleteComment} 
+                uid={this.props.uid} socket={this.props.socket} />
             </div>
             </>
         );

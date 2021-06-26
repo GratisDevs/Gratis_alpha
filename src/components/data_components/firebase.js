@@ -2,11 +2,12 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/messaging';
+import 'firebase/database';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDj20VBDkd05ST-gPVHTWv8_NxoeCtD1aA",
     authDomain: "gratis-3ce5a.firebaseapp.com",
-    databaseURL: "https://gratis-3ce5a.firebaseio.com",
+    databaseURL: "https://gratis-3ce5a-default-rtdb.firebaseio.com/",
     projectId: "gratis-3ce5a",
     storageBucket: "gratis-3ce5a.appspot.com",
     messagingSenderId: "348041992874",

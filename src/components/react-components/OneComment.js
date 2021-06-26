@@ -40,6 +40,8 @@ function OneComment(props){
                     textAlign: 'left', width: '-webkit-fill-available',marginLeft: '5px'}}>
                         <span style={{color: 'rgba(0,0,0,0.6)', fontWeight: '700'}}>{props.comment.commentAuthor}</span>
                         <p style={{marginLeft: '0px',fontStyle: 'Source Sans Pro, sans-serif'}}>{props.comment.comment}</p>
+                        <span style={{color: 'blue', fontWeight: 'bold'}} 
+                        onClick={()=>props.setSelectedComment(props.comment._id)}>View Reply</span>
                     </div>
                     {props.uid===props.comment.uid?<i class="fa fa-ellipsis-v" aria-hidden="true" style={{paddingRight: '10px'}} onClick={handleClick}></i>:<></>}
                     <Popover
