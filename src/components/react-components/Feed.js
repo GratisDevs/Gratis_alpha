@@ -58,14 +58,14 @@ class Feed extends React.Component{
                 deleteModal={this.state.deleteModal} deletePost={this.deletePost} />
                 <style.Article>
                 <style.SharedActor>
-                  <div>
+                  <a>
                     <UserProfile userProfile={post.userProfile} />
                     <div style={{display: 'flex',flexDirection: 'column'}}>
                     <div><h6 style={{marginTop: '14px', textAlign: 'left'}}className="title-style">{post.author}</h6>
                     {post.uid===this.props.uid?<i style={{position: 'absolute',right: '10px', top: '27px',color: 'rgba(0,0,0,0.7)'}} 
                     class="fa fa-trash" aria-hidden="true" onClick={()=>this.toggleDeleteModal(post._id)}></i>:<div></div>}</div>
                   </div>
-                  </div>
+                  </a>
                 </style.SharedActor>
                 <Link to={`/post/${post._id}`} style={{textDecoration: 'none', color: 'black'}}>
                 <div className="row" style={{marginLeft: '5px'}}>

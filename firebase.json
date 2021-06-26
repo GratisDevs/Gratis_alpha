@@ -1,5 +1,6 @@
 {
     "hosting":{
+        "site": "gratis-3ce5a",
         "public": "build",
         "ignore":[
             "**/node_modules/**"
