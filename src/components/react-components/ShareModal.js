@@ -1,14 +1,11 @@
 import React from 'react';
-import react from 'react';
 import Modal from 'react-bootstrap/Modal';
 import {
     FacebookShareButton,
     TwitterShareButton,
-    LinkedinShareButton,
     WhatsappShareButton,
     FacebookIcon,
     TwitterIcon,
-    LinkedinIcon,
     WhatsappIcon
 } from 'react-share';
 

@@ -13,7 +13,7 @@ export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,
     data.append('file',postImage?postImage:postVideo);
     data.append('fileType',postImage!==''||postVideo!==''?(postImage?'image':'video'):'')
     data.append('subGratis',postSubGratis);
-    data.append('dateOfPost',today.getDate()+"-"+(today.getMonth()+1)+"-"+today.getFullYear());
+    data.append('dateTime',today.toISOString());
     data.append('likes',0);
     data.append('dislikes',0);
 
@@ -56,9 +56,7 @@ export const fetchPosts=(category)=>(dispatch)=>{
   },
   error => {
         throw error;
-  })
-  .then(res=>res.json()).then((arr)=>{dispatch(addPost(arr))}).
-  catch(err=>{dispatch(errPost(err.message))})
+  }).then(res=>res.json()).then((arr)=>{dispatch(addPost(arr))}).catch(err=>{dispatch(errPost(err.message))})
 }
 
 const addPost=(arr)=>({

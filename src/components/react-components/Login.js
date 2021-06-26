@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { login } from '../../actions/login_logout.js';
 import {auth,db} from '../data_components/firebase.js';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -27,10 +26,9 @@ class Login extends React.Component {
 
 	registerUser=(props)=>{
 		
-		db.collection("users").where("displayName","==",props.displayName).get().
-		then(querySnapshot=>{
+		db.collection("users").where("displayName","==",props.displayName).get().then(querySnapshot=>{
 			
-			if(querySnapshot.size==0){
+			if(querySnapshot.size===0){
 				db.collection("users").doc().set({
 					displayName: props.displayName,
 					photoURL: props.photoURL,
@@ -38,8 +36,7 @@ class Login extends React.Component {
 					likes: [],
 					heart: [],
 					email: props.email
-				}).
-				catch(err=>{console.log(err)});
+				}).catch(err=>{console.log(err)});
 			}
 		})
 	}

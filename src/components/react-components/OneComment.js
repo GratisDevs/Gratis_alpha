@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -35,11 +35,13 @@ function OneComment(props){
     return(
         <>
                 <div style={{display: 'flex', padding: '0 5px'}}>
-                    <img src={props.comment.userProfile} style={{width: '45px', height: '45px', borderRadius: '50%'}} />
+                    <img src={props.comment.userProfile} alt="" style={{width: '45px', height: '45px', borderRadius: '50%'}} />
                     <div style={{display: 'flex', flexDirection: 'column', 
                     textAlign: 'left', width: '-webkit-fill-available',marginLeft: '5px'}}>
                         <span style={{color: 'rgba(0,0,0,0.6)', fontWeight: '700'}}>{props.comment.commentAuthor}</span>
                         <p style={{marginLeft: '0px',fontStyle: 'Source Sans Pro, sans-serif'}}>{props.comment.comment}</p>
+                        <span style={{color: 'blue', fontWeight: 'bold'}} 
+                        onClick={()=>props.setSelectedComment(props.comment._id)}>View Reply</span>
                     </div>
                     {props.uid===props.comment.uid?<i class="fa fa-ellipsis-v" aria-hidden="true" style={{paddingRight: '10px'}} onClick={handleClick}></i>:<></>}
                     <Popover

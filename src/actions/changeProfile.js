@@ -21,16 +21,13 @@ export const changeProfile=(image,user)=>(dispatch)=>{
       },
       error => {
             throw error;
-      }).
-      then(res=>res.json()).
-      then(res=>{
+      }).then(res=>res.json()).then(res=>{
         dispatch(changeImage(res["URL"]));
         db.collection("users").where("displayName","==",user).get().then(query=>{
           const doc=query.docs[0];
           doc.ref.update({photoURL: res["URL"]});
         }).catch(err=>{console.log(err)})
-      }).
-      catch(err=>{console.log(err)});
+      }).catch(err=>{console.log(err)});
 }
 
 const changeImage=(URL)=>({

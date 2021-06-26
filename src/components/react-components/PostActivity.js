@@ -1,5 +1,4 @@
 import React from 'react';
-import {db} from '../data_components/firebase';
 import Comment from './Comment';
 import Comments from './Comments';
 
@@ -28,6 +27,34 @@ class PostActivity extends React.Component{
                 this.props.postDeleted();
             }
         })
+    }
+
+    addReply=(commentId, reply)=>{
+        const newComments=this.state.comments.map(comment=>{
+            if(comment._id!==commentId) return comment;
+            return {...comment, replies: [...comment.replies,reply]};
+        });
+        this.setState({
+            comments: newComments
+        })
+    }
+
+    removeReply=(commentId, replyId)=>{
+        const updatedComments = this.state.comments.map(comment => {
+            
+            if (comment._id !== commentId) {
+              return comment;
+            }
+        
+            const filteredReplies = comment.replies.filter(reply => reply._id !== replyId);
+            return {
+              ...comment,
+              replies: filteredReplies,
+            };
+          });
+          this.setState({
+              comments: updatedComments
+          })
     }
 
     deleteComment=(id)=>{
@@ -67,9 +94,17 @@ class PostActivity extends React.Component{
             </div>
             <hr />
             <div>
-                <Comments comments={this.state.comments} 
+                <Comments 
+                comments={this.state.comments}
+                addReply={this.addReply} 
+                removeReply={this.removeReply}
+                userProfile={this.props.userProfile}
+                author={this.props.userName}
                 postId={this.props.postId}
-                deleteComment={this.deleteComment} uid={this.props.uid} socket={this.props.socket} />
+                deleteComment={this.deleteComment} 
+                uid={this.props.uid} 
+                socket={this.props.socket} 
+                />
             </div>
             </>
         );

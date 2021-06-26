@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import React from 'react';
-import {  onBackgroundMessageListener, onMessageListener } from './firebaseInit';
-
-const messagechannel=new MessageChannel();
+import { onMessageListener } from './firebaseInit';
 
 export const Messaging=()=>{
     const [message, setMessage]=useState('');

@@ -2,7 +2,6 @@ import React from 'react';
 import './Home.css';
 import Leftside from './Leftside.js';
 import Main from './Main.js';
-import { Link } from 'react-router-dom';
 import TopMobile from './TopMobile';
 import { connect } from 'react-redux';
 import {changeProfile} from '../../actions/changeProfile';
