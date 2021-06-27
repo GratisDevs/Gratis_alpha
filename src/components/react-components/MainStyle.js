@@ -141,7 +141,7 @@ style.SharedImage=styled.div`
 style.SocialCount=styled.ul`
     line-height: 1.3;
     display: flex;
-    align-items: flex-start;
+    justify-content: space-between;
     overflow: auto;
     margin: 0 16px;
     padding: 8px 0;

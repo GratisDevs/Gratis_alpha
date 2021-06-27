@@ -77,7 +77,7 @@ class PostActivity extends React.Component{
             body: JSON.stringify({id: this.props.postId,comment: props,
                 commentAuthor: this.props.userName, uid: this.props.uid,
                 userProfile: this.props.userProfile,
-                dateOfComment: today.getDate()+"-"+(today.getMonth()+1)+"-"+today.getFullYear()})
+                dateOfComment: today})
         }).then(res=>res.json()).catch(err=>alert(err));
     }
     render(){
