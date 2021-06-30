@@ -3,7 +3,7 @@
   "name": "gratis",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gratis-3ce5a.web.app/",
+  "homepage": "https://gratisdevs.github.io/",
   "dependencies": {
     "@google-cloud/storage": "^5.8.5",
     "@material-ui/core": "^4.11.4",
