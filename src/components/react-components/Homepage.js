@@ -55,7 +55,7 @@ class Homepage extends React.Component {
 			return;
 		}
 
-		this.props.dispatch(changeProfile(image,this.props.userName));
+		this.props.dispatch(changeProfile(image,this.props.uid));
 		
 	}
 

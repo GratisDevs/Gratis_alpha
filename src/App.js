@@ -1,5 +1,6 @@
 import React from 'react';
 import {auth,db} from './components/data_components/firebase.js';
+import firebase from './components/data_components/firebase.js';
 import Login from './components/react-components/Login.js';
 import Register from './components/react-components/Register';
 import ForgotPass from './components/react-components/ForgotPass';
@@ -11,11 +12,33 @@ import { fetchPosts } from './actions/PostHandle.js';
 import PostPage from './components/react-components/PostPage.js';
 import ProfilePage from './components/react-components/ProfilePage.js';
 
+
 class App extends React.Component {
 
 	componentDidMount() {
+		var isOfflineForDatabase = {
+			state: 'offline',
+			last_changed: firebase.database.ServerValue.TIMESTAMP,
+		};
+		
+		var isOnlineForDatabase = {
+			state: 'online',
+			last_changed: firebase.database.ServerValue.TIMESTAMP,
+		};
 		auth.onAuthStateChanged((user) => {
 			if (user) {
+				var userStatusDatabaseRef = firebase.database().ref('/status/' + user.uid);
+				firebase.database().ref('.info/connected').on('value', function(snapshot) {
+    
+					if (snapshot.val() === false) {
+						return;
+					};
+				
+					userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase).then(function() {
+						
+						userStatusDatabaseRef.set(isOnlineForDatabase);
+					});
+				});
 				db.collection("users").where("email","==",user.email).get().then(query=>{
 					const doc=query.docs[0];
 					var URL,email,uid;
@@ -62,11 +85,13 @@ class App extends React.Component {
 			<>
 				
 				<Switch>
-					<Route exact path="/" render={(props)=><Home {...props} isLoggedIn={this.props.isLoggedIn} 
+					<Route exact path="/" render={(props)=><Home {...props} 
+					isLoggedIn={this.props.isLoggedIn} 
 					userName={this.props.userName} 
 					fetchPosts={this.fetchPosts}
 					photoURL={this.props.photoURL} 
-					logout={this.logout} />} 
+					logout={this.logout}
+					uid={this.props.uid} />} 
 					 />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} userName={this.props.userName} logout={this.logout} />} />
