@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react';
 import './navbar.css';
-import '../data_components/useWindowDimenesions';
 import './filter.css';
 
 const navSlide = () =>{
@@ -22,7 +21,6 @@ const navSlide = () =>{
 
     // Burger animation
     burger.classList.toggle('toggle');
-
     
 }
 
@@ -91,15 +89,9 @@ function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
                 <path className="filter_logo_anim"   d="M9.664 15l-8.664-15h22l-8.703 15h-4.633zm2.336 2c-1.407 2.099-2.312 3.412-2.312 4.688 0 1.277 1.035 2.312 2.312 2.312s2.312-1.035 2.312-2.312c0-1.276-.905-2.589-2.312-4.688zm.159 3.007c-.333.833-1.266.622-.765-.465.211-.458.357-.652.598-1.049.198.311.389.959.167 1.514z" fill="white"/>
             </svg>
             <ul className="filter_links">
-                <li>
-                    <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#">Wiki</a>
-                </li>
-                <li onClick={logout}>
-                    <a href="#">Logout</a>
-                </li>
+                {
+                    options.map((o)=><li ><a href="#">{o.value}</a></li>) 
+                }
             </ul>
         </div>
         <ul className="nav-links">

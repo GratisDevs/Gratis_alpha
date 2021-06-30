@@ -58,7 +58,7 @@ class Feed extends React.Component{
                 deleteModal={this.state.deleteModal} deletePost={this.deletePost} />
                 <style.Article>
                 <style.SharedActor>
-                  <a>
+                  <a href="#">
                     <UserProfile userProfile={post.userProfile} />
                     <div style={{display: 'flex',flexDirection: 'column'}}>
                     <div><h6 style={{marginTop: '14px', textAlign: 'left'}}className="title-style">{post.author}</h6>

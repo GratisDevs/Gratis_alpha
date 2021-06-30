@@ -14,6 +14,11 @@
     animation: dash 13s linear forwards;
 } 
 
+.filter-logo{
+    z-index: 10;
+}
+
+
 @keyframes filterLinkFade {
     from{
         opacity:0;
@@ -42,7 +47,7 @@
     display: flex;
     width: 30%;
     justify-content: space-around;
-    z-index: 3;
+    z-index: 1;
 }
 
 .filter_links li{
@@ -76,7 +81,7 @@ body{
     flex-direction: column;
     align-items: center;
     width: 50%;
-    transform: translateX(100%);
+    transform: translateY(-130%);
     transition: transform 0.5s ease-in;
 }
 
@@ -85,13 +90,16 @@ body{
 }
 
 .filter-active{
-    transform: translateX(0%);
+    transform: translateY(0%);
     
 }
 
 .filter-active .filter_links{
     display: block;
+   
 }
+
+
 
 
 /* -----------------Media Queries ----------------------------- */

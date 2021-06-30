@@ -2,6 +2,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+   
 }
 
 nav{
@@ -24,6 +25,7 @@ nav{
     display: flex;
     width: 30%;
     justify-content: space-around;
+    z-index: 10;
 }
 
 .nav-links li{
@@ -103,6 +105,10 @@ nav{
 }
 .toggle .line-3{
     transform: rotate(45deg) translate(-5px,-6px);
+}
+
+.burger{
+    z-index: 10;   
 }
 
 @keyframes navLinkFade {

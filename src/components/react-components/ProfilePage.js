@@ -22,79 +22,79 @@ class ProfilePage extends React.Component{
         }
     }
 
-    fetchLikedPosts=(likes)=>{
-        fetch(baseUrl+'likedPosts',{
-            method: 'POST',
-            headers:{
-                "Content-Type" : "appliication/json"
-            },
-            body: JSON.stringify(likes)
-        }).then(res=>res.json()).then(res=>{
-            this.setState({
-                likedPost: res
-            })
-        })
-    }
+    // fetchLikedPosts=(likes)=>{
+    //     fetch(baseUrl+'likedPosts',{
+    //         method: 'POST',
+    //         headers:{
+    //             "Content-Type" : "appliication/json"
+    //         },
+    //         body: JSON.stringify(likes)
+    //     }).then(res=>res.json()).then(res=>{
+    //         this.setState({
+    //             likedPost: res
+    //         })
+    //     })
+    // }
 
-    fetchFavorite=(hearts)=>{
-        fetch(baseUrl+'favoritePosts',{
-            method: 'POST',
-            headers:{
-                "Content-Type" : "appliication/json"
-            },
-            body: JSON.stringify(hearts)
-        }).then(res=>res.json()).then(res=>{
-            this.setState({
-                favorites: res
-            })
-        })
-    }
+    // fetchFavorite=(hearts)=>{
+    //     fetch(baseUrl+'favoritePosts',{
+    //         method: 'POST',
+    //         headers:{
+    //             "Content-Type" : "appliication/json"
+    //         },
+    //         body: JSON.stringify(hearts)
+    //     }).then(res=>res.json()).then(res=>{
+    //         this.setState({
+    //             favorites: res
+    //         })
+    //     })
+    // }
 
-    fetchUserData=()=>{
-        db.collection("users").where("uid","==",this.state.userId).get().then(query=>{
-            const doc=query.docs[0];
-            this.setState({
-                userData: doc.data(),
-                isUserLoading: false
-            },()=>{
-                fetchLikedPosts(doc.data().likes);
-                fetchFavorite(doc.data().heart);
-            })
-        })
-    }
+    // fetchUserData=()=>{
+    //     db.collection("users").where("uid","==",this.state.userId).get().then(query=>{
+    //         const doc=query.docs[0];
+    //         this.setState({
+    //             userData: doc.data(),
+    //             isUserLoading: false
+    //         },()=>{
+    //             fetchLikedPosts(doc.data().likes);
+    //             fetchFavorite(doc.data().heart);
+    //         })
+    //     })
+    // }
 
-    fetchPosts=(userId)=>{
-        fetch(baseUrl+'fetchUserPosts',{
-            method: 'POST',
-            headers:{
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({id: userId})
-        }).then(res=>res.json()).then(res=>{
-            this.setState({
-                posts: res
-            })
-        })
-    }
+    // fetchPosts=(userId)=>{
+    //     fetch(baseUrl+'fetchUserPosts',{
+    //         method: 'POST',
+    //         headers:{
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify({id: userId})
+    //     }).then(res=>res.json()).then(res=>{
+    //         this.setState({
+    //             posts: res
+    //         })
+    //     })
+    // }
 
-    fetchComments=(userId)=>{
-        fetch(baseUrl+'commentedPosts',{
-            method: 'POST',
-            headers:{
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({id: userId})
-        }).then(res=>res.json()).then(res=>{
-            this.setState({
-                comments: res
-            })
-        })
-    }
+    // fetchComments=(userId)=>{
+    //     fetch(baseUrl+'commentedPosts',{
+    //         method: 'POST',
+    //         headers:{
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify({id: userId})
+    //     }).then(res=>res.json()).then(res=>{
+    //         this.setState({
+    //             comments: res
+    //         })
+    //     })
+    // }
 
     componentDidMount(){
-        fetchUserData();
+        // fetchUserData();
         fetchPosts(this.state.userId);
-        fetchComments(this.state.userId);
+        // fetchComments(this.state.userId);
     }
 
     render(){
