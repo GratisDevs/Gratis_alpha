@@ -1,0 +1,110 @@
+.filter_tab {
+    margin-left: 40vw;
+    margin-top: .1vh;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.filter_logo_anim:hover {
+    padding: 2px;
+    stroke: black;
+    stroke-width: 4px;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 13s linear forwards;
+} 
+
+@keyframes filterLinkFade {
+    from{
+        opacity:0;
+        transform: translateX(50px);
+    }
+    to{
+        opacity:1;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes dash {
+    from{
+        opacity: 0.8;
+    }
+    to {
+        opacity: 1;
+        stroke-dashoffset: 0;
+      }
+  }
+
+  /* ----------------------- Filter Drawer -----------------------*/
+
+
+.filter_links { 
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+    z-index: 3;
+}
+
+.filter_links li{
+    list-style: none;
+}
+
+.filter_links a{
+    color: rgb(226, 226, 226);
+    text-decoration: none;
+    letter-spacing: 3px ;
+    font-weight: 14px;
+    font-weight: bold;
+}
+
+
+body{
+    overflow-x: hidden;
+}
+
+.filter_links{
+    display: none;
+}
+
+.filter_links{
+    position: absolute;
+    right: 0px;
+    height: 94vh;
+    top: 6vh;
+    background-color: #212121;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+}
+
+.filter_links li{
+    opacity: 0;
+}
+
+.filter-active{
+    transform: translateX(0%);
+    
+}
+
+.filter-active .filter_links{
+    display: block;
+    z-index: 5;
+}
+
+
+/* -----------------Media Queries ----------------------------- */
+
+@media screen and (min-width: 1124px) and (max-width:1624px) {
+    .filter_tab{
+        margin-right: -5vw;
+    }
+}
+
+@media screen and (min-width: 1624px) {
+    .filter_tab{
+        margin-right: -9vw;
+    }
+}

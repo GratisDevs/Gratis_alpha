@@ -1,0 +1,125 @@
+:root {
+  --anim-duration: 1s;
+  --background: #212121;
+}
+
+.logo_container {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #212121;
+}
+
+#gratis_logo {
+  width: 250px;
+  height: 252px;
+  margin-top: -4vh;
+  margin-left: 2vw;
+  margin-bottom: -9vh;
+}
+
+#g_left_body {
+  animation: mirror var(--anim-duration) ease-out;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation-direction: alternate;
+}
+
+#g_dash {
+  animation: blink_logo var(--anim-duration) ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation-direction: alternate;
+}
+
+#gratis_r {
+  animation: bounce-l-r var(--anim-duration) ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation-direction: alternate;
+}
+
+#gratis_a {
+  animation: mirror var(--anim-duration) ease-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation-direction: alternate-reverse;
+}
+
+#t_exclamation {
+  animation: blink_logo var(--anim-duration) ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation-direction: alternate-reverse;
+}
+
+#t_dash {
+  animation: bounce-l-r var(--anim-duration) ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation-direction: alternate-reverse;
+}
+
+#gratis_s_up {
+  animation: shift var(--anim-duration) ease-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation-direction: alternate;
+}
+
+#gratis_s_down {
+  animation: shift var(--anim-duration) ease-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes shift {
+  from {
+    transform: translate(3px, 3px);
+  }
+  to {
+    transform: translate(-2px, -2px);
+  }
+}
+
+@keyframes bounce-l-r {
+  0% {
+    transform: rotate(-10deg);
+  }
+  25% {
+    transform: rotate(0deg) translateY(2px);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg) translateY(-2px);
+  }
+}
+
+@keyframes blink_logo {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes mirror {
+  from {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+  to {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}

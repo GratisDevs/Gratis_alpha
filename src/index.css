@@ -40,21 +40,32 @@
 .gra-chan_login {
 	height: 490px;
 	width: 450px;
+	background-image:url(../src/assets/images/login_img.svg) ;
+	background-repeat: no-repeat ;
 	border: none;
+	margin-top: 10vh;
+}
+
+hr.hr_white{
+	border: 1px solid white;
+	margin-top: -1vw;
+	margin-left: 10vw;
+	margin-right: -2vw;
 }
 
 .login_bg {
-	background-image: linear-gradient(to left, #2d2d38, #2d1e38);
+	background-image: linear-gradient(to left, #212121, #212121);
 	height: 105vh;
+	
 }
 
 .navbar_bg {
-	background-image: linear-gradient(to left, #2d2d38, #2d1e38);
+	background-image: linear-gradient(to left, #21212a, #212121);
 }
 
 @media (max-width: 768px) {
 	.login_bg {
-		background-image: linear-gradient(to left, #2d2d38, #2d1e38);
+		background-image: linear-gradient(to left, #21212a, #212121);
 		height: 105vh;
 	}
 }
@@ -121,6 +132,12 @@
 	#basic-navbar-nav{
 		display: none;
 	}
+	hr.hr_white{
+		border: 1px solid white;
+		margin-top: -1vw;
+		margin-left: 5vw;
+		margin-right: -2vw;
+	}
 }
 
 @media (min-width: 950px) {
@@ -128,6 +145,21 @@
 		margin: auto;
 		width: 60%;
 		margin-bottom: 15px;
+	}
+	hr.hr_white{
+		border: 1px solid white;
+		margin-top: -1vw;
+		margin-left: -2vw;
+		margin-right: -10vw;
+	}
+}
+
+@media (min-width: 1024px) {
+	hr.hr_white{
+		border: 1px solid white;
+		margin-top: -1vw;
+		margin-left: -2vw;
+		margin-right: -18vw;
 	}
 }
 

@@ -8,6 +8,8 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import swal from 'sweetalert';
+import LoginNavbarComponent from '../navbar_components/loginnavbarcomponent.js';
+
 
 class Register extends React.Component {
     constructor(props) {
@@ -45,12 +47,13 @@ class Register extends React.Component {
     render() {
         if (this.props.userName !== '') return <Redirect to="/" />;
         return (
+            <div>
+                <LoginNavbarComponent></LoginNavbarComponent>
             <Container fluid className="login_bg">
                 <Row className="justify-content-center">
                     <Col sm={11} className="mx-auto">
                         <Container flex>
-                            <br />
-                            <br />
+                        <hr className="hr_white"/>
                             <br />
                             <Row className="justify-content-center">
                                 <Col md={6}>
@@ -135,6 +138,7 @@ class Register extends React.Component {
                     </Col>
                 </Row>
             </Container>
+            </div>
         );
     }
 }

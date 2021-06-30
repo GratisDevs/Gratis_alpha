@@ -49,3 +49,6 @@
 }
 
 
+.overlay_layer{
+  z-index: 0;
+}
