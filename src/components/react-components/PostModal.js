@@ -17,7 +17,7 @@ class PostModal extends React.Component{
             shareImage: '',
             shareVideo: '',
             assetArea: '',
-            subGratis: 'Cricket',
+            subGratis: 'Computer Science',
             isLoading: false
             
         };

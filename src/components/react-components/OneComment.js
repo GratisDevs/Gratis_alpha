@@ -31,6 +31,7 @@ function OneComment(props){
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
+    const date=new Date(props.comment.dateOfComment);
 
     return(
         <>
@@ -38,7 +39,9 @@ function OneComment(props){
                     <img src={props.comment.userProfile} alt="" style={{width: '45px', height: '45px', borderRadius: '50%'}} />
                     <div style={{display: 'flex', flexDirection: 'column', 
                     textAlign: 'left', width: '-webkit-fill-available',marginLeft: '5px'}}>
-                        <span style={{color: 'rgba(0,0,0,0.6)', fontWeight: '700'}}>{props.comment.commentAuthor}</span>
+                        <div style={{display: 'flex'}}><span style={{color: 'rgba(0,0,0,0.6)', fontWeight: '700'}}>{props.comment.commentAuthor}</span>
+                        <span style={{marginLeft: '8px', color: 'rgba(0,0,0,0.5)'}}>{date.getDate()+"-"+date.getMonth()+"-"+date.getYear()} 
+                        at {date.getHours()+":"+date.getMinutes()}</span></div>
                         <p style={{marginLeft: '0px',fontStyle: 'Source Sans Pro, sans-serif'}}>{props.comment.comment}</p>
                         <span style={{color: 'blue', fontWeight: 'bold', cursor: 'default'}} 
                         onClick={()=>props.setSelectedComment(props.comment._id)}>View Reply</span>

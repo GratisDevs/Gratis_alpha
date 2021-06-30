@@ -77,7 +77,7 @@ class PostPage extends React.Component{
       }
 
     render(){
-        const dateTime='';
+        var dateTime='';
         if(this.state.post!==null){
             dateTime=new Date(this.state.post.dateTime);
         }
@@ -109,9 +109,6 @@ class PostPage extends React.Component{
                                 <div class="title-div">
                                     <h5 class="title-style title-big-screen">{this.state.post.title}</h5>
                                 </div>
-                                <div style={{maxWidth: 'fit-content'}}>
-                                    {this.props.uid===this.state.post.uid?<i class="fa fa-trash" style={{fontSize: 'larger'}} onClick={this.toggleDeleteModal}></i>:<></>}
-                                </div>
                                </a>
                                <hr />
                                <div class="title-small-screen">
@@ -134,6 +131,7 @@ class PostPage extends React.Component{
                                 </div>
                                 <style.SocialCount>
                                 <SocialCount postId={this.state.post._id} likes={this.state.post.likes} uid={this.props.uid} />
+                                <li>{this.props.uid===this.state.post.uid?<span style={{color: 'red', fontWeight: 'bold', fontSize: 'initial'}} onClick={this.toggleDeleteModal}>Delete</span>:<></>}</li>
                                 </style.SocialCount>
                                 <style.SocialActions>
                                     <HeartIcon postId={this.state.post._id} uid={this.props.uid} />

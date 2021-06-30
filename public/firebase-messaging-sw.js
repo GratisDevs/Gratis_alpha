@@ -15,24 +15,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
-/*messaging.setBackgroundMessageHandler(function(payload) {
-  fetch('https://firestore.googleapis.com/v1beta1/projects/gratis-3ce5a/databases/(default)/documents/users',{
-    method: 'POST',
-    body: {
-      "fields": {
-        "Name": {
-          "stringValue": "Freshpak Rooibos Tea 80Pk"
-        },
-        "Description": {
-          "stringValue": "Enjoy a cup of Freshpak Rooibos your no 1 Rooibos tea."
-        }
-      }
-    }
-  }).then(res=>res.json()).catch(err=>{console.log(err)});
-  
-  return self.registration.showNotification("This is title",
-    {});
-});*/
 const messagechannel=new MessageChannel();
 
 messaging.setBackgroundMessageHandler(function(payload) {

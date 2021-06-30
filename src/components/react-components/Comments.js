@@ -16,7 +16,7 @@ import './Comments.css';
 
 const useStyles = theme=>({
     paper:{
-        height: '200px',
+        height: '300px',
         overflowX: 'hidden'
     }
   });
@@ -113,7 +113,7 @@ class Comments extends React.Component{
                     <ModalButton class="primary" style={{borderRadius: '20px'}} onClick={this.deleteComment}>Ok</ModalButton>
                 </Modal.Footer>
             </Modal>
-            <TransitionGroup className="comments" style={{overflow: 'hidden'}}>
+            <TransitionGroup className="comments" >
             {this.props.comments.map(comment=>(
                 <CSSTransition
                 key={comment._id}
@@ -151,7 +151,7 @@ class Comments extends React.Component{
         />
         {!this.state.isLoading?(<Button variant="contained" color="primary" 
         style={{maxHeight: '45px', fontWeight: '700', borderRadius: '30px'}} onClick={this.submitReply}>
-        Comment
+        Reply
       </Button>):<CircularProgress />}
       </div>
       <div className="col-md-1"></div>
@@ -159,13 +159,15 @@ class Comments extends React.Component{
                 <hr />
                 {
                     this.state.selectedCommentId&&this.props.comments.filter(comment=>comment._id===this.state.selectedCommentId)[0].replies.map(reply=>{
+                        const date=new Date(reply.dateOfReply);
                         return(
                             <>
                             <div style={{display: 'flex', padding: '5px 15px'}}>
                     <img src={reply.authorProfile} alt="" style={{width: '45px', height: '45px', borderRadius: '50%'}} />
                     <div style={{display: 'flex', flexDirection: 'column', 
                     textAlign: 'left', width: '-webkit-fill-available',marginLeft: '5px'}}>
-                        <span style={{color: 'rgba(0,0,0,0.6)', fontWeight: '700'}}>{reply.replyAuthor}</span>
+                        <div style={{display: 'flex'}}><span style={{color: 'rgba(0,0,0,0.6)', fontWeight: '700'}}>{reply.replyAuthor}</span>
+                        <span style={{marginLeft: '8px',color: 'rgba(0,0,0,0.5)'}}>{date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear()} at {date.getHours()+":"+date.getMinutes()}</span></div>
                         <p style={{marginLeft: '0px',fontStyle: 'Source Sans Pro, sans-serif'}}>{reply.reply}</p>
                         {this.props.author===reply.replyAuthor?<span style={{color: 'red', fontWeight: 'bold'}} onClick={()=>this.deleteReply(reply._id)}>Delete</span>:<span></span>}
                     </div>

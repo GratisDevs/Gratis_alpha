@@ -99,6 +99,9 @@ function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
 </Navbar>
 <Drawer anchor={'right'} open={open} onClose={()=>setOpen(false)} id="drawer" classes={{paper: classes.paper}}>
                 {list()}
+                <Form inline>
+	  {isLoggedIn&&<Button variant="outline-success" style={{margin: '5px', color: 'navajowhite', fontWeight: '700'}} onClick={logout}>Logout</Button>}
+    </Form>
             </Drawer>
             </>
 			
