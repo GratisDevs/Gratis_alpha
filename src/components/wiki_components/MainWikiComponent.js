@@ -1,5 +1,5 @@
 import React from 'react';
-import NavbarMainComponent from '../navbar_components/navbarhomecomponent';
+import NavbarMainComponent from '../navbar_components/navbarmaincomponent';
 import './Wiki.css';
 
 function MainWikiComponent({isLoggedIn,logout, fetchPost}){

@@ -5,7 +5,6 @@ import Main from './Main.js';
 import TopMobile from './TopMobile';
 import { connect } from 'react-redux';
 import {changeProfile} from '../../actions/changeProfile';
-import NavbarMainComponent from '../navbar_components/navbarhomecomponent';
 // import Recommendation from './recommendation.js';
 // import { fetchPosts } from '../../actions/PostHandle.js';
 // import { connect } from 'react-redux';

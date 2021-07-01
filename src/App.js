@@ -85,7 +85,7 @@ class App extends React.Component {
 		
 		return (
 			<>
-				{this.props.uid&&<NavbarMainComponent isLoggedIn={true} logout={this.logout} />}
+				{this.props.isLoggedIn&&<NavbarMainComponent logout={this.logout} fetchPost={this.fetchPosts} />}
 				<Switch>
 					<Route exact path="/" render={(props)=><Home {...props} 
 					isLoggedIn={this.props.isLoggedIn} 
@@ -100,7 +100,7 @@ class App extends React.Component {
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
 					<Route exact path="/profile/:id" render={(props)=><ProfilePage {...props} uid={this.props.uid} userName={this.props.userName} />} />
-					<Route exact path="/wiki" component={MainWikiComponent} fetchPosts={this.fetchPosts} logout={this.logout} isLoggedIn={this.props.isLoggedIn}/>
+					<Route exact path="/wiki" render={(props)=><MainWikiComponent {...props} fetchPosts={this.fetchPosts} logout={this.logout} isLoggedIn={this.props.isLoggedIn} />} />
 					<Redirect to="/" />
 				</Switch>
 			</>

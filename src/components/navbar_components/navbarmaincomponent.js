@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme)=>({
   }
 }));
 
-function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
+function NavbarMainComponent({logout, fetchPost}) {
   const classes = useStyles();
   const [open, setOpen]=useState(false);
   const options = [
@@ -93,14 +93,14 @@ function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
         >Profile</Link>
     </Nav>
     <Form inline>
-	  {isLoggedIn&&<Button variant="outline-success" style={{margin: '5px', color: 'navajowhite', fontWeight: '700'}} onClick={logout}>Logout</Button>}
+	  <Button variant="outline-success" style={{margin: '5px', color: 'navajowhite', fontWeight: '700'}} onClick={logout}>Logout</Button>
     </Form>
   </Navbar.Collapse>
 </Navbar>
 <Drawer anchor={'right'} open={open} onClose={()=>setOpen(false)} id="drawer" classes={{paper: classes.paper}}>
                 {list()}
                 <Form inline style={{justifyContent: 'center'}}>
-	  {isLoggedIn&&<Button variant="outline-success" style={{margin: '5px', color: 'green', fontWeight: '700'}} onClick={logout}>Logout</Button>}
+	  <Button variant="outline-success" style={{margin: '5px', color: 'green', fontWeight: '700'}} onClick={logout}>Logout</Button>
     </Form>
             </Drawer>
             </>
