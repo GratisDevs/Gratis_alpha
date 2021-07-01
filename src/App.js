@@ -12,6 +12,7 @@ import { fetchPosts } from './actions/PostHandle.js';
 import PostPage from './components/react-components/PostPage.js';
 import ProfilePage from './components/react-components/ProfilePage.js';
 import NavbarMainComponent from './components/navbar_components/navbarmaincomponent.js';
+import MainWikiComponent from './components/wiki_components/MainWikiComponent.js';
 
 
 class App extends React.Component {
@@ -99,6 +100,7 @@ class App extends React.Component {
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
 					<Route exact path="/profile/:id" render={(props)=><ProfilePage {...props} uid={this.props.uid} userName={this.props.userName} />} />
+					<Route exact path="/wiki" component={MainWikiComponent} fetchPosts={this.fetchPosts} logout={this.logout} isLoggedIn={this.props.isLoggedIn}/>
 					<Redirect to="/" />
 				</Switch>
 			</>

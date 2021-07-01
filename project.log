@@ -82,3 +82,6 @@
 
 [29-05-2021 12:10] - Vipul
 1. @chi-afk could you please look into the styling of login page. It looks out of shape when screen is shrinked to around 700-800px. 
+
+package.json changed
+"homepage": "http://gratis-ba8ad.web.app", line 6

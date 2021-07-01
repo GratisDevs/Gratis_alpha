@@ -68,8 +68,7 @@ class Register extends React.Component {
                     <Row className="justify-content-center">
                         <Col sm={11} className="mx-auto">
                             <Container flex="true">
-                                <br />
-                                <br />
+                            <hr className="hr_white"/>
                                 <br />
                                 <Row className="justify-content-center">
                                     <Col md={6}>

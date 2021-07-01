@@ -1,8 +1,9 @@
+
 {
   "name": "gratis",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://gratis-ba8ad.web.app",
+  "homepage": "https://gratisdevs.github.io/",
   "dependencies": {
     "@google-cloud/storage": "^5.8.5",
     "@material-ui/core": "^4.11.4",
@@ -43,7 +44,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -70,5 +73,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/GratisDevs/Gratis_alpha/issues"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }

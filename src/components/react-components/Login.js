@@ -77,7 +77,7 @@ class Login extends React.Component {
 
 	render() {
 		if (this.props.userName !== ''&&this.props.location.state!==undefined) return <Redirect to={this.props.location.state.pathname} />;
-		else if(this.props.userName !== ''&&this.props.location.pathname=='/login') return <Redirect to={'/'} />
+		else if(this.props.userName !== ''&&this.props.location.pathname==='/login') return <Redirect to={'/'} />
 		return (
 			<>
 			<LoginNavbarComponent />
@@ -86,6 +86,7 @@ class Login extends React.Component {
 					<Row className="justify-content-center">
 						<Col sm={11} className="mx-auto">
 							<Container flex="true">
+							<hr className="hr_white"/>
 								<br />
 								<Row className="justify-content-center">
 									<Col md={6}>

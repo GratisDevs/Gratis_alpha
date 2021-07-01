@@ -141,20 +141,6 @@ class ProfilePage extends React.Component{
         })
     }
 
-    fetchPosts=(userId)=>{
-        fetch(baseUrl+'fetchUserPosts',{
-            method: 'POST',
-            headers:{
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({id: userId})
-        }).then(res=>res.json()).then(res=>{
-            this.setState({
-                posts: res
-            })
-        })
-    }
-
     fetchComments=(userId)=>{
         fetch(baseUrl+'commentedPosts',{
             method: 'POST',
