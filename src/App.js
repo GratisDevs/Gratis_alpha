@@ -98,7 +98,7 @@ class App extends React.Component {
 					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} userName={this.props.userName} logout={this.logout} />} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
-					<Route exact path="/wiki" component={MainWikiComponent} />
+					<Route exact path="/wiki" component={MainWikiComponent} fetchPosts={this.fetchPosts} logout={this.logout} isLoggedIn={this.props.isLoggedIn}/>
 					<Route exact path="/profile" component={ProfilePage} />
 					<Redirect to="/" />
 				</Switch>

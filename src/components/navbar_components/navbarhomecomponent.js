@@ -83,7 +83,7 @@ function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
   return(
     <nav className="navbar-all">
         <div className="logo">
-            <h3><Link to="/" style={{ textDecoration: 'none', }} className="gra-text-logo">GratiS'</Link></h3>
+            <h3><Link to="/" style={{ textDecoration: 'none', }} ><div className="gra-text-logo">GratiS'</div></Link></h3>
         </div>
         <div className="filter_tab" onClick={filterPosts}>
             <svg className="filter-logo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
