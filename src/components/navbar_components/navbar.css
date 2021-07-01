@@ -121,3 +121,17 @@ nav{
         transform: translateX(0px);
     }
 }
+
+/* ------------------- Navbar text Logo ------------------------- */
+
+.gra-text-logo{
+    color: beige;
+    transition: all .2s ease-in-out;
+}
+
+.gra-text-logo:hover{
+    color: burlywood;
+    transform: scale(2.1);
+}
+
+
