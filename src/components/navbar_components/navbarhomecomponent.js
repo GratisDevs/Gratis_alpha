@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import './navbar.css';
 import './filter.css';
 
@@ -96,10 +97,13 @@ function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
         </div>
         <ul className="nav-links">
             <li>
-                <a href="#">Home</a>
+                <Link to="/home">Home</Link>
             </li>
             <li>
-                <a href="#">Wiki</a>
+                <Link to="/wiki">Wiki</Link>
+            </li>
+            <li>
+                <Link to="/profile">Profile</Link>
             </li>
             <li onClick={logout}>
                 <a href="#">Logout</a>
@@ -117,17 +121,3 @@ function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
 export default NavbarMainComponent;
 
 
-// function InnerDrawercomponent({name,option,drawerStatus}){
-//     return(
-//         <div>
-//             <h3>
-//                 {name}
-//             </h3>
-//             {
-                
-//                 drawerStatus ? option.map((o)=><div >{o.value}</div>) : <div>{drawerStatus}</div>
-//                 // onClick={()=>fetchPost(elem.name)} 
-//             }
-//         </div>
-//     );
-// }

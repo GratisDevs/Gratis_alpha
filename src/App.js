@@ -11,6 +11,7 @@ import Home from './components/react-components/Home.js';
 import { fetchPosts } from './actions/PostHandle.js';
 import PostPage from './components/react-components/PostPage.js';
 import ProfilePage from './components/react-components/ProfilePage.js';
+import MainWikiComponent from './components/wiki_components/MainWikiComponent.js';
 
 
 class App extends React.Component {
@@ -97,6 +98,7 @@ class App extends React.Component {
 					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} userName={this.props.userName} logout={this.logout} />} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
+					<Route exact path="/wiki" component={MainWikiComponent} />
 					<Route exact path="/profile" component={ProfilePage} />
 					<Redirect to="/" />
 				</Switch>
