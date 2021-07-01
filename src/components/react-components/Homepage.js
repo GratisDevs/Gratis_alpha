@@ -62,7 +62,6 @@ class Homepage extends React.Component {
 	render() {
 		return (
 			<>
-			<NavbarMainComponent isLoggedIn={true} logout={this.props.logout} fetchPost={this.props.fetchPosts} />
 			<div id="back-to-top-anchor"></div>
 			<div>
 				
@@ -73,9 +72,9 @@ class Homepage extends React.Component {
 					
 					<div className="row m-0">
 						<div class="col-md-2" />
-						<TopMobile userName={this.props.userName} photoURL={this.props.photoURL} handleChange={this.handleChange} />
+						<TopMobile userName={this.props.userName} photoURL={this.props.photoURL} handleChange={this.handleChange} uid={this.props.uid} />
 						<Main userName={this.props.userName} fetchPosts={this.props.fetchPosts} />
-						<Leftside userName={this.props.userName} photoURL={this.props.photoURL} handleChange={this.handleChange} />
+						<Leftside userName={this.props.userName} photoURL={this.props.photoURL} handleChange={this.handleChange} uid={this.props.uid} />
 						<div class="col-md-1" />
 					</div>
 				</div>

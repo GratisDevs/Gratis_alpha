@@ -11,6 +11,7 @@ import Home from './components/react-components/Home.js';
 import { fetchPosts } from './actions/PostHandle.js';
 import PostPage from './components/react-components/PostPage.js';
 import ProfilePage from './components/react-components/ProfilePage.js';
+import NavbarMainComponent from './components/navbar_components/navbarmaincomponent.js';
 
 
 class App extends React.Component {
@@ -83,7 +84,7 @@ class App extends React.Component {
 		
 		return (
 			<>
-				
+				{this.props.uid&&<NavbarMainComponent isLoggedIn={true} logout={this.logout} />}
 				<Switch>
 					<Route exact path="/" render={(props)=><Home {...props} 
 					isLoggedIn={this.props.isLoggedIn} 
@@ -94,10 +95,10 @@ class App extends React.Component {
 					uid={this.props.uid} />} 
 					 />
 					<Route exact path="/login" component={Login} />
-					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} userName={this.props.userName} logout={this.logout} />} />
+					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} userName={this.props.userName} />} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
-					<Route exact path="/profile" component={ProfilePage} />
+					<Route exact path="/profile/:id" render={(props)=><ProfilePage {...props} uid={this.props.uid} userName={this.props.userName} />} />
 					<Redirect to="/" />
 				</Switch>
 			</>

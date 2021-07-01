@@ -76,8 +76,8 @@ class PostActivity extends React.Component{
             },
             body: JSON.stringify({id: this.props.postId,comment: props,
                 commentAuthor: this.props.userName, uid: this.props.uid,
-                userProfile: this.props.userProfile,
-                dateOfComment: today})
+                
+                dateOfComment: today.toISOString()})
         }).then(res=>res.json()).catch(err=>alert(err));
     }
     render(){
@@ -87,7 +87,7 @@ class PostActivity extends React.Component{
             <div className="row">
                 <div className="col-md-1"></div>
                 <div className="col-md-10" style={{display: 'flex', justifyContent: 'center', padding: '3px 15px'}}>
-                    <Comment userProfile={this.props.userProfile} 
+                    <Comment uid={this.props.uid} 
                     addComment={this.addComment} isLoading={this.state.isLoading} />
                 </div>
                 <div className="col-md-1"></div>

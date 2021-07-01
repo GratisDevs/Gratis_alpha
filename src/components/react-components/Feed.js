@@ -10,6 +10,7 @@ import {deletePostFromStore} from '../../actions/PostHandle';
 import HeartIcon from './HeartIcon';
 import './img.css';
 import { connect } from 'react-redux';
+import AuthorProfile from './AuthorProfile';
 
 class Feed extends React.Component{
     constructor(props){
@@ -48,6 +49,12 @@ class Feed extends React.Component{
       }
 
       render(){
+        if(this.props.posts.length===0){
+          return(
+            <h6>No posts to show</h6>
+          );
+        }
+        else
             return(
                 this.props.posts.map((post)=>{
                 var date=new Date(post.dateTime);
@@ -59,9 +66,9 @@ class Feed extends React.Component{
                 <style.Article>
                 <style.SharedActor>
                   <a>
-                    <UserProfile userProfile={post.userProfile} />
+                    <AuthorProfile uid={post.uid} />
                     <div style={{display: 'flex',flexDirection: 'column'}}>
-                    <div><h6 style={{marginTop: '14px', textAlign: 'left'}}className="title-style">{post.author}</h6>
+                    <div><Link to={`/profile/${post.uid}`} style={{textDecoration: 'none', color: 'black'}}><h6 style={{marginTop: '14px', textAlign: 'left'}}className="title-style">{post.author}</h6></Link>
                     {post.uid===this.props.uid?<i style={{position: 'absolute',right: '10px', top: '27px',color: 'rgba(0,0,0,0.7)'}} 
                     class="fa fa-trash" aria-hidden="true" onClick={()=>this.toggleDeleteModal(post._id)}></i>:<div></div>}</div>
                   </div>

@@ -2,7 +2,7 @@ import firebase from '../components/data_components/firebase';
 
 const db=firebase.firestore();
 
-export const changeProfile=(image,uid)=>(dispatch)=>{
+export const changeProfile=(image, uid)=>(dispatch)=>{
     var data = new FormData();
 
     data.append('image',image);

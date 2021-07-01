@@ -75,8 +75,8 @@ class Comments extends React.Component{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({_id: this.props.postId, commentId: this.state.selectedCommentId,
-            reply: this.state.reply, replyAuthor: this.props.author, authorProfile: this.props.userProfile,
-            dateOfReply: new Date().toISOString()})
+            reply: this.state.reply, replyAuthor: this.props.author,
+            dateOfReply: new Date().toISOString(), uid: this.props.uid})
         }).then(res=>res.json()).then(res=>{
             this.setState({
                 isLoading: false
@@ -87,7 +87,7 @@ class Comments extends React.Component{
 
     toggleDrawer=()=>{
         this.setState({
-            selectedComment: null,
+            selectedCommentId: '',
             replyDrawer: false
         })
     }

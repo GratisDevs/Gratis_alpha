@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import AuthorProfile from './AuthorProfile';
 
 class Comment extends React.Component{
     constructor(props){
@@ -21,7 +22,7 @@ class Comment extends React.Component{
         return(
             <>
 
-            <img src={this.props.userProfile} style={{width: '45px', height: '45px', borderRadius: '50%'}} alt="" />
+            <AuthorProfile uid={this.props.uid} />
             <TextField
             style={{width: '45%', margin: '0 10px', backgroundColor: '#fff'}}
             id="filled-basic"
