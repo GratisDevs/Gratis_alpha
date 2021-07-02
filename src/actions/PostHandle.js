@@ -1,6 +1,8 @@
-const baseURL='https://snaptok.herokuapp.com/'
+import firebase from "../components/data_components/firebase";
 
-export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,postDescription,postSubGratis,postImage,postVideo,changeLoading)=>(dispatch)=>{
+const baseURL='http://snaptok.herokuapp.com/'
+
+export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,postDescription,postSubGratis,postImage,postVideo,changeLoading)=>async(dispatch)=>{
 
     var data=new FormData();
     var today=new Date();
@@ -15,9 +17,12 @@ export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,
     data.append('dateTime',today.toISOString());
     data.append('likes',0);
     data.append('dislikes',0);
-
+    const idToken=await firebase.auth().currentUser.getIdToken();
     fetch(baseURL+'post',{
         method: 'POST',
+        headers:{
+          "FIREBASE_AUTH_TOKEN": idToken
+        },
         body: data
     }).then(response => {
         if (response.ok) {
@@ -36,12 +41,14 @@ export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,
 
 }
 
-export const fetchPosts=(category)=>(dispatch)=>{
+export const fetchPosts=(category)=>async(dispatch)=>{
   dispatch(changePostsLoading())
+  const idToken=await firebase.auth().currentUser.getIdToken();
   fetch(baseURL+'fetchPosts',{
     method: 'POST',
     headers:{
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "FIREBASE_AUTH_TOKEN": idToken
     },
     body: JSON.stringify({category: category})
   }).then(response => {

@@ -19,6 +19,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import firebase from '../data_components/firebase'
 
 class PostPage extends React.Component{
 
@@ -33,9 +34,14 @@ class PostPage extends React.Component{
         }
     }
 
-    componentDidMount(){
+    async componentDidMount(){
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch('https://snaptok.herokuapp.com/fetchPost/'+this.props.match.params.id,{
-            method: 'GET'
+            method: 'GET',
+            headers:{
+                "FIREBASE_AUTH_TOKEN": idToken
+            }
         }).then(res=>res.json()).then(res=>{
             if(res.message==='Failure')
                 this.setState({snackbar: true})
@@ -61,11 +67,14 @@ class PostPage extends React.Component{
             });
       }
 
-    deletePost=()=>{
+    deletePost=async()=>{
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch('https://snaptok.herokuapp.com/deletePost',{
             method: 'POST',
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({id: this.props.match.params.id}),
         }).then(res=>this.toggleDeleteModal()).catch(err=>{console.log(err);})

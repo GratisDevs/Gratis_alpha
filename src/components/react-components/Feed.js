@@ -11,7 +11,7 @@ import HeartIcon from './HeartIcon';
 import './img.css';
 import { connect } from 'react-redux';
 import AuthorProfile from './AuthorProfile';
-
+import firebase from '../data_components/firebase';
 class Feed extends React.Component{
     constructor(props){
         super(props);
@@ -28,12 +28,14 @@ class Feed extends React.Component{
             });
       }
     
-      deletePost=()=>{
-        
+      deletePost=async()=>{
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch('https://snaptok.herokuapp.com/deletePost',{
             method: 'POST',
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({id: this.state.postToDelete}),
         }).then(res=>{alert("Post deleted successfully!");this.props.dispatch(deletePostFromStore(this.state.postToDelete));

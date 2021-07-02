@@ -1,6 +1,7 @@
 import React from 'react';
 import Comment from './Comment';
 import Comments from './Comments';
+import firebase from '../data_components/firebase'
 
 class PostActivity extends React.Component{
     constructor(props){
@@ -57,22 +58,27 @@ class PostActivity extends React.Component{
           })
     }
 
-    deleteComment=(id)=>{
+    deleteComment=async(id)=>{
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch('https://snaptok.herokuapp.com/deleteComment',{
             method: 'POST',
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({postId: this.props.postId, commentId: id})
         }).then(res=>res.json()).catch(err=>alert("Your comment could not be deleted!"));
     }
-    addComment=(props)=>{
+    addComment=async(props)=>{
         var today=new Date();
+        const idToken=await firebase.auth().currentUser.getIdToken();
         this.setState({isLoading: true});
         fetch('https://snaptok.herokuapp.com/postComment',{
             method: 'POST',
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({id: this.props.postId,comment: props,
                 commentAuthor: this.props.userName, uid: this.props.uid,

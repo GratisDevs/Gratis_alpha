@@ -8,6 +8,7 @@ import OneComment from './OneComment';
 import  Drawer from '@material-ui/core/Drawer';
 import { withStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
+import firebase from '../data_components/firebase'
 import {
     CSSTransition,
     TransitionGroup,
@@ -52,11 +53,14 @@ class Comments extends React.Component{
         })
     }
 
-    deleteReply=(id)=>{
+    deleteReply=async(id)=>{
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch('http://snaptok.herokuapp.com/deleteReply',{
             method: 'POST',
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({_id: this.props.postId, commentId: this.state.selectedCommentId,
             replyId: id})
@@ -65,14 +69,17 @@ class Comments extends React.Component{
         }).catch(err=>console.log(err));
     }
 
-    submitReply=()=>{
+    submitReply=async()=>{
         this.setState({
             isLoading: true
         })
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch('http://snaptok.herokuapp.com/postReply',{
             method: 'POST',
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({_id: this.props.postId, commentId: this.state.selectedCommentId,
             reply: this.state.reply, replyAuthor: this.props.author,

@@ -87,11 +87,14 @@ class ProfilePage extends React.Component{
         })
     }
 
-    fetchPosts=(userId)=>{
+    fetchPosts=async(userId)=>{
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch(baseUrl+'fetchUserPosts',{
             method: 'POST',
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({id: userId})
         }).then(res=>res.json()).then(res=>{
@@ -113,11 +116,14 @@ class ProfilePage extends React.Component{
 		});
     }
 
-    fetchLikedPosts=(likes)=>{
+    fetchLikedPosts=async(likes)=>{
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch(baseUrl+'likedPosts',{
             method: 'POST',
             headers:{
-                "Content-Type" : "application/json"
+                "Content-Type" : "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({likes: likes})
         }).then(res=>res.json()).then(res=>{
@@ -127,11 +133,14 @@ class ProfilePage extends React.Component{
         })
     }
 
-    fetchFavorite=(hearts)=>{
+    fetchFavorite=async(hearts)=>{
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch(baseUrl+'favoritePosts',{
             method: 'POST',
             headers:{
-                "Content-Type" : "application/json"
+                "Content-Type" : "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({hearts: hearts})
         }).then(res=>res.json()).then(res=>{
@@ -155,11 +164,14 @@ class ProfilePage extends React.Component{
         })
     }
 
-    fetchComments=(userId)=>{
+    fetchComments=async(userId)=>{
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch(baseUrl+'commentedPosts',{
             method: 'POST',
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({id: userId})
         }).then(res=>res.json()).then(res=>this.setState({comments: res})).catch(err=>console.log(err));

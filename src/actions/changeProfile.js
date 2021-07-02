@@ -2,12 +2,17 @@ import firebase from '../components/data_components/firebase';
 
 const db=firebase.firestore();
 
-export const changeProfile=(image, uid)=>(dispatch)=>{
+export const changeProfile=(image, uid)=>async(dispatch)=>{
     var data = new FormData();
+    const idToken=await firebase.auth().currentUser.getIdToken();
+
 
     data.append('image',image);
     fetch('https://snaptok.herokuapp.com/changeProfile',{
         method: 'POST',
+        headers:{
+          "FIREBASE_AUTH_TOKEN": idToken
+        },
         body: data
     }).then(response => {
         if (response.ok) {
