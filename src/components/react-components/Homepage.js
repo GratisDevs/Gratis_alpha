@@ -66,7 +66,7 @@ class Homepage extends React.Component {
 				
 				<div
 					className="container-fluid m-0"
-					style={{ paddingTop: '100px', paddingLeft: '0', paddingRight: '0', overflow: 'hidden' }}
+					style={{ paddingTop: '60px', paddingLeft: '0', paddingRight: '0', overflow: 'hidden' }}
 				>
 					
 					<div className="row m-0">

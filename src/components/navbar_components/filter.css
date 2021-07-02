@@ -52,9 +52,6 @@
 
 .filter_links li{
     list-style: none;
-}
-
-.filter_links a{
     color: rgb(226, 226, 226);
     text-decoration: none;
     letter-spacing: 3px ;

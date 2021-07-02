@@ -215,7 +215,7 @@ class ProfilePage extends React.Component{
             {this.props.uid?(
             
             <div className="container-fluid">
-                <div className="row" style={{marginTop: '100px'}}>
+                <div className="row" style={{marginTop: '60px'}}>
                 <div className="col-md-2"></div>
                 <div className="col-md-8 col-12">
 

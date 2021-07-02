@@ -42,7 +42,7 @@ class UserSearch extends React.Component{
     render(){
         return(
             <div className="container-fluid">
-            <div className="row" style={{marginTop: '100px'}}>
+            <div className="row" style={{marginTop: '60px'}}>
                 <div className="col-md-3"></div>
                 <div className="col-md-6">
                     <h4 style={{marginBottom: '10px'}}>Search For Users</h4>

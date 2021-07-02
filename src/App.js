@@ -11,7 +11,7 @@ import Home from './components/react-components/Home.js';
 import { fetchPosts } from './actions/PostHandle.js';
 import PostPage from './components/react-components/PostPage.js';
 import ProfilePage from './components/react-components/ProfilePage.js';
-import NavbarMainComponent from './components/navbar_components/navbarmaincomponent.js';
+import NavbarMainComponent from './components/navbar_components/navbarhomecomponent.js';
 import MainWikiComponent from './components/wiki_components/MainWikiComponent.js';
 import UserSearch from './components/react-components/UserSearch.js';
 
