@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import firebase, { db } from '../data_components/firebase';
+import firebase, { auth, db } from '../data_components/firebase';
 import {changeProfile} from '../../actions/changeProfile';
 import { withStyles } from '@material-ui/styles';
 import style from './LeftsideStyle';
@@ -77,7 +77,7 @@ class ProfilePage extends React.Component{
             value: 0,
             setBioUpdate: false,
             bio: '',
-            isOnline: '',
+            isOnline: ''
         }
     }
 
@@ -134,8 +134,8 @@ class ProfilePage extends React.Component{
     }
 
     fetchFavorite=async(hearts)=>{
+        
         const idToken=await firebase.auth().currentUser.getIdToken();
-
         fetch(baseUrl+'favoritePosts',{
             method: 'POST',
             headers:{
@@ -165,17 +165,20 @@ class ProfilePage extends React.Component{
     }
 
     fetchComments=async(userId)=>{
-        const idToken=await firebase.auth().currentUser.getIdToken();
+        
+        var idToken=await firebase.auth().currentUser.getIdToken();
+            fetch(baseUrl+'commentedPosts',{
+                method: 'POST',
+                headers:{
+                    "Content-Type": "application/json",
+                    "FIREBASE_AUTH_TOKEN": idToken
+                },
+                body: JSON.stringify({id: userId})
+            }).then(res=>res.json()).then(res=>this.setState({comments: res})).catch(err=>console.log(err));
+    
+        
 
-        fetch(baseUrl+'commentedPosts',{
-            method: 'POST',
-            headers:{
-                "Content-Type": "application/json",
-                "FIREBASE_AUTH_TOKEN": idToken
-            },
-            body: JSON.stringify({id: userId})
-        }).then(res=>res.json()).then(res=>this.setState({comments: res})).catch(err=>console.log(err));
-    }
+            }
 
     handleChange=(ev)=>{
 		
@@ -191,25 +194,28 @@ class ProfilePage extends React.Component{
 	}
 
     componentDidMount(){
-        this.fetchUserData();
-        this.fetchPosts(this.state.userId);
-        this.fetchComments(this.state.userId);
+        auth.onAuthStateChanged((user)=>{
+            this.fetchUserData();
+            this.fetchPosts(this.state.userId);
+            this.fetchComments(this.state.userId);
+        })
         var userStatusDatabaseRef = firebase.database().ref('/status/' + this.state.userId);
-        userStatusDatabaseRef.on('child_changed',(snapshot)=>{
-            userStatusDatabaseRef.once('value',(data)=>{
-                var obj=data.val();
-                
-                if(obj.state==='online')
-                    this.setState({
-                        isOnline: 'online'
-                    })
-            else
-                {
-                    var time=new Date(obj.last_changed);
-                    this.setState({
-                    isOnline: "Last seen:"+time.getDate()+"-"+time.getMonth()+"-"+time.getFullYear()+" at "+time.getHours()+":"+time.getMinutes(),
+        userStatusDatabaseRef.once('value',(snapshot)=>{
+            
+            if(snapshot.val().state==='online')
+                this.setState({
+                    isOnline: 'online'
                 })
-            }
+        })
+        userStatusDatabaseRef.on('child_changed',(snapshot)=>{
+            
+            if(snapshot.val()=='online')
+            this.setState({
+                isOnline: 'online'
+            })
+            else if(snapshot.val()=='offline')
+            this.setState({
+                isOnline: ''
             })
         })
     }
@@ -225,6 +231,9 @@ class ProfilePage extends React.Component{
         return(
             <>
             {this.props.uid?(
+                
+                
+                
             
             <div className="container-fluid">
                 <div className="row" style={{marginTop: '60px'}}>
@@ -238,6 +247,11 @@ class ProfilePage extends React.Component{
                         {this.state.userId===this.props.uid?<style.Photo url={this.props.photoURL} />:<style.Photo url={this.state.userData.photoURL} />}
                         <style.Link style={{textAlign: 'left'}}>{this.state.userData.displayName}</style.Link>
                     </div>
+                    <div className="row">
+                        <div className="col-md-12" style={{display: 'flex', justifyContent: 'left'}}>
+                            <span style={{color: 'green', fontWeight: 'bold'}}>{this.state.isOnline}</span>
+                        </div>
+                    </div>
                     <div id="bio-field">
                         {this.state.setBioUpdate?(<>
                             <TextField id="outlined-basic" label="Add Bio" multiline 
@@ -250,11 +264,6 @@ class ProfilePage extends React.Component{
                             </Button></>):(<><p style={{marginLeft: '0px'}}>{this.state.bio}</p>{this.props.uid===this.state.userId&&<i class="fa fa-pencil-square-o" aria-hidden="true" 
                             style={{fontSize: 'larger'}}
                             onClick={()=>this.setState({setBioUpdate: true})}></i>}</>)}
-                    </div>
-                    <div className="row">
-                            <div className="col-md-12" style={{display: 'flex',justifyContent: 'left'}}>
-                                <span style={{color: 'green', fontWeight: 'bold'}}>{this.state.isOnline}</span>
-                            </div>
                     </div>
                     {this.props.uid===this.state.userId?(<><input type="file" 
                     accept="image/*" 
