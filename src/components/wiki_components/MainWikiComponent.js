@@ -1,11 +1,10 @@
 import React from 'react';
-import NavbarMainComponent from '../navbar_components/navbarmaincomponent';
 import './Wiki.css';
 
 function MainWikiComponent({isLoggedIn,logout, fetchPost}){
+    //Don't remove the 100px inline style otherwise the component will hide behind the navbar
     return (
-        <div>
-            <NavbarMainComponent isLoggedIn={isLoggedIn} logout={logout} fetchPost={fetchPost}/>
+        <div style={{marginTop: '100px'}}> 
             <div>
 
             </div>

@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme)=>({
   }
 }));
 
-function NavbarMainComponent({logout, fetchPost}) {
+function NavbarMainComponent({logout, fetchPost, uid}) {
   const classes = useStyles();
   const [open, setOpen]=useState(false);
   const options = [
@@ -54,13 +54,37 @@ function NavbarMainComponent({logout, fetchPost}) {
         </div>
         <Divider />
       <List>
-        {['Home','Profile'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <i class="fa fa-home" aria-hidden="true" style={{fontSize: 'x-large'}}></i> : 
+        {['Home','Profile', 'Users'].map((text, index) => {
+          if(index==0){
+            return(
+              <ListItem button key={text}>
+                <ListItemIcon><i class="fa fa-home" aria-hidden="true" style={{fontSize: 'x-large'}}></i></ListItemIcon>
+                <Link to="/home" style={{textDecoration: 'none'}}><ListItemText primary={text} /></Link>
+              </ListItem>
+            );
+          }
+          else if(index==1){
+            return(
+              <ListItem button key={text}>
+                <ListItemIcon><i class="fa fa-user" aria-hidden="true" style={{fontSize: 'x-large'}}></i></ListItemIcon>
+                <Link to={`/profile/${uid}`} style={{textDecoration: 'none'}}><ListItemText primary={text} /></Link>
+              </ListItem>
+            );
+          }
+          else{
+            return(
+              <ListItem button key={text}>
+                <ListItemIcon><i class="fa fa-users" aria-hidden="true" style={{fontSize: 'x-large'}}></i></ListItemIcon>
+                <Link to="/userSearch" style={{textDecoration: 'none'}}><ListItemText primary={text} /></Link>
+              </ListItem>
+            );
+          }
+          /*<ListItem button key={text}>
+            <ListItemIcon>{index % 3 === 0 ? <i class="fa fa-home" aria-hidden="true" style={{fontSize: 'x-large'}}></i> : 
             <i class="fa fa-user" aria-hidden="true" style={{fontSize: 'x-large'}}></i>}</ListItemIcon>
             <ListItemText primary={text} />
-          </ListItem>
-        ))}
+          </ListItem>*/
+      })}
       </List>
     </div>
   );
@@ -91,6 +115,9 @@ function NavbarMainComponent({logout, fetchPost}) {
       <Link to="/profile" 
       style={{ textDecoration: 'none', color: 'navajowhite', fontSize: 'larger', fontWeight: '700' }}
         >Profile</Link>
+        <Link to="/userSearch" 
+      style={{ textDecoration: 'none', color: 'navajowhite', fontSize: 'larger', fontWeight: '700' }}
+        >Users</Link>
     </Nav>
     <Form inline>
 	  <Button variant="outline-success" style={{margin: '5px', color: 'navajowhite', fontWeight: '700'}} onClick={logout}>Logout</Button>

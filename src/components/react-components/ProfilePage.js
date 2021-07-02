@@ -87,6 +87,20 @@ class ProfilePage extends React.Component{
         })
     }
 
+    fetchPosts=(userId)=>{
+        fetch(baseUrl+'fetchUserPosts',{
+            method: 'POST',
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({id: userId})
+        }).then(res=>res.json()).then(res=>{
+            this.setState({
+                posts: res
+            })
+        })
+    }
+
     changeBio=()=>{
         db.collection("users").where("uid","==",this.state.userId).get().then(query=>{
 			const document=query.docs[0];
