@@ -101,8 +101,8 @@ function NavbarMainComponent({uid, logout, fetchPost}) {
             <li>
                 <Link to="/userSearch">Users</Link>
             </li>
-            <li onClick={logout}>
-                <a>Logout</a>
+            <li onClick={logout} style={{color: 'rgb(226,226,226)', fontWeight: 'bold', cursor: 'all-scroll'}}>
+                <a id="logout"  style={{color: 'rgb(226,226,226)', fontWeight: 'bold', cursor: 'all-scroll'}}>Logout</a>
             </li>
         </ul>
         <div className="burger" onClick={navSlide}>

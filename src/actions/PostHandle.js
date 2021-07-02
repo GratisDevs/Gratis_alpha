@@ -1,6 +1,6 @@
 import firebase from "../components/data_components/firebase";
 
-const baseURL='http://snaptok.herokuapp.com/'
+const baseURL='https://snaptok.herokuapp.com/'
 
 export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,postDescription,postSubGratis,postImage,postVideo,changeLoading)=>async(dispatch)=>{
 

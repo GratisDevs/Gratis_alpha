@@ -32,6 +32,12 @@ nav{
     list-style: none;
 }
 
+#logout{
+    color: rgb(226,226,226); 
+    font-weight: bold;
+    cursor: all-scroll;
+}
+
 .nav-links a{
     color: rgb(226, 226, 226);
     text-decoration: none;
