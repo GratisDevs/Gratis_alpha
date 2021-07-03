@@ -12,7 +12,7 @@ export default function About() {
             <hr className="hr-thin" />
             <div className="about-card">
               <h2 className="about-text sub-title">Intro</h2>
-              <hr className="about text hr-sub"/>
+              <hr className="about-text hr-sub"/>
               <h4 className="about-text ">
                 Gratis' can be considered as a small scale social networking
                 site, close to linkedin and stackoverflow in its functionality
@@ -40,7 +40,7 @@ export default function About() {
               <h4 className="about-text">Structure Design ------------- Palash Som</h4>
               <h4 className="about-text">Asset Moderator ------------- Sidharth Kaushik</h4>
             </div>
-            
+            <br />
           </Col>
         </Row>
       </Container>

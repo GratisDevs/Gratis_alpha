@@ -5,7 +5,7 @@
 
 .section-list{
     border-right: solid rgb(163, 62, 62) ;
-    height: 120vh;
+    bottom: 0px;
 }
 
 .list-links{
