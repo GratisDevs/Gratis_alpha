@@ -1,0 +1,39 @@
+.about-container{
+    box-sizing: border-box;
+    margin-top: 10vh;
+    margin-left: 5vw;
+    color: bisque;
+}
+
+.heading{
+    font-size: 3.0rem;
+}
+
+hr.hr-thin{
+    border: .8px solid bisque;
+}
+
+hr.hr-sub{
+    border: .3px solid bisque;
+	margin-left: 2vw;
+}
+
+.about-card {
+	/* Add shadows to create the "card" effect */
+	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 30px;
+	border-bottom-left-radius: 30px;
+	padding: 2px 16px; /* 5px rounded corners */
+	/* height: 75px; */
+}
+
+.about-text{
+    margin: 3vw;
+}
+
+.sub-title{
+	margin-bottom: -1vw;
+}

@@ -1,0 +1,28 @@
+.main-container{
+    background-image: linear-gradient(to right, #21212a, #212121);
+    box-sizing: border-box;
+}
+
+.section-list{
+    border-right: solid rgb(163, 62, 62) ;
+    height: 120vh;
+}
+
+.list-links{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.list-links li{
+    list-style: none;
+}
+
+.list-links a{
+    color: burlywood;
+    text-decoration: none;
+    letter-spacing: 3px ;
+    font-weight: bold;
+}
