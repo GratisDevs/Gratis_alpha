@@ -41,11 +41,11 @@ style.Photo = styled.div`
   box-sizing: border-box;
   background-clip: content-box;
   background-color: white;
-  background-position: center;
+  background-position: left;
   background-size: 100%;
   background-repeat: no-repeat;
   border: 2px solid white;
-  margin: -38px auto 12px;
+  margin: -38px auto 5px 12px;
   border-radius: 50%;
 `;
 

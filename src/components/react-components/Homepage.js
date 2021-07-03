@@ -5,7 +5,6 @@ import Main from './Main.js';
 import TopMobile from './TopMobile';
 import { connect } from 'react-redux';
 import {changeProfile} from '../../actions/changeProfile';
-import NavbarMainComponent from '../navbar_components/navbarhomecomponent';
 // import Recommendation from './recommendation.js';
 // import { fetchPosts } from '../../actions/PostHandle.js';
 // import { connect } from 'react-redux';
@@ -62,20 +61,19 @@ class Homepage extends React.Component {
 	render() {
 		return (
 			<>
-			<NavbarMainComponent isLoggedIn={true} logout={this.props.logout} fetchPost={this.props.fetchPosts} />
 			<div id="back-to-top-anchor"></div>
 			<div>
 				
 				<div
 					className="container-fluid m-0"
-					style={{ paddingTop: '100px', paddingLeft: '0', paddingRight: '0', overflow: 'hidden' }}
+					style={{ paddingTop: '60px', paddingLeft: '0', paddingRight: '0', overflow: 'hidden' }}
 				>
 					
 					<div className="row m-0">
 						<div class="col-md-2" />
-						<TopMobile userName={this.props.userName} photoURL={this.props.photoURL} handleChange={this.handleChange} />
+						<TopMobile userName={this.props.userName} photoURL={this.props.photoURL} handleChange={this.handleChange} uid={this.props.uid} />
 						<Main userName={this.props.userName} fetchPosts={this.props.fetchPosts} />
-						<Leftside userName={this.props.userName} photoURL={this.props.photoURL} handleChange={this.handleChange} />
+						<Leftside userName={this.props.userName} photoURL={this.props.photoURL} handleChange={this.handleChange} uid={this.props.uid} />
 						<div class="col-md-1" />
 					</div>
 				</div>

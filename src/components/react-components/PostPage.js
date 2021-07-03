@@ -1,6 +1,6 @@
 import React from 'react';
 import Loading from './Loading';
-import UserProfile from './UserProfile';
+import AuthorProfile from './AuthorProfile';
 import style from './MainStyle';
 import DeleteModal from './DeleteModal';
 import { connect } from 'react-redux';
@@ -18,6 +18,8 @@ import socketClient from 'socket.io-client';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
+import firebase from '../data_components/firebase'
 
 class PostPage extends React.Component{
 
@@ -32,9 +34,14 @@ class PostPage extends React.Component{
         }
     }
 
-    componentDidMount(){
+    async componentDidMount(){
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch('https://snaptok.herokuapp.com/fetchPost/'+this.props.match.params.id,{
-            method: 'GET'
+            method: 'GET',
+            headers:{
+                "FIREBASE_AUTH_TOKEN": idToken
+            }
         }).then(res=>res.json()).then(res=>{
             if(res.message==='Failure')
                 this.setState({snackbar: true})
@@ -60,11 +67,14 @@ class PostPage extends React.Component{
             });
       }
 
-    deletePost=()=>{
+    deletePost=async()=>{
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch('https://snaptok.herokuapp.com/deletePost',{
             method: 'POST',
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({id: this.props.match.params.id}),
         }).then(res=>this.toggleDeleteModal()).catch(err=>{console.log(err);})
@@ -85,7 +95,6 @@ class PostPage extends React.Component{
                 <>
                    {this.props.uid?(
                        <>
-                       <NavbarMainComponent isLoggedIn={true} logout={this.props.logout} />
                        <DeleteModal toggleDeleteModal={this.toggleDeleteModal} 
                        deleteModal={this.state.deleteModal} deletePost={this.deletePost} />
                        <div className="container-fluid"><div className="row" style={{marginTop: '100px'}}>
@@ -100,11 +109,11 @@ class PostPage extends React.Component{
                            <style.SharedActor>
                                <div style={{display: 'flex', flexDirection: 'column', width: '-webkit-fill-available'}}>
                                <a>
-                               <UserProfile userProfile={this.state.post.userProfile} />
+                               <AuthorProfile uid={this.state.post.uid} />
                                 <div style={{display: 'flex',flexDirection: 'column',maxWidth: 'fit-content', justifyContent: 'space-between'}}>
-                                <span style={{textAlign: 'left', display: 'block', fontSize: 'medium'}} className="title-style">{this.state.post.author}</span>
+                                <Link to={`/profile/${this.state.post.uid}`} style={{textDecoration: 'none'}}><span style={{textAlign: 'left', display: 'block', fontSize: 'medium'}} className="title-style">{this.state.post.author}</span></Link>
                                 <span style={{color: 'rgba(0,0,0,0.8)'}}>
-                                    {dateTime.getDate()+"-"+dateTime.getMonth()+"-"+dateTime.getYear()} at {dateTime.getHours()+":"+dateTime.getMinutes()}</span>
+                                    {dateTime.getDate()+"-"+dateTime.getMonth()+"-"+dateTime.getFullYear()} at {dateTime.getHours()+":"+dateTime.getMinutes()}</span>
                                 </div>
                                 <div class="title-div">
                                     <h5 class="title-style title-big-screen">{this.state.post.title}</h5>

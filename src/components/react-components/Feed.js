@@ -10,7 +10,8 @@ import {deletePostFromStore} from '../../actions/PostHandle';
 import HeartIcon from './HeartIcon';
 import './img.css';
 import { connect } from 'react-redux';
-
+import AuthorProfile from './AuthorProfile';
+import firebase from '../data_components/firebase';
 class Feed extends React.Component{
     constructor(props){
         super(props);
@@ -27,12 +28,14 @@ class Feed extends React.Component{
             });
       }
     
-      deletePost=()=>{
-        
+      deletePost=async()=>{
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch('https://snaptok.herokuapp.com/deletePost',{
             method: 'POST',
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({id: this.state.postToDelete}),
         }).then(res=>{alert("Post deleted successfully!");this.props.dispatch(deletePostFromStore(this.state.postToDelete));
@@ -48,6 +51,12 @@ class Feed extends React.Component{
       }
 
       render(){
+        if(this.props.posts.length===0){
+          return(
+            <h6>No posts to show</h6>
+          );
+        }
+        else
             return(
                 this.props.posts.map((post)=>{
                 var date=new Date(post.dateTime);
@@ -58,10 +67,10 @@ class Feed extends React.Component{
                 deleteModal={this.state.deleteModal} deletePost={this.deletePost} />
                 <style.Article>
                 <style.SharedActor>
-                  <a href="#">
-                    <UserProfile userProfile={post.userProfile} />
+                  <a>
+                    <AuthorProfile uid={post.uid} />
                     <div style={{display: 'flex',flexDirection: 'column'}}>
-                    <div><h6 style={{marginTop: '14px', textAlign: 'left'}}className="title-style">{post.author}</h6>
+                    <div><Link to={`/profile/${post.uid}`} style={{textDecoration: 'none', color: 'black'}}><h6 style={{marginTop: '14px', textAlign: 'left'}}className="title-style">{post.author}</h6></Link>
                     {post.uid===this.props.uid?<i style={{position: 'absolute',right: '10px', top: '27px',color: 'rgba(0,0,0,0.7)'}} 
                     class="fa fa-trash" aria-hidden="true" onClick={()=>this.toggleDeleteModal(post._id)}></i>:<div></div>}</div>
                   </div>

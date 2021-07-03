@@ -57,7 +57,7 @@ class Main extends React.Component {
     <PostModal isModalOpen={this.state.isModalOpen} toggleModal={this.toggleModal} userName={this.props.userName} 
     photoURL={this.props.photoURL} uid={this.props.uid} />
     <style.ShareBox>
-      <h4 style={{textAlign: 'center'}}>Share</h4>
+      <h4 style={{textAlign: 'center'}}></h4>
     <div>
       {this.props.photoURL?<img src={this.props.photoURL} alt="" />:<img src="/images/user.svg" alt="" />}
       <button onClick={this.toggleModal}>Start a post</button>

@@ -1,6 +1,8 @@
+import firebase from "../components/data_components/firebase";
+
 const baseURL='https://snaptok.herokuapp.com/'
 
-export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,postDescription,postSubGratis,postImage,postVideo,changeLoading)=>(dispatch)=>{
+export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,postDescription,postSubGratis,postImage,postVideo,changeLoading)=>async(dispatch)=>{
 
     var data=new FormData();
     var today=new Date();
@@ -8,7 +10,6 @@ export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,
     data.append('email',postAuthorEmail);
     data.append('uid',uid);
     data.append('title',postTitle);
-    data.append('userProfile',userProfile);
     data.append('description',postDescription.replace(/\"/g,"\'"));
     data.append('file',postImage?postImage:postVideo);
     data.append('fileType',postImage!==''||postVideo!==''?(postImage?'image':'video'):'')
@@ -16,9 +17,12 @@ export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,
     data.append('dateTime',today.toISOString());
     data.append('likes',0);
     data.append('dislikes',0);
-
+    const idToken=await firebase.auth().currentUser.getIdToken();
     fetch(baseURL+'post',{
         method: 'POST',
+        headers:{
+          "FIREBASE_AUTH_TOKEN": idToken
+        },
         body: data
     }).then(response => {
         if (response.ok) {
@@ -37,12 +41,14 @@ export const submitPost=(postAuthor,userProfile, uid, postAuthorEmail,postTitle,
 
 }
 
-export const fetchPosts=(category)=>(dispatch)=>{
+export const fetchPosts=(category)=>async(dispatch)=>{
   dispatch(changePostsLoading())
+  const idToken=await firebase.auth().currentUser.getIdToken();
   fetch(baseURL+'fetchPosts',{
     method: 'POST',
     headers:{
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "FIREBASE_AUTH_TOKEN": idToken
     },
     body: JSON.stringify({category: category})
   }).then(response => {

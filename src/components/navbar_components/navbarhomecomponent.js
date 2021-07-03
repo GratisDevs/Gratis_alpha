@@ -46,7 +46,7 @@ const filterPosts = () => {
 
 
 
-function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
+function NavbarMainComponent({uid, logout, fetchPost}) {
 
 
     const [drawerStatus,setDrawerStatus] = useState(false);
@@ -73,13 +73,6 @@ function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
         {"value": "Civil","name":"Civil"}
         ];
 
-//   const drawerChange = () =>{
-//         if(drawerStatus === false)
-//             setDrawerStatus(true);
-//         else    
-//             setDrawerStatus(false);
-//   }
-
   return(
     <nav className="navbar-all">
         <div className="logo">
@@ -91,7 +84,7 @@ function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
             </svg>
             <ul className="filter_links">
                 {
-                    options.map((o)=><li ><a href="#">{o.value}</a></li>) 
+                    options.map((o)=><li onClick={()=>fetchPost(o.value)}>{o.value}</li>) 
                 }
             </ul>
         </div>
@@ -103,10 +96,13 @@ function NavbarMainComponent({isLoggedIn,logout, fetchPost}) {
                 <Link to="/wiki">Wiki</Link>
             </li>
             <li>
-                <Link to="/profile">Profile</Link>
+                <Link to={`/profile/${uid}`}>Profile</Link>
             </li>
-            <li onClick={logout}>
-                <a href="#">Logout</a>
+            <li>
+                <Link to="/userSearch">Users</Link>
+            </li>
+            <li onClick={logout} style={{color: 'rgb(226,226,226)', fontWeight: 'bold', cursor: 'all-scroll'}}>
+                <a id="logout"  style={{color: 'rgb(226,226,226)', fontWeight: 'bold', cursor: 'all-scroll'}}>Logout</a>
             </li>
         </ul>
         <div className="burger" onClick={navSlide}>

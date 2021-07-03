@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './LeftsideStyle';
+import { Link } from 'react-router-dom';
 
 class TopMobile extends React.Component{
   constructor(props){
@@ -18,7 +19,7 @@ class TopMobile extends React.Component{
           <style.CardBackground />
           <div>
             <style.Photo url={this.props.photoURL}/>
-            <style.Link>Welcome, {this.props.userName}!</style.Link>
+            <Link to={`/profile/${this.props.uid}`}>Welcome, {this.props.userName}!</Link>
           </div>
         
           <input type="file" 

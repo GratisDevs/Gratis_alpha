@@ -33,11 +33,14 @@ class HeartIcon extends React.Component{
 		});
     }
 
-    sendHeartRequests=(props)=>{
+    sendHeartRequests=async(props)=>{
+        const idToken=await firebase.auth().currentUser.getIdToken();
+
         fetch(this.state.baseUrl+'heart',{
             method: 'POST',
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "FIREBASE_AUTH_TOKEN": idToken
             },
             body: JSON.stringify({"id":this.props.postId,"action": props})
         }).then(res=>res.json()).catch(err=>err);

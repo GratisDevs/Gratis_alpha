@@ -3,6 +3,8 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
+import { Link } from 'react-router-dom';
+import AuthorProfile from './AuthorProfile';
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -36,11 +38,11 @@ function OneComment(props){
     return(
         <>
                 <div style={{display: 'flex', padding: '0 5px'}}>
-                    <img src={props.comment.userProfile} alt="" style={{width: '45px', height: '45px', borderRadius: '50%'}} />
+                    <AuthorProfile uid={props.comment.uid} />
                     <div style={{display: 'flex', flexDirection: 'column', 
                     textAlign: 'left', width: '-webkit-fill-available',marginLeft: '5px'}}>
-                        <div style={{display: 'flex'}}><span style={{color: 'rgba(0,0,0,0.6)', fontWeight: '700'}}>{props.comment.commentAuthor}</span>
-                        <span style={{marginLeft: '8px', color: 'rgba(0,0,0,0.5)'}}>{date.getDate()+"-"+date.getMonth()+"-"+date.getYear()} 
+                        <div style={{display: 'flex'}}><Link to={`/profile/${props.comment.uid}`}><span style={{color: 'rgba(0,0,0,0.6)', fontWeight: '700'}}>{props.comment.commentAuthor}</span></Link>
+                        <span style={{marginLeft: '8px', color: 'rgba(0,0,0,0.5)'}}>{date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear()} 
                         at {date.getHours()+":"+date.getMinutes()}</span></div>
                         <p style={{marginLeft: '0px',fontStyle: 'Source Sans Pro, sans-serif'}}>{props.comment.comment}</p>
                         <span style={{color: 'blue', fontWeight: 'bold', cursor: 'default'}} 

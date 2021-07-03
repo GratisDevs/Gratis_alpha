@@ -11,7 +11,9 @@ import Home from './components/react-components/Home.js';
 import { fetchPosts } from './actions/PostHandle.js';
 import PostPage from './components/react-components/PostPage.js';
 import ProfilePage from './components/react-components/ProfilePage.js';
+import NavbarMainComponent from './components/navbar_components/navbarhomecomponent.js';
 import MainWikiComponent from './components/wiki_components/MainWikiComponent.js';
+import UserSearch from './components/react-components/UserSearch.js';
 
 
 class App extends React.Component {
@@ -84,7 +86,7 @@ class App extends React.Component {
 		
 		return (
 			<>
-				
+				{this.props.isLoggedIn&&<NavbarMainComponent logout={this.logout} fetchPost={this.fetchPosts} uid={this.props.uid} />}
 				<Switch>
 					<Route exact path="/" render={(props)=><Home {...props} 
 					isLoggedIn={this.props.isLoggedIn} 
@@ -95,11 +97,12 @@ class App extends React.Component {
 					uid={this.props.uid} />} 
 					 />
 					<Route exact path="/login" component={Login} />
-					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} userName={this.props.userName} logout={this.logout} />} />
+					<Route exact path="/post/:id" render={(props)=><PostPage {...props} uid={this.props.uid} userName={this.props.userName} />} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/forgot_pass" component={ForgotPass} />
-					<Route exact path="/wiki" component={MainWikiComponent} fetchPosts={this.fetchPosts} logout={this.logout} isLoggedIn={this.props.isLoggedIn}/>
-					<Route exact path="/profile" component={ProfilePage} />
+					<Route exact path="/profile/:id" render={(props)=><ProfilePage {...props} uid={this.props.uid} userName={this.props.userName} />} />
+					<Route exact path="/wiki" render={(props)=><MainWikiComponent {...props} fetchPosts={this.fetchPosts} logout={this.logout} isLoggedIn={this.props.isLoggedIn} />} />
+					<Route eact path="/userSearch" component={UserSearch} />
 					<Redirect to="/" />
 				</Switch>
 			</>
